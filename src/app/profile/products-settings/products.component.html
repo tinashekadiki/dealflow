@@ -1,0 +1,52 @@
+<div fxFlex="100" class="content">
+  <mat-grid-list cols="3" rowHeight="50px">
+    <div fxLayout="row">
+      <span fxFlex></span>
+      <div class="core-heading">Products and Solutions</div>
+      <span fxFlex></span>
+    </div>
+  </mat-grid-list>
+
+  <div *ngIf="loading; then load; else showProducts"></div>
+
+  <ng-template #load>
+    <div fxLayout="row">
+      <span fxFlex></span>
+      <mat-spinner color="primary" diameter="30"></mat-spinner>
+      <span fxFlex></span>
+    </div>
+  </ng-template>
+
+  <ng-template #showProducts>
+    <div class="layout" fxLayout="column" fxLayoutGap="10px">
+      <!-- <div fxLayout="row wrap" fxLayoutGap="80px">
+        <div class="core-text" fxFlex="38" fxLayoutGap="30px" *ngFor="let product of entitlementProducts; let index = i">
+          <div matLine>
+            <mat-label>{{ product.name }}</mat-label>
+            <span fxFlex></span>
+            <mat-slide-toggle checked disabled aria-label="Products Toggle" color="primary"></mat-slide-toggle>
+          </div>
+          <div matLine>&nbsp;</div>
+        </div>
+        <span fxFlex></span>
+      </div> -->
+
+      <mat-card class="customer-demography-card mat-elevation-z2" *ngFor="let group of productGroups; let i = index;">
+      <div fxLayout="row wrap" fxLayoutGap="80px">
+        <!-- *ngFor="let type of configTypes; let i = index;" -->
+        <h3 fxFill class="core-heading">{{ group }}</h3>
+        <!-- <ng-container  *ngFor="let configuration of currentConfigurations[type]; let i=index;"> -->
+        <div class="core-text" fxFlex="38" fxLayoutGap="30px" *ngFor="let product of marketProducts[group]; let index = i">
+          <div matLine>
+            <mat-label>{{ product.productName }}</mat-label>
+            <span fxFlex></span>
+            <mat-slide-toggle color="primary" [checked]="checkMarketProduct(product.productSku)" [disabled]="checkEntitlementProduct(product.productSku)" (change)="updateProduct($event, product, group)"></mat-slide-toggle>
+          </div>
+          <div matLine>&nbsp;</div>
+        </div>
+        <span fxFlex></span>
+      </div>
+    </mat-card>
+    </div>
+  </ng-template>
+</div>

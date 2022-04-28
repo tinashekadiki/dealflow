@@ -1,0 +1,52 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      INNOVIS
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <form [formGroup]="innovisForm"
+        (ngSubmit)="saveSettings(innovisForm.value)">
+    <div fxLayout="row wrap">
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" name="username"  required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" name="password"  required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Software Provider ID</mat-label>
+        <input matInput formControlName="softwareProviderId" name="softwareProviderId"  required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Customer ID</mat-label>
+        <input matInput formControlName="customerId" name="customerId"  required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Customer ID 2</mat-label>
+        <input matInput formControlName="customerId2" name="customerId2"  required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>UAT Access Code</mat-label>
+        <input matInput formControlName="uatAccessCode" name="uatAccessCode"  required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" name="name"  required>
+      </mat-form-field>
+
+    </div>
+    <div fxLayout="row">
+      <span fxFlex></span>
+      <button mat-raised-button color="primary">Save</button>
+      <span fxFlex></span>
+    </div>
+  </form>
+</mat-expansion-panel>

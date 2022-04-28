@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>{{data.displayName}}</h2>
+<div mat-dialog-content>
+    <mat-form-field>
+        <mat-label>{{(data.label==undefined)?data.displayName+" contains":data.label}}</mat-label>
+        <input matInput cdkFocusInitial [(ngModel)]="data.value">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [disabled]="!validInput" [mat-dialog-close]="data">
+        {{(data.actionBtn == undefined)? "Apply":data.actionBtn}}
+    </button>
+</div>

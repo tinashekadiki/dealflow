@@ -1,0 +1,37 @@
+<div mat-dialog-title fxLayout="row" class="modal">
+  <div class="text-normalise core-heading">Configure {{type.toLowerCase()}} flow</div>
+  <span fxFlex></span>
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<div mat-dialog-content class="modal">
+  <div fxLayout="column" fxLayoutGap="10px">
+    <mat-form-field *ngIf="configTypes[type] === 'NEW_CONFIG'" class="core-text" fxFlex="48" appearance="outline">
+      <mat-label>Select Configuration Type</mat-label>
+      <mat-select  required [(ngModel)]="configTypes[type]">
+        <mat-option value="INTERNETLEAD">Internet Lead Process</mat-option>
+        <mat-option value="ENDTOEND">End to End Process</mat-option>
+      </mat-select>
+      <mat-icon matPrefix>tune</mat-icon>
+    </mat-form-field>
+    <div fxLayout="row wrap" fxLayoutGap="5px">
+      <p class="core-text" fxFlex="48" fxLayoutGap="5px" *ngFor="let process of processes; let index = i;">
+        <mat-label>{{process.name}}</mat-label>
+        <span fxFlex></span>
+        <mat-slide-toggle color="primary" [checked]="checkProcess(process)"  (change)="addProcess(process)" aria-label="Processes Toggle"></mat-slide-toggle>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div fxLayout="row">
+  <mat-dialog-actions align="start">
+  </mat-dialog-actions>
+  <span fxFlex></span>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="allData" cdkFocusInitial>Update</button>
+  </mat-dialog-actions>
+</div>

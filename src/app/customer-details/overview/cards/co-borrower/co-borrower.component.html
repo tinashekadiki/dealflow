@@ -1,0 +1,33 @@
+<mat-card class="customer-demography-card mat-elevation-z2 summary-card">
+    <mat-card-header>
+        <mat-card-title>
+            Co-Borrower
+        </mat-card-title>
+        <span class="expandable-block"></span>
+        <div class="action-button-block">
+            <button (click)="isOpen = !isOpen" mat-icon-button aria-label="Expand Co-Borrower">
+        <mat-icon>{{isOpen?"expand_less":"expand_more"}}</mat-icon>
+      </button>
+        </div>
+    </mat-card-header>
+    <ng-container *ngIf="isOpen">
+        <mat-card-content>
+            <div class="customer-details">
+                <div class="compliance-flag-container">
+                    <div class="compliance-flag">{{customerCoBorrower.complianceFlag}}</div>
+                </div>
+
+                <div class="mat-h1 customer-name"><a [routerLink]="['/customer-details',customerCoBorrower.customerGlobalId]">{{customerCoBorrower?(customerCoBorrower.firstName+"
+          "+customerCoBorrower.lastName):"-"}}</a></div>
+                <div class="customer-address">{{formattedAddress || "-"}}</div>
+                <div class="customer-phone">{{phoneNumber || "-"}}</div>
+                <div class="deal-detail-section">
+                    <div class="deal-no"><span>DL #: </span> {{licenseNumber || "-"}}</div>
+                    <div class="deal-expiration-date">
+                        <span>DL Expiration Date: </span> {{expiryDate | date:'mediumDate'}}
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </ng-container>
+</mat-card>

@@ -1,0 +1,37 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Sale Process Stage
+    </mat-card-title>
+  </mat-card-header>
+  <ngx-skeleton-loader count="5" *ngIf="isLoading" [theme]="{
+        'width':'calc(20% - 10px)',
+        'height':'108px',
+        'margin-right':'10px'
+    }"></ngx-skeleton-loader>
+
+  <mat-horizontal-stepper [linear]="true" class="deal-progress" labelPosition="bottom" #stepper>
+    <mat-step *ngFor="let customerBuyingProcess of customerBuyingProcessList; let i = index"
+              [editable]="false"
+              [state]="isProcessCompleted(customerBuyingProcess.process.processId) ? 'completed' : (i+1).toString()"
+              [completed]="isProcessCompleted(customerBuyingProcess.process.processId)"
+    >
+      <ng-template matStepLabel>{{customerBuyingProcess.process.name}}</ng-template>
+    </mat-step>
+    <ng-template matStepperIcon="completed">
+      <mat-icon>done</mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="1">
+      1
+    </ng-template>
+    <ng-template matStepperIcon="2">
+      2
+    </ng-template>
+    <ng-template matStepperIcon="3">
+      3
+    </ng-template>
+    <ng-template matStepperIcon="4">
+      4
+    </ng-template>
+  </mat-horizontal-stepper>
+</mat-card>

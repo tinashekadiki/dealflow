@@ -1,0 +1,363 @@
+@import 'theme.scss';
+@import 'variable.scss';
+html,
+body {
+    font-size: 14px;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    text-align: left;
+}
+
+mat-grid-list {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+form {
+    margin-left: 10px;
+}
+
+mat-form-field {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.active-link {
+    color: darkblue;
+}
+
+.layout {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+mat-card-header.gray-scheme {
+    margin: -16px -16px 10px;
+    padding-top: 10px;
+    background: $local-background;
+    border-bottom: 1px solid $local-border-primary;
+}
+
+.special-header {
+    margin: -16px -16px 10px;
+    padding-top: 10px;
+    background: $local-background;
+    border-bottom: 1px solid $local-border-primary;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    height: 48px;
+    color: $cl-d-blue !important;
+    overflow: hidden;
+    padding: 0 16px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    background: #fff !important;
+    font-size: large;
+}
+
+.color-primary {
+    color: $primary;
+}
+
+.color-primary-bg {
+    color: #fff;
+}
+
+.no-padding {
+    margin: -10px;
+}
+
+.sp-bt-10 {
+    margin-bottom: 10px;
+}
+
+.allowed {
+    color: $success;
+}
+
+.not-allowed {
+    color: $error;
+}
+
+.content {
+    //padding: 2rem;
+    font-size: large;
+}
+
+.pb-5 {
+    display: flex;
+    align-items: center;
+    height: 48px;
+    color: #000;
+    overflow: hidden;
+    padding: 0 16px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    background: #f2f2f2;
+    font-size: large;
+}
+
+button {
+    font-size: 16px;
+}
+
+.mat-raised-button {
+    font-size: 16px !important;
+}
+
+.auth-card {
+    // height: 300px;
+    width: 500px;
+    margin-top: 10%;
+    text-align: center;
+}
+
+.mat-body,
+.mat-body-1,
+.mat-typography {
+    font: 400 14px/20px Roboto, "Helvetica Neue", sans-serif;
+    letter-spacing: normal;
+    text-align: left;
+}
+
+.mat-header-cell {
+    font-size: 14px;
+    font-weight: 500
+}
+
+.mat-drawer-container {
+    height: 100vh;
+}
+
+mat-form-field {
+    font-size: 14px !important;
+    margin: 7px;
+    width: 90%;
+}
+
+.core-text-inverted {
+    color: #ffffff;
+    font-size: 14px !important;
+    margin: 7px;
+}
+
+.core-table-header {
+    font-size: 14px;
+    color: $cl-d-gray;
+}
+
+.core-text {
+    color: $cl-d-gray;
+    font-size: 14px !important;
+    margin: 7px;
+    .core-text-truncate {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+}
+
+.text-normalise{
+  text-transform: capitalize;
+}
+
+
+.core-text-truncate {
+  overflow: hidden;
+  width: auto;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.no-style{
+  list-style: none;
+  text-decoration: none;
+  cursor: grab;
+}
+
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+}
+
+.core-text-error {
+    color: $cl-red;
+    font-size: 14px !important;
+    margin: 7px;
+}
+
+.core-heading {
+    font-size: 20px;
+    color: $cl-d-blue;
+    margin: 7px;
+}
+
+.desk-card {
+    border: 1px solid #e6e6e6;
+    width: 100%;
+    min-width: 100%;
+    font-size: 14px;
+}
+
+.desk-header {
+    background-color: #e6e6e6;
+    color: #5a5a5a;
+    padding: 15px 20px;
+}
+
+.core-table-header {
+    font-size: 14px;
+    color: $cl-d-gray;
+}
+
+.core-icon-error{
+  color: $cl-d-red;
+}
+
+.core-icon-success{
+  color: $cl-d-blue;
+}
+
+::ng-deep .core-error{
+  background: $cl-d-red;
+}
+
+.desk-card-container {
+    padding: 20px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.desk-card-container:nth-last-child(1) {
+    border: none;
+}
+
+button {
+    box-sizing: border-box;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    -webkit-tap-highlight-color: transparent;
+    display: inline-block;
+    white-space: nowrap;
+    text-decoration: none;
+    vertical-align: baseline;
+    text-align: center;
+    margin: 0;
+    min-width: 64px;
+    line-height: 36px;
+    padding: 0 16px;
+    border-radius: 4px;
+    overflow: visible;
+    transform: translate3d(0, 0, 0);
+    transition: background 400ms cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+    color: #ffffff;
+    background-color: $cl-blue;
+    font-size: 16px !important;
+}
+
+.desk-card-container>div {
+    vertical-align: middle;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+input {
+    width: 90%;
+    align-self: center;
+}
+
+.mat-card-title,
+.mat-dialog-title {
+    color: $cl-d-blue !important;
+    font-size: 18px !important;
+    font-weight: 500;
+}
+
+.layout {
+    padding-left: 2rem;
+}
+
+.not-read-dot{
+  width: 7px;
+  height: 7px;
+  -webkit-border-radius: 3.5px;
+  -moz-border-radius: 3.5px;
+  border-radius: 3.5px;
+  background: $cl-blue;
+}
+
+.core-radio {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+}
+
+.core-radio-button {
+  margin: 5px;
+}
+
+
+a.additional {
+    margin-bottom: 20px !important;
+    cursor: pointer;
+}
+
+.xng-breadcrumb-root {
+    font-size: 14px;
+    font-weight: 400;
+    .xng-breadcrumb-trail {
+        color: $cl-d-blue;
+        font-weight: 500;
+    }
+    .xng-breadcrumb-link {
+        color: $cl-d-gray;
+    }
+    .xng-breadcrumb-link:hover {
+        text-decoration: none;
+    }
+}
+
+.mat-sidenav-content::-webkit-scrollbar,
+.mat-tab-body-content::-webkit-scrollbar {
+    display: none;
+}
+
+.mat-sidenav-content,
+.mat-tab-body-content {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+input::-webkit-calendar-picker-indicator {
+    display: none !important;
+}
+
+input[type="date"]::-webkit-input-placeholder {
+    visibility: hidden !important;
+}
+
+input::-webkit-datetime-edit-day-field:focus,
+input::-webkit-datetime-edit-month-field:focus,
+input::-webkit-datetime-edit-year-field:focus {
+    background-color: #B5D5FF;
+    // background-color: $cl-blue;
+    color: #000;
+    outline: none;
+}

@@ -1,0 +1,41 @@
+<ngx-skeleton-loader count="5" *ngIf="isLoading" [theme]="{
+  'width':'calc(20% - 10px)',
+  'height':'108px',
+  'margin-right':'10px'
+}"></ngx-skeleton-loader>
+
+<mat-dialog-title class="dialog-title-block">
+    <h2 class="dialog-main-header">Customer Documents</h2>
+    <span class="expanded-block"></span>
+    <div>
+        <button mat-icon-button type="button" aria-label="Close dialog" (click)="onNoClick()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+</mat-dialog-title>
+
+<mat-dialog-content class="dialog-content" *ngIf="customerFolders.length> 0">
+    <mat-grid-list cols="4" rowHeight="120px">
+        <mat-grid-tile *ngFor="let folder of customerFolders" class="document-tile" layout="column">
+            <mat-list class="document" (click)="openCustomerDocumentsDialog(folder)">
+                <mat-list-item>
+                    <mat-icon mat-list-icon>
+                        <img flex src="../../../../../../assets/images/folder.svg" height="70" width="70" alt=""
+                            class="pdf-image" srcset="">
+                    </mat-icon><br>
+                </mat-list-item>
+                <mat-list-item class="folder-details">
+                    <div mat-line><span class="folder-name">{{folder.createdAt}}</span></div>
+                    <!-- <div mat-line><span class="folder-date">{{folder.folderName}}</span></div> -->
+                </mat-list-item>
+            </mat-list>
+        </mat-grid-tile>
+    </mat-grid-list>
+</mat-dialog-content>
+
+
+<mat-dialog-content *ngIf="customerFolders.length <=0 && isLoading==false" class="dialog-content">
+    <div>
+        No Data Available.
+    </div>
+</mat-dialog-content>

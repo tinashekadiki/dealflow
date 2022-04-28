@@ -1,0 +1,53 @@
+
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      CREDCO CREDIT
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <form [formGroup]="creditSettingsForm"
+        (ngSubmit)="saveSettings(creditSettingsForm.value)">
+    <div fxLayout="row wrap">
+
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Account ID</mat-label>
+        <input matInput formControlName="accountid" name="accountid" required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Account Number</mat-label>
+        <input matInput formControlName="accountnumber" name="accountnumber" required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Equifax Code</mat-label>
+        <input matInput formControlName="equifaxcodes" name="equifaxcodes" required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Experian Code</mat-label>
+        <input matInput formControlName="experiancodes" name="experiancodes" required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>TransUnion Code</mat-label>
+        <input matInput formControlName="transunioncodes" name="transunioncodes" required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Days to keep credit</mat-label>
+        <input matInput formControlName="daystokeepcredit" name="daystokeepcredit" required>
+      </mat-form-field>
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Meta data</mat-label>
+        <input matInput formControlName="metadata" name="metadata">
+      </mat-form-field>
+    </div>
+    <div fxLayout="row">
+      <span fxFlex></span>
+      <button mat-raised-button color="primary">Save</button>
+      <span fxFlex></span>
+    </div>
+  </form>
+</mat-expansion-panel>

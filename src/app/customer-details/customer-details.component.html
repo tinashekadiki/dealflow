@@ -1,0 +1,22 @@
+<div class="customer-details-containers">
+    <div class="content1" fxLayoutGap="2rem">
+        <div fxFlex="30" fxLayout="column" fxLayoutGap="20px">
+            <app-customer-detail [isProfileLoading]="isLoadingCustomer" [customer-profile]="customerProfile"></app-customer-detail>
+
+            <ng-container *ngIf="customerCoBorrower; else addCoBorrower">
+                <app-co-borrower [customer-co-borrower]="customerCoBorrower"></app-co-borrower>
+            </ng-container>
+
+            <ng-container #addCoBorrower>
+                <div fxLayout="row wrap">
+                    <button class="m-b-16px" mat-raised-button color="primary" (click)="openSearchCoboborrowerDialogComponent()" (getCoborrowerGlobalCustomerId)="acceptCoborrowerId($event)">
+                        <mat-icon>person_add_alt_1</mat-icon> Add Co-Borrower
+                    </button>
+                </div>
+            </ng-container>
+        </div>
+        <div fxFlex="70">
+            <app-overview *ngIf="!isLoadingCustomer" [customer-profile]="customer?.CustomerData"></app-overview>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      V-AUTO
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <form [formGroup]="dealerTrack"
+        (ngSubmit)="saveSettings(dealerTrack.value)">
+    <div fxLayout="row wrap">
+      <mat-form-field fxFlex="" appearance="outline">
+        <mat-label>API Key</mat-label>
+        <input matInput formControlName="apiKey" name="apiKey"  required>
+      </mat-form-field>
+
+    </div>
+    <div fxLayout="row">
+      <span fxFlex></span>
+      <button mat-raised-button color="primary">Save</button>
+      <span fxFlex></span>
+    </div>
+  </form>
+</mat-expansion-panel>

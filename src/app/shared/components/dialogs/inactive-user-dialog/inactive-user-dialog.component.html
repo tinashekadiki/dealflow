@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Are you still there?</h1>
+<mat-dialog-content>
+    If not, we'll close this session in: <strong>00:{{countDownSec | number:'2.0'}}</strong>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button color="accent" [mat-dialog-close]="false">I'm here</button>
+    <button mat-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>Sign out</button>
+</mat-dialog-actions>

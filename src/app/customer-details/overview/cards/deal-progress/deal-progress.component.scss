@@ -1,0 +1,53 @@
+.deal-progress {
+     ::ng-deep {
+        .mat-horizontal-content-container {
+            padding: 0;
+        }
+             //mat-step-header {
+             //    .mat-step-label {
+             //        // white-space: normal;
+             //        .mat-step-text-label {
+             //            // overflow: visible;
+             //            // word-break: break-word;
+             //        }
+             //    }
+             //}
+    }
+}
+
+::ng-deep .mat-horizontal-stepper-header{
+  pointer-events: none !important;
+}
+
+.mat-step-header:hover{
+  background-color: transparent !important;
+}
+.mat-step-header.cdk-program-focused {
+  background-color: transparent !important;
+}
+.mat-step-header.cdk-mouse-focused{
+  background-color: transparent !important;
+}
+.mat-step-header.cdk-focused{
+  background-color: transparent !important;
+}
+
+.mat-step-header .mat-step-icon {
+  background-color: transparent !important;
+}
+
+.mat-stepper-label-position-bottom .mat-horizontal-stepper-header {
+  box-sizing: border-box !important;
+  flex-direction: column !important;
+  height: auto !important;
+}
+
+.no-ripple{
+  cursor: pointer;
+}
+
+mat-step-header .mat-step-label {
+  overflow: visible;
+}
+
+

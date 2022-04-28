@@ -1,0 +1,114 @@
+<mat-card class="customer-demography-card mat-elevation-z2">
+  <div class="customer-details" *ngIf="isProfileLoading">
+    <ngx-skeleton-loader [theme]="{
+                'width':'70px',
+                'height':'30px',
+                'margin-bottom': '3px'
+            }"></ngx-skeleton-loader>
+    <ngx-skeleton-loader class="mock-button" appearance="circle" [theme]="{
+            'width':'56px',
+            'height':'56px'
+        }"></ngx-skeleton-loader>
+    <ngx-skeleton-loader [theme]="{
+            'width':'90%',
+            'height':'22px',
+            'margin':'5px 5px 5px 0'
+        }"></ngx-skeleton-loader>
+    <ngx-skeleton-loader [theme]="{
+            'width':'70%',
+            'height':'20px',
+            'margin':'0'
+        }"></ngx-skeleton-loader>
+    <ngx-skeleton-loader [theme]="{
+            'width':'60%',
+            'height':'20px',
+            'margin':'0'
+        }"></ngx-skeleton-loader>
+    <ngx-skeleton-loader [theme]="{
+            'width':'50%',
+            'height':'20px',
+            'margin':'0'
+        }"></ngx-skeleton-loader>
+    <ngx-skeleton-loader [theme]="{
+            'width':'70%',
+            'height':'20px',
+            'margin':'10px 0 0 0'
+        }"></ngx-skeleton-loader>
+    <ngx-skeleton-loader [theme]="{
+            'width':'80%',
+            'height':'20px',
+            'margin':'0 0 18px 0'
+        }"></ngx-skeleton-loader>
+  </div>
+  <div class="customer-details" *ngIf="!isProfileLoading">
+    <div class="compliance-flag-container">
+      <div class="compliance-flag">{{customerProfile.ComplianceFlag}}</div>
+      <div *ngIf="customerProfile.relationType" style="margin-left: 5px;" class="compliance-flag">
+        {{customerProfile.relationType == "MainBorrower" ? "Primary Borrower" : "Co Borrower"}}
+      </div>
+    </div>
+
+
+    <button mat-fab color="primary" [matMenuTriggerFor]="customerMenu">
+      <mat-icon>add</mat-icon>
+    </button>
+
+    <mat-menu #customerMenu="matMenu" xPosition="after">
+      <button mat-menu-item (click)="openAddPurchaseVehicleDialog()">Add Purchase Vehicle</button>
+      <button mat-menu-item (click)="openAddTradeVehicleDialog()">Add Trade Vehicle</button>
+      <button mat-menu-item (click)="openSendDigitalApplicationDialog()">Send Digital Application</button>
+      <button mat-menu-item (click)="openGenerateFinanceApplicationDialog()">Generate Finance Application</button>
+      <button mat-menu-item (click)="openSendRecordToDMSDialog()">Send Record to DMS</button>
+      <button mat-menu-item (click)="openSendRecordToCRMDialog()">Send Record to CRM</button>
+      <button mat-menu-item (click)="confirmArchiveCustomer(customerPersonalDetails?.customerGlobalId)">Archive
+        Customer
+      </button>
+      <button mat-menu-item (click)="openSearchCoboborrowerDialogComponent()">Add Customer Co-Borrower</button>
+    </mat-menu>
+
+    <div class="core-heading"
+         style="margin-left:0;text-transform: uppercase;">{{customerPersonalDetails ? (customerPersonalDetails.firstName + " " + customerPersonalDetails.lastName) : "-"}}</div>
+    <div class="customer-address">{{ formattedAddress?.toUpperCase() || '-'}}</div>
+    <div class="customer-address">{{ cityStateCode?.toUpperCase() || '-'}}</div>
+    <div class="customer-phone">{{(customerContactDetails?.cellPhone | mask: "(000) 000-0000") || "-"}}</div>
+    <div class="deal-detail-section">
+
+      <div class="deal-no"><span>SSN: </span> {{ customerPersonalDetails?.socialSecurityNumber | mask: "000-00-0000" || 'XXX-XX-XXXX'}}</div>
+      <div class="deal-no"><span>DOB: </span> {{ customerPersonalDetails?.dateOfBirth }}</div>
+      <br/>
+      <div class="deal-no"><span>DL #: </span> {{customerPersonalDetails?.licenseIdNumber?.toUpperCase() || '-'}}</div>
+      <div class="deal-expiration-date">
+        <span>DL Expiration Date: </span> {{customerPersonalDetails?.licenseExpirationDate}}
+      </div>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="mat-h3 compliance-fraud-check">Compliance and Fraud</div>
+
+  <mat-divider></mat-divider>
+
+  <div class="compliance-check-list" *ngIf="isLoadingCompliance">
+    <ngx-skeleton-loader count="7" [theme]="{
+            'width':'100%',
+            'height':'48px',
+            'margin-bottom':'5px'
+        }"></ngx-skeleton-loader>
+  </div>
+
+  <mat-nav-list class="compliance-check-list" #complianceCheck *ngIf="!isLoadingCompliance">
+    <a *ngFor="let proc of mainProcesses" mat-list-item (click)="openComplianceDetails(proc.process)">
+      {{proc.process}}
+      <span class="expandable-block"></span>
+      <div *ngIf="complianceDisplayOptions(proc.process) as complianceStatus"
+           [class]="complianceStatus.colorClass">
+        <mat-icon>{{complianceStatus.icon}}</mat-icon>
+      </div>
+    </a>
+    <mat-divider></mat-divider>
+    <a (click)="openCustomerFolderDialog()" mat-list-item>Customer Documents
+      <span class="expandable-block"></span>
+      <div class="compliance-result-icon success">
+      </div>
+    </a>
+  </mat-nav-list>
+</mat-card>

@@ -1,0 +1,46 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title style="text-transform: uppercase;">
+      INVENTORY
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <form [formGroup]="formGroup" (ngSubmit)="saveSettings(formGroup.value)">
+    <div fxLayout="row wrap">
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Third Party Name</mat-label>
+        <input matInput formControlName="thirdPartyName" name="thirdPartyName"  required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Time to Update Inventory</mat-label>
+        <input mask="00:00:00" matInput formControlName="timeToUpdateInventory" name="timeToUpdateInventory"  required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Delta Date</mat-label>
+        <input mask="00/00/0000" matInput formControlName="deltaDate" name="deltaDate"  required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Inventory Company</mat-label>
+        <input matInput formControlName="paramInvCompany" name="paramInvCompany"  required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Query ID</mat-label>
+        <input matInput formControlName="queryId" name="queryId"  required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Dealer ID</mat-label>
+        <input matInput formControlName="dealerid" name="dealerid"  required>
+      </mat-form-field>
+    </div>
+    <div fxLayout="row">
+      <span fxFlex></span>
+      <button mat-raised-button color="primary">Save</button>
+      <span fxFlex></span>
+    </div>
+  </form>
+</mat-expansion-panel>

@@ -1,0 +1,29 @@
+<div fxLayout="column" fxLayoutAlign="none stretch" fxLayoutGap="20px">
+    <div fxFlex>
+        <app-deal-progress-card [completed-processes]="customerProfile?.processes"></app-deal-progress-card>
+    </div>
+
+    <div fxFlex>
+        <app-credit-inquiry-card [customerProfile]="customerProfile"></app-credit-inquiry-card>
+    </div>
+
+    <div fxFlex>
+        <app-purchase-vehicle-card (getTotalPrice)="acceptTotalPrice($event)"></app-purchase-vehicle-card>
+    </div>
+
+    <div fxFlex>
+        <app-trade-vehicle-card [customerprofile]="customerProfile" (getTotalTradeInValue)="acceptTotalTradeInValue($event)"></app-trade-vehicle-card>
+    </div>
+
+    <div fxFlex>
+      <app-financial-application [customerProfile]="customerProfile" [totalPrice]="totalVehiclePrice" [totalTrade]="totalTradeInValue"></app-financial-application>
+    </div>
+
+    <div fxFlex>
+        <app-lender-portal></app-lender-portal>
+    </div>
+
+<!--    <div fxFlex>-->
+<!--      <app-customer-documents></app-customer-documents>-->
+<!--    </div>-->
+</div>

@@ -1,0 +1,69 @@
+<mat-dialog-title class="dialog-title-block">
+  <h2 class="dialog-main-header">
+    Customer Documents – {{ parentFolder.createdAt }}
+  </h2>
+  <span class="expanded-block"></span>
+  <div>
+    <button
+      mat-icon-button
+      type="button"
+      aria-label="Close dialog"
+      (click)="onNoClick()"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</mat-dialog-title>
+
+<mat-dialog-content class="dialog-content">
+
+  <div mat-dialog-actions align="end">
+    <mat-checkbox
+      aria-label="Select All"
+      [checked]="allSelected"
+      [indeterminate]="indeterminate"
+      (change)="toggleSelectAll($event)"
+    >
+      Select / Deselect All
+    </mat-checkbox>
+    <div fxFlex></div>
+    <button mat-flat-button color="primary" (click)="onDownloadSelectedClick()">Download Selected</button>
+    &nbsp;<button mat-flat-button color="primary" (click)="onDownloadAllClick()">Download All</button>
+  </div>
+
+  <mat-grid-list cols="2" rowHeight="100px" class="documents">
+    <mat-grid-tile *ngFor="let item of customerDocuments">
+
+      <mat-checkbox
+        [checked]="item.isChecked"
+        (change)="itemChanged(item, $event)"
+      >
+        {{ item.val }}
+      </mat-checkbox>
+      <!-- <ngx-extended-pdf-viewer [src]="'https://asgard.qubedlab.com/document-vault-service/document-vault/download/2021-11-06-DAVID-applicationForm.pdf'" useBrowserLocale="true" height="80vh">pdf-image</ngx-extended-pdf-viewer> -->
+      <!-- <a href="{{item.link}}">
+      -->
+      <img  (click)="openDocumentDialog(item)"
+        src="../../../../../../assets/images/Picture1.png"
+        height="40"
+        width="30"
+        alt=""
+        class="pdf-image"
+        srcset=""
+      />
+
+      <!-- <mat-list class="item"  (click)="openDocumentDialog(item)"> -->
+
+                <!-- <img  (click)="openDocumentDialog(item)" flex src="../../../../../../assets/images/folder.svg" height="70" width="70" alt=""
+                    class="pdf-image" srcset=""> -->
+
+        <!-- </mat-list-item> -->
+<!--
+  </a> -->
+
+     {{ item.documentName }}
+    <!-- -----------{{item.isChecked}} -->
+
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-dialog-content>

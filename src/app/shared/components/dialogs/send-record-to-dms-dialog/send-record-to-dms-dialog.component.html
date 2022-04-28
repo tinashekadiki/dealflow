@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>Send Record To  {{ showSingle ? dms.name : 'DMS' }}</h1>
+<div mat-dialog-content *ngIf="!showSingle && products.length > 1 && !loading">
+  <label class="core-text">Select DMS to send customer record.</label>
+  <mat-radio-group
+    aria-labelledby="example-radio-group-label"
+    class="core-radio"
+    [(ngModel)]="dms">
+    <mat-radio-button class="core-radio-button" *ngFor="let singleDms of products" [value]="singleDms">
+      {{singleDms.name}}
+    </mat-radio-button>
+  </mat-radio-group>
+</div>
+<div mat-dialog-content *ngIf="products.length === 0 && !loading">
+  <p class="core-text">Request cannot be sent. Please activate a DMS in Product Settings.</p>
+</div>
+<div mat-dialog-content *ngIf="loading ">
+  <mat-progress-spinner diameter="30" mode="indeterminate"></mat-progress-spinner>
+</div>
+<div mat-dialog-actions style="justify-content: flex-end;">
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button *ngIf="products.length !== 0" color="primary" (click)="submitRequest()" cdkFocusInitial>
+    <ng-container *ngIf="!submitting; else loadingSpinner">
+      Submit
+    </ng-container>
+  </button>
+</div>
+
+<ng-template #loadingSpinner>
+  <mat-progress-spinner diameter="20" mode="indeterminate"></mat-progress-spinner>
+</ng-template>

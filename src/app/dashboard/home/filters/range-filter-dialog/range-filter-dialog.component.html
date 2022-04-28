@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>{{data.displayName}}</h2>
+<div mat-dialog-content>
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <div fxFlex>
+            <mat-form-field>
+                <mat-label>Min</mat-label>
+                <input type="number" min="0" matInput mask="0000" seperator="," cdkFocusInitial [(ngModel)]="data.value.min">
+            </mat-form-field>
+        </div>
+        <div fxFlex>
+            <mat-form-field>
+                <mat-label>Max</mat-label>
+                <input type="number" [min]="data.value.min" matInput [(ngModel)]="data.value.max">
+            </mat-form-field>
+        </div>
+    </div>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [disabled]="!validRange" [mat-dialog-close]="data">Apply</button>
+</div>

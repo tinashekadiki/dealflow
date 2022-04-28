@@ -1,0 +1,368 @@
+<mat-tab-group animationDuration="0ms" selectedIndex="{{selectedIndex}}" id="newFinanceTabs"
+  (scroll)="handleScroll($event)">
+  <form [formGroup]="financeApplicationForm">
+    <mat-tab label="Personal Information">
+      <div fxLayout="column" fxLayoutAlign="none stretch" fxLayoutGap="20px" (scroll)="handleScroll($event)">
+        <br>
+        <div fxLayout="row wrap" style="margin-top: 10px;">
+          <div fxFlex="33">
+            <mat-form-field appearance="outline">
+              <mat-label>First Name</mat-label>
+              <input matInput name="firstName" formControlName="firstName" placeholder="First Name" required>
+            </mat-form-field>
+          </div>
+          <div fxFlex="33">
+            <mat-form-field appearance="outline">
+              <mat-label>Middle Name</mat-label>
+              <input matInput name="middleName" formControlName="middleName" placeholder="Middle Name">
+            </mat-form-field>
+          </div>
+          <div fxFlex="33">
+            <mat-form-field appearance="outline">
+              <mat-label>Last Name</mat-label>
+              <input matInput formControlName="lastName" placeholder="Last Name" required>
+            </mat-form-field>
+          </div>
+          <div fxFlex="33">
+            <mat-form-field appearance="outline">
+              <mat-label>Date Of Birth</mat-label>
+              <input name="birthday" formControlName="birthday" matInput required>
+              <mat-icon matSuffix>today</mat-icon>
+            </mat-form-field>
+          </div>
+          <div fxFlex="33">
+            <mat-form-field appearance="outline">
+              <mat-label>Social Security Number</mat-label>
+              <input matInput name="ssn" formControlName="ssn" placeholder="Social Security Number" minlength="9"
+                mask="000-00-0000" readonly>
+            </mat-form-field>
+          </div>
+          <div fxFlex="33">
+            <mat-form-field appearance="outline">
+              <mat-label>Driver's License Number</mat-label>
+              <input matInput formControlName="driversLicenseNumber" name="driversLicenseNumber"
+                placeholder="Driver's License Number">
+            </mat-form-field>
+          </div>
+          <div fxFlex="33">
+            <mat-form-field appearance="outline">
+              <mat-label>Mobile Number</mat-label>
+              <input matInput formControlName="phoneNumber" name="phoneNumber" placeholder="Mobile Number" type="tel"
+                mask="(000) 000-0000" minlength="10">
+              <mat-icon matSuffix>phone</mat-icon>
+            </mat-form-field>
+          </div>
+          <div fxFlex="33">
+            <mat-form-field appearance="outline">
+              <mat-label>Work Phone Number</mat-label>
+              <input matInput formControlName="workPhoneNumber" name="workPhoneNumber" placeholder="Work Phone Number"
+                type="tel" mask="(000) 000-0000" minlength="10">
+              <mat-icon matSuffix>phone</mat-icon>
+            </mat-form-field>
+          </div>
+          <div fxFlex="33">
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input formControlName="email" name="email" matInput placeholder="email@mail.com" type="email"
+                pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">
+            </mat-form-field>
+          </div>
+          <div fxFlex="50">
+            <mat-form-field appearance="outline">
+              <mat-label>Address</mat-label>
+              <input formControlName="address" name="address" matInput placeholder="Address">
+
+            </mat-form-field>
+          </div>
+          <div fxFlex="20">
+            <mat-form-field appearance="outline">
+              <mat-label>Unit/Appartment Number</mat-label>
+              <input matInput placeholder="Unit/Appartment Number">
+            </mat-form-field>
+          </div>
+          <div fxFlex="30">
+            <mat-form-field appearance="outline">
+              <mat-label>City</mat-label>
+              <input formControlName="city" name="city" matInput placeholder="City">
+            </mat-form-field>
+          </div>
+          <div fxFlex="50">
+            <mat-form-field appearance="outline">
+              <mat-label>State</mat-label>
+              <mat-select formControlName="state">
+                <mat-option *ngFor="let usState of states | keyvalue" [value]="usState.key">
+                  {{usState.value}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxFlex="50">
+            <mat-form-field appearance="outline">
+              <mat-label>ZIP</mat-label>
+              <input name="zip" formControlName="zip" matInput placeholder="ZIP">
+            </mat-form-field>
+          </div>
+          <div fxFlex="50">
+            <mat-form-field appearance="outline">
+              <mat-label>Years Lived At Residence</mat-label>
+              <input name="timeAtAddressYears" formControlName="timeAtAddressYears" matInput placeholder="Years Lived"
+                required>
+            </mat-form-field>
+          </div>
+          <div fxFlex="50">
+            <mat-form-field appearance="outline">
+              <mat-label>Months Lived At Residence</mat-label>
+              <input name="timeAtAddressMonths" formControlName="timeAtAddressMonths" matInput
+                placeholder="Months Lived" required>
+            </mat-form-field>
+          </div>
+          <div fxFlex="50">
+            <mat-form-field appearance="outline">
+              <mat-label>Mortgage Or Rent</mat-label>
+              <mat-select formControlName="housingStatus">
+                <mat-option value="Mortgage">
+                  Mortgage
+                </mat-option>
+                <mat-option value="Rent">
+                  Rent
+                </mat-option>
+              </mat-select>
+
+            </mat-form-field>
+          </div>
+
+          <div fxFlex="50" *ngIf="financeApplicationForm.get('housingStatus').value === 'Rent'">
+            <mat-form-field appearance="outline">
+              <mat-label>Monthly Rent</mat-label>
+              <input name="monthlyRent" formControlName="monthlyRent" matInput placeholder="Monthly Amount" required>
+            </mat-form-field>
+          </div>
+
+          <div fxFlex="50" *ngIf="financeApplicationForm.get('housingStatus').value === 'Mortgage'">
+            <mat-form-field appearance="outline">
+              <mat-label>Monthly Mortgage</mat-label>
+              <input name="monthlyRent" formControlName="monthlyRent" matInput placeholder="Monthly Amount" required>
+            </mat-form-field>
+          </div>
+
+          <div fxFlex="50">
+            <mat-form-field appearance="outline">
+              <mat-label>Marital Status</mat-label>
+              <mat-select formControlName="maritalStatus">
+                <mat-option *ngFor="let maritalStatus of maritalStatuses | keyvalue" [value]="maritalStatus.key">
+                  {{maritalStatus.value}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div fxFlex="50">
+            <mat-form-field appearance="outline">
+              <mat-label>Number Of Dependants</mat-label>
+              <input name="numberOfDependents" formControlName="numberOfDependents" matInput type="number" min="0"
+                placeholder="Number of Dependants">
+            </mat-form-field>
+          </div>
+
+          <div fxFlex="50">
+            <mat-form-field appearance="outline">
+              <mat-label>Education Level</mat-label>
+              <mat-select formControlName="educationLevel">
+                <mat-option value="Less Than High School">Less Than High School</mat-option>
+                <mat-option value="High School Graduate">High School Graduate</mat-option>
+                <mat-option value="Some College">Some College</mat-option>
+                <mat-option value="Bachelor's Degree">Bachelor's Degree</mat-option>
+                <mat-option value="Master's Degree">Master's Degree</mat-option>
+                <mat-option value="Doctoral/Professorship Degree">Doctoral/Professorship Degree</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+      </div>
+
+      <div mat-dialog-actions style="justify-content: flex-end; margin-top: 20px;">
+        <button mat-raised-button color="primary" (click)="selectTab(selectedIndex+1)">
+          Next
+        </button>
+      </div>
+    </mat-tab>
+
+
+    <mat-tab label="Financial Information">
+      <div fxLayout="column" fxLayoutAlign="none stretch" fxLayoutGap="20px">
+          <div fxLayout="row wrap">
+            <div fxFlex="50">
+              <mat-form-field appearance="outline">
+                <mat-label>Employment Status</mat-label>
+                <mat-select formControlName="employmentStatus">
+                  <mat-option value="Employed">Employed</mat-option>
+                  <mat-option value="Self Employed">Self Employed</mat-option>
+                  <mat-option value="Retired">Retired</mat-option>
+                  <mat-option value="Other">Other</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div fxFlex="50">
+              <mat-form-field appearance="outline">
+                <mat-label>Employer</mat-label>
+                <input matInput placeholder="Employer" name="employerName" formControlName="employerName">
+              </mat-form-field>
+            </div>
+            <div fxFlex="50">
+              <mat-form-field appearance="outline">
+                <mat-label>Job Title</mat-label>
+                <input name="jobTitle" formControlName="jobTitle" matInput placeholder="Job Title">
+              </mat-form-field>
+            </div>
+
+            <div fxFlex="50">
+              <mat-form-field appearance="outline">
+                <mat-label>Gross Annual Income</mat-label>
+                <input name="annualIncome" formControlName="annualIncome" matInput placeholder="Gross Annual Income">
+              </mat-form-field>
+            </div>
+
+            <div fxFlex="50">
+              <mat-form-field appearance="outline">
+                <mat-label>Work Phone</mat-label>
+                <input name="workPhoneNumber" formControlName="workPhoneNumber" matInput placeholder="Work Phone"
+                  type="tel" mask="(000) 000-0000" minlength="10">
+                <mat-icon matSuffix>phone</mat-icon>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxFill>
+              <div fxFlex="50">
+                <mat-checkbox [checked]="financeApplicationForm.get('bankruptcy').value === true" name="bankruptcy" formControlName="bankruptcy"> Bankruptcy In The Last
+                  7 Years</mat-checkbox>
+                  <br/>
+                  <mat-form-field appearance="outline" *ngIf="financeApplicationForm.get('bankruptcy').value === true">
+                    <mat-label>Date Of Bankruptcy</mat-label>
+                    <input name="bankruptcyDate" formControlName="bankruptcyDate" mask="00/00/0000" placeholder="mm/dd/yyyy" matInput required>
+                    <mat-icon matSuffix>today</mat-icon>
+                  </mat-form-field>
+              </div>
+
+              <div fxFlex="50">
+                <mat-checkbox name="reposession" formControlName="reposession" [checked]="financeApplicationForm.get('reposession').value === true"> Repossession In The
+                  Last 7 Years</mat-checkbox>
+                  <br/>
+                  <mat-form-field appearance="outline" *ngIf="financeApplicationForm.get('reposession').value === true">
+                    <mat-label>Date Of Repossession</mat-label>
+                    <input name="reposessionDate" formControlName="reposessionDate" mask="00/00/0000" placeholder="mm/dd/yyyy" matInput required>
+                    <mat-icon matSuffix>today</mat-icon>
+                  </mat-form-field>
+              </div>
+            </div>
+
+          </div>
+
+      </div>
+      <div mat-dialog-actions style="justify-content: flex-end; margin-top: 20px;">
+        <button mat-raised-button (click)="selectTab(selectedIndex-1)">
+          Previous
+        </button>
+        <button mat-raised-button color="primary" (click)="selectTab(selectedIndex+1)">
+          Next
+        </button>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Purchase Vehicle">
+      <div fxLayout="column" fxLayoutAlign="none stretch">
+        <div fxFlex="96">
+          <p style="margin-top: 10px;" class="mat-card-title">Purchase Vehicles</p>
+        </div>
+        <div fxLayout="row wrap">
+          <div fxFlex="50" *ngFor="let pV of purchaseVehicles">
+            <mat-card style="margin: 10px; background:#E6E6E6">
+              <mat-card-content>
+                <div class="purchase-vehicle-block" fxLayout="row" fxLayoutAlign="none stretch">
+                  <div fxFlex="90">
+                    <div class="m-b-10px font-size-115 greyed-title">
+                      <span class="mat-body-strong" style="font-size: 110%;">{{pV?.year}} {{pV?.makeName}}
+                        {{pV?.model}} {{pV?.modelType}}</span> | {{pV?.bodyStyle}}
+                      | {{pV?.price | currency }}
+                    </div>
+                    <div class="m-b-10px font-size-115 greyed-value">
+                      {{pV?.mileage | number}} mi | {{pV?.exteriorColor}}
+                    </div>
+                    <div class="font-size-115 greyed-value">
+                      <span class="greyed-title">VIN:</span> {{pV?.vin}}
+                      <span class="greyed-title">Stock #:</span> {{pV?.vehicleStock}}
+                    </div>
+                  </div>
+                  <div fxFlex>
+                    <!--                  <button mat-stroked-button class="full-width" (click)="openDeleteConfirmationDialog(pV.id)"
+                         type="button">Remove Vehicle-->
+                    <!--                  </button>-->
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+
+          <div fxFlex="100">
+            <div fxLayout="column" fxLayoutAlign="center center" class="m-t-10px">
+              <div fxFlex>
+                <button class="m-b-16px" (click)="openAddPurchaseVehicle()" mat-raised-button color="primary">Add
+                  {{purchaseVehicles?.length > 0 ? "Another" : ""}} Purchase Vehicle
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div fxFlex="96">
+            <p class="mat-card-title">Trade In Vehicle</p>
+          </div>
+
+          <div fxFlex="50" *ngFor="let tIV of tradeInVehicles">
+            <mat-card style="margin: 10px; background:#E6E6E6">
+              <mat-card-content>
+                <div class="trade-vehicle-block" fxLayout="row" fxLayoutAlign="none stretch">
+                  <div fxFlex="90">
+                    <div class="m-b-10px font-size-115" class="greyed-title">
+                      <span class="mat-body-strong" style="font-size: 110%;">{{tIV?.attributes.Year}}
+                        {{tIV?.attributes.Make}} {{tIV?.attributes.Model}} {{tIV?.attributes.Trim}}</span>
+                      | {{tIV?.attributes.Style}} | {{tIV?.attributes.CashOffer
+                      | currency}}
+                    </div>
+                    <div class="m-b-10px font-size-115 greyed-value">
+                      {{tIV?.attributes.CityMileage | number}} mi | {{tIV?.attributes.Engine}}
+                    </div>
+                    <div class="font-size-115 greyed-value">
+                      <span class="greyed-title">VIN:</span> {{tIV?.trade.vin}}
+                    </div>
+                  </div>
+                  <div fxFlex>
+                    <button mat-stroked-button class="full-width" (click)="openDeleteConfirmationDialog(tIV.id)"
+                      type="button">Remove Vehicle</button>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+
+          <div fxFlex="100">
+            <div fxLayout="column" fxLayoutAlign="center center" class="m-t-10px">
+              <div fxFlex>
+                <button class="m-b-16px" (click)="openTradeInVehicle()" mat-raised-button color="primary">Add
+                  {{purchaseVehicles?.length > 0 ? "Another" : ""}} Trade In Vehicle
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+<!--      <div mat-dialog-actions style="justify-content: flex-end; margin-top: 20px;">-->
+<!--        <button mat-button (click)="selectTab(selectedIndex-1)">-->
+<!--          Previous-->
+<!--        </button>-->
+<!--        <button mat-button color="primary" (click)="selectTab(selectedIndex+1)">-->
+<!--          Next-->
+<!--        </button>-->
+<!--      </div>-->
+    </mat-tab>
+  </form>
+</mat-tab-group>

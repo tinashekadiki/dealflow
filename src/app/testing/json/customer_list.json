@@ -1,0 +1,256 @@
+{
+    "totalItems": 46,
+    "totalPages": 2,
+    "customers": [{
+            "id": 97,
+            "customerGlobalId": "HCA00000NOVLA11ARM1202077810156BLU",
+            "firstName": "LARA",
+            "lastName": "LEACH",
+            "phoneNumber": null,
+            "email": null,
+            "buyingStage": "20",
+            "complianceFlag": "Active"
+        },
+        {
+            "id": 96,
+            "customerGlobalId": "REN26304MAYPE14TNM6891786740130BRO",
+            "firstName": "PRINCE",
+            "lastName": "MANER",
+            "phoneNumber": null,
+            "email": null,
+            "buyingStage": "20",
+            "complianceFlag": "Active"
+        },
+        {
+            "id": 95,
+            "customerGlobalId": "YRI92807JANED15CAM3991AX195068GRN",
+            "firstName": "EDWARD",
+            "lastName": "INQUIRY",
+            "phoneNumber": null,
+            "email": null,
+            "buyingStage": "20",
+            "complianceFlag": "Active"
+        },
+        {
+            "id": 94,
+            "customerGlobalId": "OCT40242OCTZL13KYM7102AX195072BRO",
+            "firstName": "ZELL",
+            "lastName": "TESTCO",
+            "phoneNumber": null,
+            "email": null,
+            "buyingStage": "20",
+            "complianceFlag": "Active"
+        },
+        {
+            "id": 93,
+            "customerGlobalId": "REN81626DECCL23COM4891AX19507GRN",
+            "firstName": "CARL",
+            "lastName": "COSIGNER",
+            "phoneNumber": null,
+            "email": null,
+            "buyingStage": "20",
+            "complianceFlag": "Active"
+        },
+        {
+            "id": 91,
+            "customerGlobalId": "REY55445MAYLE26UTF0691N6429070BLU",
+            "firstName": "LAURIE",
+            "lastName": "LATEPAYER",
+            "phoneNumber": null,
+            "email": null,
+            "buyingStage": "20",
+            "complianceFlag": "Active"
+        },
+        {
+            "id": 90,
+            "customerGlobalId": "TNE55445MAYDE26MNF0691N6429070BLU",
+            "firstName": "DEBBIE",
+            "lastName": "DELINQUENT",
+            "phoneNumber": null,
+            "email": null,
+            "buyingStage": "20",
+            "complianceFlag": "Active"
+        },
+        {
+            "id": 89,
+            "customerGlobalId": "ENI70128JULTY12NCM2891AX195059BLU",
+            "firstName": "TERRY",
+            "lastName": "TRADELINE",
+            "phoneNumber": null,
+            "email": null,
+            "buyingStage": "20",
+            "complianceFlag": "Active"
+        },
+        {
+            "id": 88,
+            "customerGlobalId": "YNA09876JULAY07MAM7791288370104BLK",
+            "firstName": "ANY",
+            "lastName": "ANY",
+            "phoneNumber": null,
+            "email": null,
+            "buyingStage": "20",
+            "complianceFlag": "Active"
+        },
+        {
+            "id": 87,
+            "customerGlobalId": "NOS95825NOVDD27CAM7891N6429064AMB",
+            "firstName": "DONALD",
+            "lastName": "ANDERSON",
+            "phoneNumber": null,
+            "email": null,
+            "buyingStage": "20",
+            "complianceFlag": "Active"
+        },
+        {
+            "id": 86,
+            "customerGlobalId": "MAI94804JULJS22CAM7891N6429082GRN",
+            "firstName": "JONES",
+            "lastName": "WILLIAM",
+            "phoneNumber": null,
+            "email": null,
+            "buyingStage": "20",
+            "complianceFlag": "Active"
+        },
+        {
+            "id": 85,
+            "customerGlobalId": "SEL95404AUGMW03CAM4891N6429070GRE",
+            "firstName": "MATTHEW",
+            "lastName": "GONZALES",
+            "phoneNumber": null,
+            "email": null,
+            "buyingStage": "20",
+            "complianceFlag": "Active"
+        },
+        {
+            "id": 84,
+            "customerGlobalId": "REP92626DECJE17ARF4891D0145059GRN",
+            "firstName": "JACQUELINE",
+            "lastName": "COOPER",
+            "phoneNumber": null,
+            "email": null,
+            "buyingStage": "20",
+            "complianceFlag": "Active"
+        },
+        {
+            "id": 83,
+            "customerGlobalId": "ROT70128AUGKL22LAM3891AX19506BLU",
+            "firstName": "KARL",
+            "lastName": "KREDITOR",
+            "phoneNumber": null,
+            "email": null,
+            "buyingStage": "20",
+            "complianceFlag": "Active"
+        },
+        {
+            "id": 81,
+            "customerGlobalId": "alu00000FEBNa14CAF1202az9070600BRO",
+            "firstName": "Nikita",
+            "lastName": "Kumbula",
+            "phoneNumber": null,
+            "email": null,
+            "buyingStage": "20",
+            "complianceFlag": "Active"
+        },
+        {
+            "id": 80,
+            "customerGlobalId": "reh94115NOVBe13GAM6991199 G070.80000000000001BLU",
+            "firstName": "Beatrice",
+            "lastName": "Christopher",
+            "phoneNumber": null,
+            "email": null,
+            "buyingStage": "20",
+            "complianceFlag": "Active"
+        },
+        {
+            "id": 79,
+            "customerGlobalId": "TNE55445FEBDD28MNM1891AX195064GRN",
+            "firstName": "DAVID",
+            "lastName": "DELINQUENT",
+            "phoneNumber": null,
+            "email": null,
+            "buyingStage": "20",
+            "complianceFlag": "Active"
+        },
+        {
+            "id": 78,
+            "customerGlobalId": "THG33027OCTJN28GAM8891N6429068RED",
+            "firstName": "JONATHAN",
+            "lastName": "WRIGHT",
+            "phoneNumber": null,
+            "email": null,
+            "buyingStage": "20",
+            "complianceFlag": "Active"
+        },
+        {
+            "id": 77,
+            "customerGlobalId": "KSI95726MAYSA25CAM4891AX19505BRO",
+            "firstName": "SHEA",
+            "lastName": "RISK",
+            "phoneNumber": null,
+            "email": null,
+            "buyingStage": "20",
+            "complianceFlag": "Active"
+        },
+        {
+            "id": 75,
+            "customerGlobalId": "NED53208JUNDD24WIM5891AX19506HAZ",
+            "firstName": "DAVID",
+            "lastName": "DEBTRIDEN",
+            "phoneNumber": null,
+            "email": null,
+            "buyingStage": "20",
+            "complianceFlag": "Active"
+        },
+        {
+            "id": 74,
+            "customerGlobalId": "NEI28023JUNTY20NCF2891AX195073GRN",
+            "firstName": "TRACY",
+            "lastName": "TAXLIEN",
+            "phoneNumber": null,
+            "email": null,
+            "buyingStage": "20",
+            "complianceFlag": "Active"
+        },
+        {
+            "id": 73,
+            "customerGlobalId": "REY84065MARLY27UTM2891AX19505BRO",
+            "firstName": "LARRY",
+            "lastName": "LATEPAYER",
+            "phoneNumber": null,
+            "email": null,
+            "buyingStage": "20",
+            "complianceFlag": "Active"
+        },
+        {
+            "id": 72,
+            "customerGlobalId": "ald455226DECLe19CAF1991dw456072HAZ",
+            "firstName": "Lindelwe",
+            "lastName": "Mgodla",
+            "phoneNumber": null,
+            "email": null,
+            "buyingStage": "20",
+            "complianceFlag": "Active"
+        },
+        {
+            "id": 71,
+            "customerGlobalId": "sma26309OCTBn10INM0002782380131GRY",
+            "firstName": "Brian",
+            "lastName": "Adams",
+            "phoneNumber": null,
+            "email": null,
+            "buyingStage": "20",
+            "complianceFlag": "Active"
+        },
+        {
+            "id": 70,
+            "customerGlobalId": "tfo90210APRLa08CAF089112346070GRN",
+            "firstName": "Lara",
+            "lastName": "Croft",
+            "phoneNumber": null,
+            "email": null,
+            "buyingStage": "20",
+            "complianceFlag": "Active"
+        }
+    ],
+    "currentPage": 0
+}

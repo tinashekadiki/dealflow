@@ -1,0 +1,171 @@
+<h1 mat-dialog-title>Add New Customer</h1>
+<form [formGroup]="newCustomerFrm">
+    <div mat-dialog-content>
+        <div fxLayout="column" fxLayoutAlign="none stretch" fxLayoutGap="20px">
+            <div fxLayout="row wrap">
+                <div fxFlex="33">
+                    <mat-form-field appearance="outline">
+                        <mat-label>First Name</mat-label>
+                        <input matInput placeholder="First Name" autocapitalize="characters" name="first_Name" cdkFocusInitial required formControlName="firstName">
+                        <mat-error *ngIf="newCustomerFrm.get('firstName').invalid && newCustomerFrm.get('firstName').errors.required">
+                            First Name is required.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="33">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Middle Name</mat-label>
+                        <input matInput placeholder="Middle Name" autocapitalize="characters" name="middle_Name" formControlName="middleName">
+                    </mat-form-field>
+                </div>
+                <div fxFlex="33">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Last Name</mat-label>
+                        <input matInput placeholder="Last Name" required autocapitalize="characters" name="last_Name" formControlName="lastName">
+                        <mat-error *ngIf="newCustomerFrm.get('lastName').invalid && newCustomerFrm.get('lastName').errors.required">
+                            Last Name is required.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="33">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Date Of Birth</mat-label>
+                        <input matInput mask="00/00/0000"  [dropSpecialCharacters]="false" placeholder="mm/dd/yyyy"  required name="date_of_Birth" formControlName="dateOfBirth" >
+                        <mat-error *ngIf="newCustomerFrm.get('dateOfBirth').invalid && newCustomerFrm.get('dateOfBirth').errors.required">
+                            Date of Birth is required.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="33">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Driver's License Number</mat-label>
+                        <input matInput placeholder="Driver's License Number" autocapitalize="characters" required name="licenseNumber" formControlName="licenseNumber">
+                        <mat-error *ngIf="newCustomerFrm.get('licenseNumber').invalid && newCustomerFrm.get('licenseNumber').errors.required">
+                            Driver's License Number is required.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="33">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Driver's License Expiry Date</mat-label>
+                        <input matInput mask="00/00/0000"  [dropSpecialCharacters]="false" placeholder="mm/dd/yyyy" max="2100-01-01" autocapitalize="characters" name="license_Expiration_Date" formControlName="licenseExpirationDate">
+                        <mat-error *ngIf="newCustomerFrm.get('licenseExpirationDate').invalid && newCustomerFrm.get('licenseExpirationDate').errors.required">
+                            Driver's License Expiry Date is required.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="33">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Sex</mat-label>
+                        <mat-select name="sex" required formControlName="sex">
+                            <mat-option *ngFor="let sex of sexes | keyvalue" [value]="sex.value">
+                                {{sex.key}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="newCustomerFrm.get('sex').invalid && newCustomerFrm.get('sex').errors.required">
+                            Sex is required.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="33">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Eye Color</mat-label>
+                        <mat-select name="eyecolor" formControlName="eyeColor">
+                            <mat-option *ngFor="let color of eyeColors | keyvalue" [value]="color.value">
+                                {{color.key}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="newCustomerFrm.get('eyeColor').invalid && newCustomerFrm.get('eyeColor').errors.required">
+                            Eye Color is required.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="33" class="combined">
+                    <mat-form-field appearance="outline" style="width: 45% !important; border-right: none !important;">
+                        <mat-label>Height</mat-label>
+                        <input matInput required type="number" min="1" max="8" placeholder="Height in FT" name="ft" [(ngModel)]="ft" [ngModelOptions]="{standalone: true}" fxFlex="60" size="1" onFocus="this.select()" style="border-radius: 5px; text-align: center;" #feet="ngModel">
+                        <span fxFlex="20" style="align-self: baseline;">FT</span>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="width: 45% !important; border-left: none !important;">
+                        <mat-label>&nbsp;</mat-label>
+                        <input matInput required pattern="^(\d|[01]?[01])$" maxlength="2" minlength="1" type="number" min="0" max="11" placeholder="Height in IN" name="in" [(ngModel)]="in" [ngModelOptions]="{standalone: true}" fxFlex="60" size="2" onFocus="this.select()" style="border-radius: 5px; text-align: center;"
+                            #inches="ngModel">
+                        <span fxFlex="20">IN</span>
+                        <input type="hidden" name="height_in_FT_IN" formControlName="heightInFtIn">
+                        <mat-error *ngIf="(feet.invalid && (feet.errors.required || feet.errors.min)) && (inches.invalid && inches.errors.required)">
+                            Height is required.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="none stretch" fxLayoutGap="20px">
+            <div fxLayout="row">
+              <div fxFlex="33">
+                <mat-form-field appearance="outline">
+                  <mat-label>Phone Number</mat-label>
+                  <input matInput placeholder="Phone Number" type="tel" mask="(000) 000-0000" required minlength="10" [showMaskTyped]="true" autocapitalize="characters" name="phoneNumber" formControlName="phoneNumber">
+                  <mat-error *ngIf="newCustomerFrm.get('phoneNumber').invalid && newCustomerFrm.get('phoneNumber').errors.required">
+                    Phone Number is required.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div fxFlex=""></div>
+                <div fxFlex="67">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Street Address</mat-label>
+                        <input matInput placeholder="Street Address" autocapitalize="characters" name="mailing_Street_Address1" formControlName="mailingStreetAddress1">
+                        <mat-error *ngIf="newCustomerFrm.get('mailingStreetAddress1').invalid && newCustomerFrm.get('mailingStreetAddress1').errors.required">
+                            Street Address is required.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxLayout="row">
+              <div fxFlex="33">
+                <mat-form-field appearance="outline">
+                  <mat-label>City</mat-label>
+                  <input matInput placeholder="City" autocapitalize="characters" name="mailing_City" formControlName="mailingCity">
+                  <mat-error *ngIf="newCustomerFrm.get('mailingCity').invalid && newCustomerFrm.get('mailingCity').errors.required">
+                    City is required.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div fxFlex="33">
+                <mat-form-field appearance="outline">
+                  <mat-label>State</mat-label>
+                  <mat-select name="states" autocapitalize="characters" formControlName="mailingJurisdictionCode">
+                    <mat-option *ngFor="let state of states | keyvalue" [value]="state.key">
+                      {{state.value}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="newCustomerFrm.get('mailingJurisdictionCode').invalid && newCustomerFrm.get('mailingJurisdictionCode').errors.required">
+                    State is required.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div fxFlex="33">
+                <mat-form-field appearance="outline">
+                  <mat-label>Postal Code</mat-label>
+                  <input matInput placeholder="Postal Address" autocapitalize="characters" required name="mailing_Postal_Code" formControlName="mailingPostalCode">
+                  <mat-error *ngIf="newCustomerFrm.get('mailingPostalCode').invalid && newCustomerFrm.get('mailingPostalCode').errors.required">
+                    Postal Code is required.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            </div>
+        </div>
+
+    <div mat-dialog-actions style="justify-content: flex-end;">
+        <button mat-button (click)="onNoClick()">Cancel</button>
+        <button mat-button color="primary" (click)="submitRequest()" [disabled]="newCustomerFrm.invalid">
+    <ng-container *ngIf="!isLoading; else loadingSpinner">
+      Save
+    </ng-container>
+  </button>
+    </div>
+</form>
+<ng-template #loadingSpinner>
+    <mat-progress-spinner diameter="20" mode="indeterminate"></mat-progress-spinner>
+</ng-template>

@@ -1,0 +1,38 @@
+<div class="core-heading">
+  Credit Inquiry
+</div>
+<br>
+<div mat-card-content>
+  <h4 class="credit-bureau-title core-text">Report Type</h4>
+  <mat-radio-group fxLayout="row" class="credit-bureau-title" aria-label="Select report type being requested" [(ngModel)]="reportType">
+      <div fxFlex>
+        <mat-radio-button color="primary" value="HARD">Hard Inquiry</mat-radio-button>
+      </div>
+      <div fxFlex>
+        <mat-radio-button color="primary" value="SOFT">Soft Inquiry</mat-radio-button>
+      </div>
+  </mat-radio-group>
+
+  <h4 class="credit-bureau-title core-text">Credit Bureau</h4>
+  <div fxLayout="row" class="credit-bureau-title">
+    <mat-checkbox fxFlex color="primary" [(ngModel)]="creditBureau[0].isChecked">{{creditBureau[0].name}}
+    </mat-checkbox>
+    <mat-checkbox fxFlex color="primary" [(ngModel)]="creditBureau[1].isChecked">{{creditBureau[1].name}}
+    </mat-checkbox>
+    <mat-checkbox fxFlex color="primary" [(ngModel)]="creditBureau[2].isChecked">{{creditBureau[2].name}}
+    </mat-checkbox>
+  </div>
+</div>
+
+<div mat-dialog-actions style="justify-content: flex-end;">
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [disabled]="!isReadyToSend" color="primary" (click)="submitRequest()" cdkFocusInitial>
+    <ng-container *ngIf="!isLoading">
+      Submit
+    </ng-container>
+    <div fxLayout="row" *ngIf="isLoading">
+      <mat-spinner color="primary" diameter="30"></mat-spinner>
+    </div>
+  </button>
+</div>
+

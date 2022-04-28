@@ -1,0 +1,57 @@
+<div mat-dialog-title fxLayout="row" class="modal">
+  <div class="core-heading">Delete Role</div>
+  <span fxFlex></span>
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon class="core-heading">close</mat-icon>
+  </button>
+</div>
+
+<div mat-dialog-content>
+  <div *ngIf="deleted" >
+    <div fxLayout="row" class="core-heading deleted">
+      <span fxFlex=""></span>
+        <mat-icon [inline]="true">check_circle</mat-icon>
+      <span fxFlex=""></span>
+    </div>
+    <div fxLayout="row">
+      <span fxFlex=""></span>
+        <p class="core-text">The {{currentRole.toLowerCase()}} role has been deleted successfully.</p>
+      <span fxFlex=""></span>
+    </div>
+  </div>
+  <div *ngIf="deleting && !deleted">
+    <div fxLayout="row" class="core-heading deleted">
+      <span fxFlex=""></span>
+      <mat-icon [inline]="true" color="error">help_outline</mat-icon>
+      <span fxFlex=""></span>
+    </div>
+    <div fxLayout="row">
+      <span fxFlex=""></span>
+      <div>
+        <p class="core-text">Are you sure you want to delete {{currentRole.toLowerCase()}} role?</p>
+        <div fxLayout="row">
+          <span fxFlex=""></span>
+          <button fxFlexAlign="center" color="error" (click)="deleteRole(currentRole)">Confirm</button>
+          <span fxFlex=""></span>
+        </div>
+      </div>
+      <span fxFlex=""></span>
+    </div>
+  </div>
+  <form *ngIf="!deleted && !deleting" fxLayout="column" fxLayoutGap="7px">
+    <div fxLayout="row" *ngFor="let role of rolesList; let i = index;">
+      <mat-label>{{role.length ? role : 'Unnamed Role'}}</mat-label>
+      <span fxFlex></span>
+      <button type="button" (click)="deleting = true; currentRole = role;" mat-icon-button color="error" matTooltip="Delete this role">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </form>
+</div>
+
+<div fxLayout="row">
+  <span fxFlex></span>
+  <mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close>Close</button>
+  </mat-dialog-actions>
+</div>

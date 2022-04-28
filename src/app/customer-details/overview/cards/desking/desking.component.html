@@ -1,0 +1,213 @@
+<mat-card class="summary-card">
+  <mat-card-header>
+    <mat-card-title> Desking </mat-card-title>
+    <span class="expandable-block"></span>
+    <div class="action-button-block">
+      <button (click)="isOpen = !isOpen" mat-icon-button aria-label="Expand Credit Inquiry">
+        <mat-icon>{{ isOpen ? "expand_less" : "expand_more" }}</mat-icon>
+      </button>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    <div fxLayout="row" fxLayoutAlign="none stretch" fxLayoutGap="5px" class="m-b-10px m-t-16px font-size-115"
+      style="color: #000">
+      <div fxFlex="15"><span class="desking-title">$0</span> / month</div>
+      <div fxFlex="15"><span class="desking-title">8.00%</span> APR</div>
+      <div fxFlex="15"><span class="desking-title">36</span> months</div>
+      <div fxFlex="35"><span class="desking-title">$2,000</span> / down</div>
+      <div fxFlex="20"></div>
+    </div>
+    <ng-container *ngIf="isOpen">
+      <div fxLayout="row" fxLayoutAlign="none stretch" fxLayoutGap="2em">
+        <div fxFlex="35">
+          <div class="desk-card">
+            <div class="desk-header">Deal Structure</div>
+            <div class="desk-card-container">
+              <div fxLayout="row">
+                <div fxFlex="60">Price</div>
+                <div fxFlex="5">+</div>
+                <div fxFlex="30">
+                  <input type="text" onClick="this.select()" class="form-control" [(ngModel)]="totalPrice" />
+                </div>
+              </div>
+              <div fxLayout="row">
+                <div fxFlex="60">Fees</div>
+                <div fxFlex="5">+</div>
+                <div fxFlex="30">
+                  <input type="text" onClick="this.select()" class="form-control" [(ngModel)]="fees" />
+                </div>
+              </div>
+              <div fxLayout="row">
+                <div fxFlex="60">Service Contract</div>
+                <div fxFlex="5">+</div>
+                <div fxFlex="30">
+                  <input type="text" onClick="this.select()" class="form-control" [(ngModel)]="serviceContract" />
+                </div>
+              </div>
+              <div fxLayout="row">
+                <div fxFlex="60">Insurance/GAP/VSI</div>
+                <div fxFlex="5">+</div>
+                <div fxFlex="30">
+                  <input type="text" onClick="this.select()" class="form-control" [(ngModel)]="insuranceGapVsi" />
+                </div>
+              </div>
+              <div fxLayout="row">
+                <div fxFlex="60">Accessories</div>
+                <div fxFlex="5">+</div>
+                <div fxFlex="30">
+                  <input type="text" onClick="this.select()" class="form-control" [(ngModel)]="accessories" />
+                </div>
+              </div>
+              <div fxLayout="row">
+                <div fxFlex="60">Total Tax</div>
+                <div fxFlex="5">+</div>
+                <div fxFlex="30">
+                  <input type="text" onClick="this.select()" class="form-control" [(ngModel)]="totalTax" />
+                </div>
+              </div>
+              <div fxLayout="row">
+                <div fxFlex="60">Downpayment</div>
+                <div fxFlex="5">-</div>
+                <div fxFlex="30">
+                  <input type="text" onClick="this.select()" class="form-control" [(ngModel)]="downpayment" />
+                </div>
+              </div>
+              <div fxLayout="row">
+                <div fxFlex="60">Trade In</div>
+                <div fxFlex="5">-</div>
+                <div fxFlex="30">
+                  <input type="text" onClick="this.select()" class="form-control" [(ngModel)]="totalTrade" />
+                </div>
+              </div>
+            </div>
+            <div class="desk-card-container">
+              <div fxLayout="row">
+                <div fxFlex="60">Amount Financed</div>
+                <div fxFlex="5"></div>
+                <div fxFlex="30">
+                  <input type="text" onClick="this.select()" class="form-control" [(ngModel)]="amountFinanced" />
+                </div>
+              </div>
+              <div fxLayout="row">
+                <div fxFlex="60">Payment Frequency</div>
+                <div fxFlex="5"></div>
+                <div fxFlex="30">
+                  <select name="paymentFrequency" id="">
+                    <option value="Weekly">Weekly</option>
+                    <option value="Monthly">Monthly</option>
+                    <option value="Quarterly">Quarterly</option>
+                    <option value="Bi-Annually">Bi-Annually</option>
+                    <option value="Annually">Annually</option>
+                  </select>
+                </div>
+              </div>
+              <div fxLayout="row">
+                <div fxFlex="60">First Payment Date</div>
+                <div fxFlex="5"></div>
+                <div fxFlex="30">
+                  <input type="date" class="form-control" minlength="8" />
+                </div>
+              </div>
+              <div fxLayout="row">
+                <div fxFlex="60">Tooltip</div>
+                <div fxFlex="5"></div>
+                <div fxFlex="30">
+                  <input type="text" onClick="this.select()" class="form-control" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div fxFlex="65">
+          <div class="desk-card">
+            <div class="desk-header">Payment Options</div>
+            <div class="desk-card-container">
+              <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="none stretch">
+                <div fxFlex="49">Down Payment Options</div>
+                <div fxFlex="17">
+                  <input type="text" onClick="this.select()" class="form-control" />
+                </div>
+                <div fxFlex="17">
+                  <input type="text" onClick="this.select()" class="form-control" />
+                </div>
+                <div fxFlex="17">
+                  <input type="text" onClick="this.select()" class="form-control" />
+                </div>
+              </div>
+            </div>
+            <div class="desk-card-container" style="text-align: center;">
+              <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="none stretch">
+                <div fxFlex="49">
+                  <div fxFlex="50">
+                    <span fxFlex="45">Term: </span><span fxFlex="55"><input type="text" onClick="this.select()" /></span>
+                  </div>
+                  <div fxFlex="50">
+                    <span fxFlex="45"> &nbsp;APR: </span><span fxFlex="55"><input type="text" onClick="this.select()" /></span>
+                  </div>
+                </div>
+                <div fxFlex="17">
+                  345.15
+                </div>
+                <div fxFlex="17">
+                  345.15
+                </div>
+                <div fxFlex="17">
+                  345.15
+                </div>
+              </div>
+              <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="none stretch" style="background-color:#e6e6e6">
+                <div fxFlex="49">
+                  <div fxFlex="50">
+                    <span fxFlex="45">Term: </span><span fxFlex="55"><input type="text" onClick="this.select()" /></span>
+                  </div>
+                  <div fxFlex="50">
+                    <span fxFlex="45"> &nbsp;APR: </span><span fxFlex="55"><input type="text" onClick="this.select()" /></span>
+                  </div>
+                </div>
+                <div fxFlex="17">
+                  315
+                </div>
+                <div fxFlex="17">
+                  315
+                </div>
+                <div fxFlex="17">
+                  315
+                </div>
+              </div>
+              <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="none stretch">
+                <div fxFlex="49">
+                  <div fxFlex="50">
+                    <span fxFlex="45">Term: </span><span fxFlex="55"><input type="text" onClick="this.select()" /></span>
+                  </div>
+                  <div fxFlex="50">
+                    <span fxFlex="45"> &nbsp;APR: </span><span fxFlex="55"><input type="text" onClick="this.select()" /></span>
+                  </div>
+                </div>
+                <div fxFlex="17">
+                  287
+                </div>
+                <div fxFlex="17">
+                  287
+                </div>
+                <div fxFlex="17">
+                  287
+                </div>
+              </div>
+            </div>
+            <div class="desk-card-container">
+              <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="none stretch">
+                <div fxFlex="30"> Send to Customer:</div>
+                <div fxFlex="5">
+                  <mat-icon>mail_outline</mat-icon>
+                </div>
+                <div fxFlex="5">
+                  <mat-icon>textsms</mat-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </mat-card-content>
+</mat-card>

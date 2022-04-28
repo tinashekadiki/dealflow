@@ -1,0 +1,58 @@
+<div class="content">
+  <div fxLayout="row">
+    <div fxFlex="25">
+      <mat-card class="customer-demography-card mat-elevation-z2">
+        <div class="customer-details">
+          <div class="compliance-flag-container">
+            <div class="compliance-flag">{{activeBranch.roleId}}</div>
+          </div>
+          <div class="mat-h1 customer-name core-heading">
+            {{applicationUser?.firstName}} {{applicationUser?.lastName}}
+          </div>
+          <div class="customer-address core-text core-text-truncate">{{applicationUser?.emailAddress}}</div>
+          <div class="deal-detail-section">
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+        <br>
+        <div class="core-heading">Organization</div>
+        <div class="core-text">ID: {{applicationUser?.organisationalId}}</div>
+        <div class="core-text">Name: {{fullBranchDetails?.dealership.name}}</div>
+
+        <mat-divider></mat-divider>
+        <br>
+        <div class="core-heading">Dealer</div>
+        <div class="core-text">ID: {{activeBranch?.branchId}}</div>
+        <div class="core-text">Name: {{fullBranchDetails?.name}}</div>
+        <mat-divider></mat-divider>
+
+        <mat-nav-list class="compliance-check-list">
+          <mat-list-item [routerLink]="['settings']">
+            <div mat-line class="core-text">Account Settings</div>
+          </mat-list-item>
+          <mat-list-item [routerLink]="['dealer']">
+            <div mat-line class="core-text">Dealer Settings</div>
+          </mat-list-item>
+          <mat-list-item [routerLink]="['users']">
+            <div mat-line class="core-text">User Management</div>
+          </mat-list-item>
+          <mat-list-item [routerLink]="['products']">
+            <div mat-line class="core-text">Products</div>
+          </mat-list-item>
+          <mat-list-item [routerLink]="['integration-settings']">
+            <div mat-line class="core-text">Integrations</div>
+          </mat-list-item>
+          <mat-list-item [routerLink]="['notifications']">
+            <div mat-line class="core-text">Notifications</div>
+          </mat-list-item>
+          <mat-list-item [routerLink]="['permissions']">
+            <div mat-line class="core-text">Permissions</div>
+          </mat-list-item>
+        </mat-nav-list>
+      </mat-card>
+    </div>
+      <div fxFlex="75">
+        <router-outlet></router-outlet>
+      </div>
+  </div>
+</div>

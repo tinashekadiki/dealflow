@@ -1,0 +1,117 @@
+<div class="flex">
+  <div fxFlex="30">
+    <mat-card *ngFor="let zone of zoneData.zoneDefinitionList; let main_i = index" class="card">
+      <mat-card-header fxLayout="row">
+        <mat-card-subtitle>
+          Zone {{main_i}}
+        </mat-card-subtitle>
+        <div fxFlex></div>
+        <div>
+          <button (click)="editZone(main_i)" mat-icon-button>
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div fxLayout="row">
+          <span fxFlex></span>
+          <button (click)="selectZone(main_i,zone)" mat-mini-fab color="primary" aria-label="icon">
+            <mat-icon>add</mat-icon>
+          </button>
+          <span fxFlex></span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div fxFlex="70">
+
+    <mat-card class="side-content" *ngIf="showMainZoneOptions">
+      <div class="core-heading">
+        Editing Zone {{zone_data.options}} options
+      </div>
+      <mat-card-content fxLayout="column">
+        <form [formGroup]="zoneForm" fxLayout="row">
+          <div fxFlex="58">
+            <mat-form-field appearance="outline" fxFlex="100">
+              <mat-label>{{zone_data.zonename}}</mat-label>
+              <input matInput name="zonename" formControlName="zonename">
+            </mat-form-field>
+          </div>
+          <div fxFlex></div>
+          <div fxFlex="38">
+            <mat-form-field appearance="outline" fxFlex="100">
+              <mat-label>Zone Options</mat-label>
+              <input matInput (focus)="hideSubZones()" type="number" min="0" (focusout)="showSubZones()"
+                (input)="updateZoneOptions($event)" name="options" formControlName="options">
+            </mat-form-field>
+          </div>
+        </form>
+        <div *ngIf="zone_data.subZoneDefinitions"  >
+          <form fxLayout="row wrap" *ngFor="let subZone of zone_data.subZoneDefinitions; let second_i = index">
+            <button mat-mini-fab color="primary" aria-label="icon" fxFlex="6">
+              {{second_i}}
+            </button>
+            <div fxFlex="37">
+              <mat-form-field appearance="outline" fxFlex="100">
+                <mat-label>{{subZone.name}}</mat-label>
+                <input matInput>
+              </mat-form-field>
+            </div>
+            <div fxFlex></div>
+            <div fxFlex="27">
+              <mat-form-field appearance="outline" fxFlex="100">
+                <mat-label>Add subcategories</mat-label>
+                <mat-select matInput>
+                  <mat-option value="Yes">Yes</mat-option>
+                  <mat-option value="No">No</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div fxFlex></div>
+            <div fxFlex="27">
+              <mat-form-field appearance="outline" fxFlex="100">
+                <mat-label># Sub Categories</mat-label>
+                <input matInput type="number" min="0" (input)="addSubCategory(subZone.id, $event)">
+              </mat-form-field>
+            </div>
+            <div  *ngIf="subZone.hassubcategory == 'True'">
+              <div fxLayout="row wrap" *ngFor="let subCategory of subZone.subCategoryDefinitionList; let thirdy_i =index">
+              <mat-form-field appearance="outline" fxFlex="100">
+                <mat-label>{{subCategory.name}}</mat-label>
+                <input matInput type="text" >
+              </mat-form-field>
+            </div>
+            <br>
+            </div>
+
+          </form>
+        </div>
+
+        <div fxLayout="row">
+          <div fxFlex=""></div>
+          <div>
+            <button mat-mini-fab color="primary" aria-label="icon">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+          <div fxFlex=""></div>
+        </div>
+
+      </mat-card-content>
+      <mat-card-actions fxLayout="row">
+        <div fxFlex=""></div>
+        <button mat-raised-button>
+          Cancel
+        </button>
+        <button mat-raised-button color="primary">
+          Save
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

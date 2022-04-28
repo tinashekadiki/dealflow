@@ -1,0 +1,12 @@
+<div mat-dialog-title class="dialog-title-block">
+    <h1 class="dialog-main-header">Generate Finance Application</h1>
+    <span class="expanded-block"></span>
+    <div>
+        <button (click)="onNoClick()" mat-icon-button type="button" aria-label="Close dialog">
+          <mat-icon>close</mat-icon>
+      </button>
+    </div>
+</div>
+<div mat-dialog-content>
+<app-new-finance-tabs [customerProfile]="customer"></app-new-finance-tabs>
+</div>

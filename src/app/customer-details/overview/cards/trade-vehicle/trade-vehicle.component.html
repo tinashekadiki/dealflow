@@ -1,0 +1,33 @@
+<mat-card class="summary-card">
+    <mat-card-header>
+        <mat-card-title>
+            Trade Vehicle ({{totalTradeInValue | currency}})
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content [class.no-content]="tradeInVehicle?.length < 1">
+        <ng-containter *ngIf="tradeInVehicle?.length < 1">
+            <div class="m-b-10px">No Data Available</div>
+<!--            <button class="m-b-16px" (click)="openTradeInVehicle()" mat-raised-button color="primary">Add Trade In Vehicle</button>-->
+        </ng-containter>
+
+        <ng-containter *ngIf="tradeInVehicle?.length > 0">
+            <div class="trade-vehicle-block" fxLayout="row" fxLayoutAlign="none stretch" *ngFor="let pV of tradeInVehicle">
+                <div fxFlex="90">
+                    <div class="m-b-10px font-size-115" class="greyed-title">
+                        <span class="mat-body-strong" style="font-size: 110%;">{{pV?.attributes.Year}} {{pV?.attributes.Make}} {{pV?.attributes.Model}} {{pV?.attributes.Trim}}</span> | {{pV?.attributes.Style}} | {{pV?.attributes.CashOffer | currency}}
+                    </div>
+                    <div class="m-b-10px font-size-115 greyed-value">
+                        {{pV?.attributes.currentMileage | number}} mi | {{pV?.attributes.Engine}}
+                    </div>
+                    <div class="font-size-115 greyed-value">
+                        <span class="greyed-title">VIN:</span> {{pV?.trade.vin}}
+                    </div>
+                </div>
+                <div fxFlex>
+                    <button mat-stroked-button class="full-width" (click)="openDeleteConfirmationDialog(pV.trade.vin)" type="button">Remove Vehicle</button>
+                </div>
+            </div>
+        </ng-containter>
+
+    </mat-card-content>
+</mat-card>

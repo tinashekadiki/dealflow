@@ -1,0 +1,43 @@
+<div mat-dialog-title class="dialog-title-block">
+    <h1 class="dialog-main-header">Add New Co-Borrower</h1>
+    <span class="expanded-block"></span>
+    <div>
+        <button (click)="onNoClick()" mat-icon-button type="button" aria-label="Close dialog">
+          <mat-icon>close</mat-icon>
+      </button>
+    </div>
+</div>
+<div mat-dialog-content>
+    <div fxLayout="column" fxLayoutAlign="none stretch">
+        <div fxFlex fxLayout="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Search By Customer Name</mat-label>
+                <input cdkFocusInitial matInput placeholder="Search By Customer Name" autocomplete="off" aria-label="Search By Customer Name" [formControl]="searchCustomerCtrl">
+                <mat-icon matPrefix>search</mat-icon>
+                <mat-progress-spinner *ngIf="isLoadingAutocomplete" matSuffix diameter="20" mode="indeterminate"></mat-progress-spinner>
+            </mat-form-field>
+        </div>
+        <div fxFlex>
+            <mat-selection-list #customerObj [multiple]="false">
+                <mat-list-option *ngFor="let customer of customerList" (click)="onSelectedCustomer(customerObj)" [value]="customer">
+                    {{customer.firstName}} {{customer.lastName}}
+                </mat-list-option>
+            </mat-selection-list>
+        </div>
+        <div *ngIf="selCustomer != undefined" fxFlex>
+            Selected Customer: <b>{{selCustomer.firstName}} {{selCustomer.lastName}}</b>
+        </div>
+    </div>
+</div>
+<div mat-dialog-actions style="justify-content: flex-end;">
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [disabled]="selCustomer == undefined" color="primary" (click)="submitRequest()">
+      <ng-container *ngIf="!isLoading; else loadingSpinner">
+        Submit
+      </ng-container>
+  </button>
+</div>
+
+<ng-template #loadingSpinner>
+    <mat-progress-spinner diameter="20" mode="indeterminate"></mat-progress-spinner>
+</ng-template>

@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>{{data.displayName}}</h2>
+<div mat-dialog-content>
+    <mat-form-field>
+        <mat-label>Select an option</mat-label>
+        <mat-select [(value)]="data.value" cdkFocusInitial>
+            <mat-option *ngFor="let opt of data.options" [value]="opt.value">{{opt.title}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [disabled]="!validInput" [mat-dialog-close]="data">Apply</button>
+</div>

@@ -1,0 +1,40 @@
+@import '../../../variable.scss';
+.customer-list-container {
+    padding: 3rem;
+}
+
+.filter-card {
+    border: 1px solid $local-border-primary;
+    padding: 0;
+    // height: 100%;
+    mat-card-header {
+        margin: 0 0 10px;
+        // padding-top: 10px;
+        background: $local-background;
+        border-bottom: 1px solid $local-border-primary;
+        .action-button-block {
+            display: inline-block;
+            margin-left: 30px;
+        }
+    }
+    .filter-chips {
+        margin-left: 16px;
+        .add-filter-chip {
+            background-color: #fff;
+            border: 2px dashed #ccc;
+        }
+    }
+    .customers-table {
+        width: 100%;
+        // margin-left: -10px;
+        padding-top: 13px;
+         ::ng-deep thead {
+            background: $local-background;
+        }
+        .table-link {
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #3899d5;
+        }
+    }
+}

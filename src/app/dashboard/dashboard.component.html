@@ -1,0 +1,32 @@
+<app-header></app-header>
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="over" [opened]="false" (click)="closeSidenav()">
+        <mat-nav-list>
+            <mat-list-item [routerLink]="['/']">
+                <mat-icon matListIcon>home</mat-icon>
+                <h4 matLine>Home </h4>
+            </mat-list-item>
+            <mat-list-item [routerLink]="['/compliance-dashboard']">
+                <mat-icon matListIcon>insert_chart_outlined</mat-icon>
+                <h4 matLine>Compliance Dashboard</h4>
+            </mat-list-item>
+            <mat-list-item [routerLink]="['/inventory-list']">
+                <mat-icon matListIcon>shopping_cart</mat-icon>
+                <h4 matLine>Inventory</h4>
+            </mat-list-item>
+            <mat-list-item [routerLink]="['/process-config']">
+                <mat-icon matListIcon>account_tree</mat-icon>
+                <h4 matLine>Process Configuration</h4>
+            </mat-list-item>
+            <mat-list-item [routerLink]="['/profile']">
+                <mat-icon matListIcon>manage_accounts</mat-icon>
+                <h4 matLine>Profile</h4>
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

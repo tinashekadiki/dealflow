@@ -1,0 +1,61 @@
+<h1 mat-dialog-title>Add Purchase Vehicle</h1>
+<div mat-dialog-content>
+    <mat-tab-group animationDuration="0ms">
+        <mat-tab label="Stock Number">
+            <div fxLayout="column" fxLayoutAlign="none stretch" fxLayoutGap="20px">
+                <mat-form-field appearance="outline">
+                    <mat-label>Search By Stock Number</mat-label>
+                    <input cdkFocusInitial matInput placeholder="Search By Stock Number" aria-label="Search By Stock Number" [matAutocomplete]="autoStockNo" [formControl]="searchStockNumberCtrl">
+                    <mat-icon matPrefix>search</mat-icon>
+                    <mat-autocomplete #autoStockNo="matAutocomplete" (optionSelected)='selectedVehicle = $event.option.value' [displayWith]="displayStockNoFn">
+
+                        <mat-option *ngIf="isLoadingAutocomplete" class="is-loading">Loading...</mat-option>
+                        <ng-container *ngIf="!isLoadingAutocomplete">
+                            <mat-option *ngFor="let vehicle of filterVehicleList" [value]="vehicle">
+                                <span><strong>{{ displayVehicleName(vehicle) }}</strong></span>
+                            </mat-option>
+                        </ng-container>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
+        </mat-tab>
+        <mat-tab label="VIN">
+            <div fxLayout="column" fxLayoutAlign="none stretch" fxLayoutGap="20px">
+                <mat-form-field appearance="outline">
+                    <mat-label>Search By VIN</mat-label>
+                    <input matInput placeholder="Search By VIN" aria-label="Search By VIN" [matAutocomplete]="autoVin" [formControl]="searchVinCtrl">
+                    <mat-icon matPrefix>search</mat-icon>
+                    <mat-autocomplete #autoVin="matAutocomplete" (optionSelected)='selectedVehicle = $event.option.value' [displayWith]="displayVinFn">
+
+                        <mat-option *ngIf="isLoadingAutocomplete" class="is-loading">Loading...</mat-option>
+                        <ng-container *ngIf="!isLoadingAutocomplete">
+                            <mat-option *ngFor="let vehicle of filterVehicleList" [value]="vehicle">
+                                <span><strong>{{ displayVehicleName(vehicle) }}</strong></span>
+                            </mat-option>
+                        </ng-container>
+                    </mat-autocomplete>
+                </mat-form-field>
+
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+    <div id="addedVehicle">
+        <h4 class="section-title">Selected Vehicle</h4>
+        <ng-container *ngIf="selectedVehicle != undefined">
+            {{ displayVehicleName(selectedVehicle) }}
+        </ng-container>
+    </div>
+</div>
+<div mat-dialog-actions style="justify-content: flex-end;">
+    <button mat-button [disabled]="!selectedVehicle" color="warn" (click)="clearSelection()">
+        Clear Selection
+    </button>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button color="primary" [disabled]="!isLoading && !readyToSubmit" (click)="submitRequest()">
+    <ng-container *ngIf="!isLoading; else loadingSpinner">Submit</ng-container>
+  </button>
+</div>
+
+<ng-template #loadingSpinner>
+    <mat-progress-spinner diameter="20" mode="indeterminate"></mat-progress-spinner>
+</ng-template>

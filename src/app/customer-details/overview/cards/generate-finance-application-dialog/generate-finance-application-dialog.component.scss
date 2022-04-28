@@ -1,0 +1,19 @@
+mat-form-field {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.dialog-title-block {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+    .dialog-main-header {
+        display: inline-block;
+        width: 100%;
+        margin-bottom: 0;
+        margin-top: auto;
+    }
+    .expanded-block {
+        flex: 1 1 auto;
+    }
+}

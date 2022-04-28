@@ -1,0 +1,26 @@
+<mat-card class="summary-card">
+    <mat-card-header>
+        <mat-card-title> Financial Application </mat-card-title>
+        <span class="expandable-block"></span>
+        <div class="action-button-block">
+            <button (click)="isOpen = !isOpen" mat-icon-button aria-label="Expand Financial Application">
+                <mat-icon>{{ isOpen ? "expand_less" : "expand_more" }}</mat-icon>
+            </button>
+        </div>
+    </mat-card-header>
+    <mat-card-content *ngIf="isOpen">
+      <app-new-finance-tabs [totalPrice]="totalPrice" [totalTrade]="totalTrade" [customerProfile]="customerProfile"></app-new-finance-tabs>
+        <div mat-dialog-actions>
+          <span fxFlex=""></span>
+<!--                <button mat-raised-button color="primary" (click)="onNoClick()" cdkFocusInitial>-->
+<!--                    <ng-container *ngIf="!isLoading; else loadingSpinner">-->
+<!--                    Save-->
+<!--                    </ng-container>-->
+<!--                </button>-->
+            </div>
+
+            <ng-template #loadingSpinner>
+                <mat-progress-spinner diameter="20" mode="indeterminate"></mat-progress-spinner>
+            </ng-template>
+    </mat-card-content>
+</mat-card>

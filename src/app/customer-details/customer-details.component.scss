@@ -1,0 +1,70 @@
+.customer-details-containers {
+    padding: 3rem;
+    position: relative;
+}
+
+.customer-demography-card {
+    .compliance-flag-container {
+        margin-bottom: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        .compliance-flag {
+            background: #eeeeee;
+            border-radius: 2px;
+            box-sizing: border-box;
+            margin-bottom: 3px;
+            max-width: calc(100% - 20px);
+            overflow: hidden;
+            padding: 5px 10px;
+            text-overflow: ellipsis;
+            text-transform: uppercase;
+            top: 15px;
+            white-space: nowrap;
+        }
+    }
+    .customer-name {
+        margin-bottom: 0;
+    }
+    .deal-detail-section {
+        margin-top: 10px;
+        margin-bottom: 18px;
+        color: #757575;
+    }
+    .compliance-check-list {
+        padding-top: 16px;
+        &a {
+            text-transform: uppercase;
+            color: #636363;
+            line-height: 16px;
+            font-weight: 500;
+            font-size: 14px;
+            padding: 6px 0 0 0;
+        }
+    }
+}
+
+.expandable-block {
+    flex: 1 1 auto
+}
+
+.compliance-fraud-check {
+    font-weight: 500;
+    padding-top: 16px;
+    margin-bottom: 24px;
+}
+
+.compliance-result-icon mat-icon {
+    font-size: 30px;
+}
+
+.success {
+    color: #1c9ea6;
+}
+
+.danger {
+    color: #cc5f57;
+}
+
+.neutral {
+    color: #757575;
+}

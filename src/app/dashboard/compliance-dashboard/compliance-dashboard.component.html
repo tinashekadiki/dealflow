@@ -1,0 +1,214 @@
+<div class="compliance-container" fxLayout="column" fxLayoutAlign="space-evenly" fxLayoutGap="20px">
+    <div class="filter-cards" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-evenly" fxLayoutGap="20px">
+        <div fxFlex>
+            <mat-card class="filter-card">
+                <mat-card-header class="gray-scheme">
+                    <mat-card-title>
+                        Time Period
+                    </mat-card-title>
+                </mat-card-header>
+
+                <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px">
+                  <form [formGroup]="range">
+                    <div fxFlex="40">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Start Date</mat-label>
+                        <input matInput [matDatepicker]="startPicker" formControlName="start"
+                        (dateChange)="updatedDate('date1', $event)">
+                        <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #startPicker></mat-datepicker>
+                      </mat-form-field>
+                    </div>
+                    <div fxFlex="20" class="date-range-line">
+                        <hr />
+                    </div>
+                    <div fxFlex="40">
+                      <mat-form-field appearance="outline">
+                        <mat-label>End Date</mat-label>
+                        <input matInput [matDatepicker]="endPicker" formControlName="end"
+                               max="2100-01-01" (dateChange)="updatedDate('date2', $event)">
+                        <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #endPicker></mat-datepicker>
+                      </mat-form-field>
+                    </div>
+                  </form>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px">
+                    <div fxFlex style="text-align: center;">
+                        <button (click)="resetDate()" mat-raised-button>Reset</button>
+                    </div>
+                </div>
+
+            </mat-card>
+        </div>
+        <div fxFlex>
+            <mat-card class="filter-card">
+                <mat-card-header class="gray-scheme">
+                    <mat-card-title>
+                        Store
+                    </mat-card-title>
+                </mat-card-header>
+
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <div fxFlex>
+                        <mat-form-field class="search-full-width" appearance="outline">
+                            <mat-label>Dealship Branches</mat-label>
+                            <mat-select multiple [(ngModel)]="selectedDealerships" (selectionChange)="onSelectionChange($event)">
+                                <mat-option *ngFor="let dealership of allowedDealerships" [value]="dealership.branchId">
+                                    {{dealership.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px">
+                    <div fxFlex style="text-align: center;">
+                        <button (click)="resetDealership()" mat-raised-button>Reset</button>
+                    </div>
+                </div>
+
+            </mat-card>
+        </div>
+        <div fxFlex>
+            <mat-card class="filter-card">
+                <mat-card-header class="gray-scheme">
+                    <mat-card-title>
+                        Region
+                    </mat-card-title>
+                </mat-card-header>
+
+                <mat-form-field class="search-full-width" appearance="outline">
+                    <mat-label>Zone</mat-label>
+                    <mat-select>
+                        <mat-option value="all">All Zones</mat-option>
+                        <mat-option *ngFor="let region of regionData?.zoneDefinitionList" [value]="region.id">{{region.zonename}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px">
+                    <div fxFlex style="text-align: center;">
+                        <button mat-raised-button>Reset</button>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+
+    <mat-card>
+
+        <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutAlign="space-evenly center" fxLayoutGap="20px" style="text-align: center;">
+          <div fxFlex="15">
+            <canvas baseChart width="200" height="200" [chartType]="chartType"
+                    [datasets]="chartDatasetLists.red_flag" [labels]="chartLabels"
+                    [colors]="chartColorList.red_flag" [options]="chartOptions" [legend]="false" (chartClick)="chartClicked($event,serviceMap.IdVerification.constant)">
+            </canvas>
+            <br /> {{serviceMap.IdVerification.read}}
+          </div>
+            <div fxFlex="15">
+                <canvas baseChart width="200" height="200" [chartType]="chartType"
+                        [datasets]="chartDatasetLists.ofac" [labels]="chartLabels"
+                        [colors]="chartColorList.ofac" [options]="chartOptions" [legend]="false" (chartClick)="chartClicked($event,serviceMap.Ofac.constant)">
+                </canvas>
+              <br /> {{serviceMap.Ofac.read}}
+            </div>
+            <div fxFlex="15">
+                <canvas baseChart width="200" height="200" [chartType]="chartType"
+                        [datasets]="chartDatasetLists.fraud" [labels]="chartLabels"
+                        [colors]="chartColorList.fraud" [options]="chartOptions" [legend]="false" (chartClick)="chartClicked($event,serviceMap.SyntheticFraud.constant)">
+                </canvas>
+                <br /> {{serviceMap.SyntheticFraud.read}}
+            </div>
+            <div fxFlex="15">
+                <canvas baseChart width="200" height="200" [chartType]="chartType"
+                        [datasets]="chartDatasetLists.mla" [labels]="chartLabels"
+                        [colors]="chartColorList.mla" [options]="chartOptions" [legend]="false" (chartClick)="chartClicked($event,serviceMap.Mla.constant)">
+                </canvas>
+                <br /> {{serviceMap.Mla.read}}
+            </div>
+
+          <div fxFlex="15">
+            <canvas baseChart width="200" height="200" [chartType]="chartType"
+                    [datasets]="chartDatasetLists.expired_license" [labels]="chartLabels"
+                    [colors]="chartColorList.expired_license" [options]="chartOptions" [legend]="false" (chartClick)="chartClicked($event,serviceMap.ExpiredLicense.constant)">
+            </canvas>
+            <br /> {{serviceMap.ExpiredLicense.read}}
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px">
+            <div fxFlex style="text-align: center;">
+                <button (click)="defaultPageReset()" mat-raised-button>Reset</button>
+            </div>
+        </div>
+    </mat-card>
+
+    <div>
+        <table mat-table style="width: 100%;" [dataSource]="complianceDashboardTableData" class="mat-elevation-z2">
+
+            <!-- # Column -->
+            <ng-container matColumnDef="position">
+                <th scope="col" mat-header-cell style="width:7%" class="core-table-header" *matHeaderCellDef> No. </th>
+                <td mat-cell *matCellDef="let element;let i = index"> {{(i+1)+((page)*pageSize)}} </td>
+            </ng-container>
+
+            <!-- First Name Column -->
+            <ng-container matColumnDef="firstname">
+                <th scope="col" mat-header-cell style="width:12%" class="core-table-header" *matHeaderCellDef> First Name </th>
+                <td mat-cell *matCellDef="let element"> {{getCustomer(element.complianceStatus.globalCustomerId).firstName || "-"}} </td>
+            </ng-container>
+
+            <!-- Last Name Column -->
+            <ng-container matColumnDef="lastname">
+                <th scope="col" mat-header-cell style="width:12%" class="core-table-header" *matHeaderCellDef> Last Name </th>
+                <td mat-cell *matCellDef="let element"> {{getCustomer(element.complianceStatus.globalCustomerId).lastName || "-"}} </td>
+            </ng-container>
+
+            <!-- SSN Column -->
+            <ng-container matColumnDef="ssn">
+                <th scope="col" mat-header-cell style="width:9%" class="core-table-header" *matHeaderCellDef> SSN </th>
+                <td mat-cell *matCellDef="let element"> {{getCustomer(element.complianceStatus.globalCustomerId).ssn | mask: "000-00-0000" || '-' }} </td>
+            </ng-container>
+
+            <!-- Date Column -->
+            <ng-container matColumnDef="date">
+                <th scope="col" mat-header-cell style="width:9%" class="core-table-header" *matHeaderCellDef> Date </th>
+                <td mat-cell *matCellDef="let element"> {{extractDate(element.verifiedAt) | date : "mediumDate" }} </td>
+            </ng-container>
+
+            <!-- Alert Column -->
+            <ng-container matColumnDef="alert">
+                <th scope="col" mat-header-cell style="width:50%" class="core-table-header" *matHeaderCellDef> Alert </th>
+<!--                <td mat-cell *matCellDef="let element"> {{element.description || "-"}} </td>-->
+                <td mat-cell *matCellDef="let element">{{getCustomer(element.complianceStatus.globalCustomerId).firstName }} {{getCustomer(element.complianceStatus.globalCustomerId).lastName }}  {{ element.page.description }}</td>
+            </ng-container>
+            <!-- Alert Column -->
+            <ng-container matColumnDef="alert_type">
+                <th scope="col" mat-header-cell class="core-table-header" *matHeaderCellDef> Status</th>
+                <td mat-cell *matCellDef="let element" [style.color]="element.page.type === 'success'?'green':'red'"> {{element.page.type === 'success'?"Passed":"Failed"}} </td>
+            </ng-container>
+
+            <!-- Alert Column -->
+            <ng-container matColumnDef="action">
+                <th scope="col" mat-header-cell class="core-table-header" *matHeaderCellDef> Action</th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button>
+                        <mat-icon>menu</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-card *ngIf="isLoading || complianceDashboardTableData.length < 1" style="display: flex; justify-content: center; align-items: center">
+            <ng-container *ngIf="isLoading">
+                <mat-progress-spinner color="primary" mode="indeterminate" diameter="30">
+                </mat-progress-spinner>
+            </ng-container>
+            <ng-container *ngIf="!isLoading && complianceDashboardTableData.length < 1">
+                No data available
+            </ng-container>
+        </mat-card>
+        <mat-paginator [pageSizeOptions]="[25, 50, 100]" (page)="handlePageChange($event)" [length]="totalElements"
+                       [showFirstLastButtons]="true" [pageSize]="pageSize"></mat-paginator>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+<div mat-dialog-title fxLayout="row" class="modal">
+  <div class="core-heading text-normalise">Edit {{formattedRoleName}} Role</div>
+  <span fxFlex></span>
+  <button mat-icon-button (click)="close()">
+    <mat-icon class="core-heading">close</mat-icon>
+  </button>
+</div>
+
+<div mat-dialog-content>
+  <div fxLayout="row wrap" *ngFor="let permission of defaultPermissions;" class="core-text">
+    <div fxFlex="">
+      <mat-label>{{permission.permissionName}}</mat-label>
+      <span fxFlex></span>
+      <mat-slide-toggle color="primary"
+                        [checked]="selectedPermissions.includes(permission.permissionId)"
+                        (change)="updateList(permission.permissionId)"
+                        aria-label="Permissions Toggle"></mat-slide-toggle>
+    </div>
+  </div>
+
+  <div fxLayout="row wrap" class="core-text">
+    <div fxFlex="">
+      <mat-label>View / Modify Settings</mat-label>
+      <span fxFlex></span>
+      <mat-slide-toggle
+        color="primary"
+        [checked]="selectedPermissions.includes('VWBRNCH')"
+        (change)="changeViewSettings($event)"
+        aria-label="Permissions Toggle"
+      ></mat-slide-toggle>
+    </div>
+  </div>
+
+  <div fxLayout="row wrap" class="core-text">
+    <div fxFlex="">
+      <mat-label>Manage User Access</mat-label>
+      <span fxFlex></span>
+      <mat-slide-toggle
+        color="primary"
+        [checked]="selectedPermissions.includes('VWUSRPR')"
+        (change)="changeManageUserAccess($event)"
+        aria-label="Permissions Toggle"
+      ></mat-slide-toggle>
+    </div>
+  </div>
+</div>
+<div fxLayout="row">
+  <span fxFlex></span>
+  <mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" [mat-dialog-close]="saveNewRole()">Save</button>
+  </mat-dialog-actions>
+</div>

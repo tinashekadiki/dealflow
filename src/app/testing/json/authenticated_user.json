@@ -1,0 +1,254 @@
+{
+    "authorities": [{
+        "authority": "MANAGER"
+    }],
+    "details": null,
+    "authenticated": true,
+    "id": 1488577241,
+    "email": "Dealer1User1UATCLGX@mailinator.com",
+    "firstName": "FirstUserName",
+    "lastName": "User1UATCLGX",
+    "role": "Manager",
+    "department": null,
+    "cost_centre": "cost center not set",
+    "employeeid": "1488577241",
+    "branchid": "234024",
+    "organizationid": "1",
+    "overrideperm": "overrideperm not set",
+    "zone": "Far East",
+    "phoneNumber": null,
+    "timeZone": "PST",
+    "permissions": [{
+            "page": "Login",
+            "service": "IDLAUTH0"
+        },
+        {
+            "page": "Record Generation",
+            "service": "IDLRECGN"
+        },
+        {
+            "page": "ID Verification",
+            "service": "IDLIDVER"
+        },
+        {
+            "page": "Digital Application - Send to Cust",
+            "service": "IDLAPPLC"
+        },
+        {
+            "page": "Request Credit Report",
+            "service": "IDLBUREA"
+        },
+        {
+            "page": "View Credit Report",
+            "service": "IDLCRDIT"
+        },
+        {
+            "page": "Push Application to Bank",
+            "service": "IDLCRDAP"
+        },
+        {
+            "page": "View Compliance Dashboard",
+            "service": "IDLCPRPT"
+        },
+        {
+            "page": "Add Purchase Vehicle",
+            "service": "IDLINVTR"
+        },
+        {
+            "page": "Add Trade",
+            "service": "IDLTRADE"
+        },
+        {
+            "page": "Appraise Trade",
+            "service": "IDLACVLE"
+        },
+        {
+            "page": "Deal Desking",
+            "service": "IDLDESKG"
+        },
+        {
+            "page": "DMS Update",
+            "service": "IDLDMSUP"
+        },
+        {
+            "page": "CRM Update",
+            "service": "IDLCRMUP"
+        },
+        {
+            "page": "Reporting",
+            "service": "IDPRPTNG"
+        },
+        {
+            "page": "Blocked Profile Over-Rides",
+            "service": "IDLUNBLK"
+        },
+        {
+            "page": "Archived Record",
+            "service": "IDLARCRD"
+        },
+        {
+            "page": "Process Configuration",
+            "service": "IDLFIGTN"
+        },
+        {
+            "page": "Update Products",
+            "service": "IDLPRODT"
+        }
+    ],
+    "permissionsAsRegions": [{
+            "id": 0,
+            "name": "Login",
+            "employeeid": "1488577241",
+            "permissionid": "0",
+            "flag": "1",
+            "permissioncode": "IDLAUTH0"
+        },
+        {
+            "id": 1,
+            "name": "Record Generation",
+            "employeeid": "1488577241",
+            "permissionid": "1",
+            "flag": "1",
+            "permissioncode": "IDLRECGN"
+        },
+        {
+            "id": 2,
+            "name": "ID Verification",
+            "employeeid": "1488577241",
+            "permissionid": "2",
+            "flag": "1",
+            "permissioncode": "IDLIDVER"
+        },
+        {
+            "id": 3,
+            "name": "Digital Application - Send to Cust",
+            "employeeid": "1488577241",
+            "permissionid": "3",
+            "flag": "1",
+            "permissioncode": "IDLAPPLC"
+        },
+        {
+            "id": 4,
+            "name": "Request Credit Report",
+            "employeeid": "1488577241",
+            "permissionid": "4",
+            "flag": "1",
+            "permissioncode": "IDLBUREA"
+        },
+        {
+            "id": 5,
+            "name": "View Credit Report",
+            "employeeid": "1488577241",
+            "permissionid": "5",
+            "flag": "1",
+            "permissioncode": "IDLCRDIT"
+        },
+        {
+            "id": 6,
+            "name": "Push Application to Bank",
+            "employeeid": "1488577241",
+            "permissionid": "6",
+            "flag": "1",
+            "permissioncode": "IDLCRDAP"
+        },
+        {
+            "id": 7,
+            "name": "View Compliance Dashboard",
+            "employeeid": "1488577241",
+            "permissionid": "7",
+            "flag": "1",
+            "permissioncode": "IDLCPRPT"
+        },
+        {
+            "id": 8,
+            "name": "Add Purchase Vehicle",
+            "employeeid": "1488577241",
+            "permissionid": "8",
+            "flag": "1",
+            "permissioncode": "IDLINVTR"
+        },
+        {
+            "id": 9,
+            "name": "Add Trade",
+            "employeeid": "1488577241",
+            "permissionid": "9",
+            "flag": "1",
+            "permissioncode": "IDLTRADE"
+        },
+        {
+            "id": 10,
+            "name": "Appraise Trade",
+            "employeeid": "1488577241",
+            "permissionid": "10",
+            "flag": "1",
+            "permissioncode": "IDLACVLE"
+        },
+        {
+            "id": 11,
+            "name": "Deal Desking",
+            "employeeid": "1488577241",
+            "permissionid": "11",
+            "flag": "1",
+            "permissioncode": "IDLDESKG"
+        },
+        {
+            "id": 12,
+            "name": "DMS Update",
+            "employeeid": "1488577241",
+            "permissionid": "12",
+            "flag": "1",
+            "permissioncode": "IDLDMSUP"
+        },
+        {
+            "id": 13,
+            "name": "CRM Update",
+            "employeeid": "1488577241",
+            "permissionid": "13",
+            "flag": "1",
+            "permissioncode": "IDLCRMUP"
+        },
+        {
+            "id": 14,
+            "name": "Reporting",
+            "employeeid": "1488577241",
+            "permissionid": "14",
+            "flag": "1",
+            "permissioncode": "IDPRPTNG"
+        },
+        {
+            "id": 15,
+            "name": "Blocked Profile Over-Rides",
+            "employeeid": "1488577241",
+            "permissionid": "15",
+            "flag": "1",
+            "permissioncode": "IDLUNBLK"
+        },
+        {
+            "id": 16,
+            "name": "Archived Record",
+            "employeeid": "1488577241",
+            "permissionid": "16",
+            "flag": "1",
+            "permissioncode": "IDLARCRD"
+        },
+        {
+            "id": 17,
+            "name": "Process Configuration",
+            "employeeid": "1488577241",
+            "permissionid": "17",
+            "flag": "1",
+            "permissioncode": "IDLFIGTN"
+        },
+        {
+            "id": 18,
+            "name": "Update Products",
+            "employeeid": "1488577241",
+            "permissionid": "18",
+            "flag": "1",
+            "permissioncode": "IDLPRODT"
+        }
+    ],
+    "principal": "Dealer1User1UATCLGX@mailinator.com",
+    "credentials": null,
+    "name": "Dealer1User1UATCLGX@mailinator.com"
+}

@@ -1,0 +1,53 @@
+.content {
+    padding: 2rem;
+}
+
+table {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+mat-cell {
+    //display:flex !important;
+    justify-content: center !important;
+}
+
+.permissions-table {
+    ::ng-deep .mat-header-cell {
+        &:not(:first-child) {
+            //display:flex !important;
+            text-align: center;
+            width: 7%;
+        }
+    }
+}
+
+.mat-cell {
+    &:not(:first-child) {
+        //display:flex !important;
+        text-align: center;
+        justify-content: center !important;
+        align-self: center;
+        padding-top: 10px;
+        //border-right: 1px solid black;
+        //border: 0.5px solid black;
+    }
+}
+
+.mat-cell:first-child {
+    text-align: left;
+}
+
+.edit-button {
+  line-height: 15px !important;
+  height: 0 !important;
+}
+
+.hidden {
+    visibility: hidden;
+    position: absolute;
+}
+
+.padded {
+    padding: 0px 24px;
+}

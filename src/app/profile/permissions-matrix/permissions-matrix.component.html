@@ -1,0 +1,143 @@
+<div class="content">
+    <div fxLayout="row">
+        <span fxFlex></span>
+        <div class="core-heading">Permissions</div>
+        <span fxFlex></span>
+    </div>
+    <div fxLayout="column">
+        <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex=""></div>
+            <button mat-raised-button (click)="openAddRoleDialog()">Add Role</button>
+            <button mat-raised-button (click)="openDeleteRoleDialog()">Delete Role</button>
+        </div>
+        <div *ngIf="loading">
+            <span fxFlex></span>
+            <mat-spinner diameter="30"></mat-spinner>
+            <span fxFlex></span>
+        </div>
+
+        <div *ngIf="!loading">
+            <span fxFlex></span>
+            <div>
+                <p class="core-text">Click Add Role to create or update the Permissions Matrix</p>
+                </div>
+            <span fxFlex></span>
+        </div>
+      <div *ngIf="!loading" fxLayout="column">
+        <div fxLayout="row" class="padded">
+          <div class="core-text" fxLayout="column" fxFlex="25">
+            Permission Name
+          </div>
+          <div class="core-text" fxLayout="column" fxFlex="" *ngFor="let role of uniqueRoles; let i =index;">
+            <div fxLayout="row">
+              <p class="text-normalise">{{ formattedRoleName(role) }}</p>
+              <button class="edit-button core-icon-success" mat-icon-button (click)="openEditRoleDialog(role)">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div fxLayout="row" *ngFor="let permission of uPermissions; let i =index;" class="padded">
+          <div *ngIf="!permission.hidden && !permission.parent" fxFill>
+            <div class="core-text" fxLayout="column" fxFlex="25">
+              {{permission.permissionName}}
+            </div>
+            <div class="core-text" fxLayoutGap="10px" fxLayout="column"  fxFlex="" fxFlexAlign="center" *ngFor="let role of uniqueRoles; let i =index;">
+                <div *ngIf="checkPermission(permission.permissionId, role);then check_icon else unchecked_icon"></div>
+                <ng-template #check_icon>
+                    <mat-icon class="core-icon-success">done_outline</mat-icon>
+                </ng-template>
+                <ng-template #unchecked_icon>
+                    <mat-icon class="core-icon-error">highlight_off</mat-icon>
+                </ng-template>
+            </div>
+          </div>
+          
+        </div>
+        <div fxLayout="row" class="padded">
+            <div class="core-text" fxLayout="column" fxFlex="25">
+              View / Modify Settings
+            </div>
+            <div class="core-text" fxLayoutGap="10px" fxLayout="column"  fxFlex="" fxFlexAlign="center" *ngFor="let role of uniqueRoles; let i =index;">
+                <div *ngIf="checkPermission('EDBRNCH', role);then check_icon else unchecked_icon"></div>
+                <ng-template #check_icon>
+                    <mat-icon class="core-icon-success">done_outline</mat-icon>
+                </ng-template>
+                <ng-template #unchecked_icon>
+                    <mat-icon class="core-icon-error">highlight_off</mat-icon>
+                </ng-template>
+            </div>
+          
+        </div>
+        <div fxLayout="row" class="padded">
+          <div class="core-text" fxLayout="column" fxFlex="25">
+            Manage User Access
+          </div>
+          <div class="core-text" fxLayoutGap="10px" fxLayout="column"  fxFlex="" fxFlexAlign="center" *ngFor="let role of uniqueRoles; let i =index;">
+              <div *ngIf="checkPermission('EDUSRPR', role);then check_icon else unchecked_icon"></div>
+              <ng-template #check_icon>
+                  <mat-icon class="core-icon-success">done_outline</mat-icon>
+              </ng-template>
+              <ng-template #unchecked_icon>
+                  <mat-icon class="core-icon-error">highlight_off</mat-icon>
+              </ng-template>
+          </div>
+        
+      </div>
+
+        <!-- <mat-accordion fxFill>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                View / Modify Settings
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div fxLayout="row" *ngFor="let permission of uPermissions; let i =index;">
+              <div *ngIf="permission.parent == 'View / Modify Settings'" fxFill>
+                <div class="core-text" fxLayout="column" fxFlex="25">
+                  {{permission.permissionName}}
+                </div>
+                <div class="core-text" fxLayoutGap="10px" fxLayout="column"  fxFlex="" fxFlexAlign="center" *ngFor="let role of uniqueRoles; let i =index;">
+                    <div *ngIf="checkPermission(permission.permissionId, role);then check_icon else unchecked_icon"></div>
+                    <ng-template #check_icon>
+                        <mat-icon class="core-icon-success">done_outline</mat-icon>
+                    </ng-template>
+                    <ng-template #unchecked_icon>
+                        <mat-icon class="core-icon-error">highlight_off</mat-icon>
+                    </ng-template>
+                </div>
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+        <mat-accordion fxFill>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Manage User Access
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div fxLayout="row" *ngFor="let permission of uPermissions; let i =index;">
+              <div *ngIf="permission.parent == 'Manage User Access'" fxFill>
+                <div class="core-text" fxLayout="column" fxFlex="25">
+                  {{permission.permissionName}}
+                </div>
+                <div class="core-text" fxLayoutGap="10px" fxLayout="column"  fxFlex="" fxFlexAlign="center" *ngFor="let role of uniqueRoles; let i =index;">
+                    <div *ngIf="checkPermission(permission.permissionId, role);then check_icon else unchecked_icon"></div>
+                    <ng-template #check_icon>
+                        <mat-icon class="core-icon-success">done_outline</mat-icon>
+                    </ng-template>
+                    <ng-template #unchecked_icon>
+                        <mat-icon class="core-icon-error">highlight_off</mat-icon>
+                    </ng-template>
+                </div>
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion> -->
+
+      </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<!-- <mat-toolbar class="app-toolbar" color="primary">
+    <mat-toolbar-row fxLayout="row">
+        <span fxFlex></span>
+        <span>CoreLogic DealFlow</span>
+        <span fxFlex></span>
+    </mat-toolbar-row>
+</mat-toolbar> -->
+
+<div fxLayout="row" fxLayoutAlign="center">
+    <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+    <mat-card class="auth-card">
+        <mat-card-title>
+<!--            <h1 class="mat-display-2">Sign In</h1>-->
+          <img src="assets/images/named-logo.png" alt="CoreLogic Logo" height="200">
+        </mat-card-title>
+        <mat-card-content fxLayout="column">
+                <p *ngIf="error != null" class="core-text core-text-error">{{error}}</p>
+                <mat-form-field class="core-text" fxFlex="98" appearance="outline">
+                <mat-label>Username</mat-label>
+                <input matInput formControlName="username" name="username">
+                <mat-icon matSuffix>account_box</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="core-text" fxFlex="98" appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="Placeholder" formControlName="password" name="password" type="password">
+                <mat-icon matSuffix>lock</mat-icon>
+            </mat-form-field>
+
+            <div class="mt-100">
+                <span fxFlex></span>
+                <button mat-raised-button color="primary" >Sign In</button>
+                <span fxFlex></span>
+              </div>
+            
+        
+        </mat-card-content>
+        <!-- <div class="mt-100">
+          <span fxFlex></span>
+          <button (click)="redirectToSSO()" mat-raised-button color="primary">Sign In</button>
+          <span fxFlex></span>
+        </div> -->
+    </mat-card>
+</form>
+</div>

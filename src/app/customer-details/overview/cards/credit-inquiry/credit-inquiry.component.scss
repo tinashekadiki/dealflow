@@ -1,0 +1,94 @@
+pdf-viewer {
+    display: block;
+    height: 96vh;
+}
+
+.pdf-viewer {
+    &:not(.display-hide) {
+        max-height: 100vh;
+    }
+    transition: max-height 0.5s ease;
+}
+
+.display-hide {
+    max-height: 0;
+    overflow: hidden;
+    // display: none;
+}
+
+.mag{
+  margin: 15px;
+}
+
+.credit-score-block {
+    margin-bottom: 30px;
+    .credit-score-item:not(:last-child) {
+        border-right: 2px solid;
+    }
+    .credit-score-item {
+        &:not(.present) {
+            filter: grayscale(1);
+        }
+        &.present {
+            .credit-score-value-title {
+                color: #000;
+            }
+        }
+        .credit-bureau-logo:hover {
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+        .credit-score-section {
+            font-weight: 500;
+        }
+    }
+}
+
+// .synthetic-fraud-grid-container {
+//     width: 600px;
+//     display: grid;
+//     grid-template-columns: 1fr 3fr;
+//     column-gap: 5px;
+//     .synthetic-fraud-bar-grid-container {
+//         display: grid;
+//         grid-template-columns: repeat(3, 1fr);
+//         column-gap: 5px;
+//         align-items: center;
+//         position: relative;
+//     }
+// }
+// .fraud-grid-bar {
+//     height: 8px;
+//     border-radius: 10px;
+//     position: relative;
+//     z-index: 1
+// }
+// .value-marker {
+//     position: absolute;
+//     height: 30px;
+//     width: 30px;
+//     line-height: 30px;
+//     text-align: center;
+//     // margin: 10px 40px;
+//     left: 10%;
+//     top: -7px;
+//     background: #fff;
+//     color: #000;
+//     border: 2px solid red;
+//     z-index: 3;
+//     transform: rotateX(30deg) rotateZ(45deg);
+//     div {
+//         font-size: 16px;
+//         font-weight: 500;
+//         transform: rotateX(0deg) rotateZ(-45deg);
+//     }
+// }
+// .value-marker:before {
+//     position: absolute;
+//     content: '';
+//     top: 0px;
+//     left: 0px;
+//     height: 100%;
+//     width: 100%;
+//     transform: rotateX(45deg) rotateZ(45deg);
+// }

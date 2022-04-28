@@ -1,0 +1,70 @@
+@import '../../../../../../../../../variable.scss';
+.proof-message-container {
+    margin: 20px 5px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    .section-title {
+        margin-bottom: 5px;
+        font-weight: 500;
+    }
+    .synthetic-fraud-grid-container {
+        // width: 600px;
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+        column-gap: 5px;
+        margin: 0 10px 35px;
+        .synthetic-fraud-bar-grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            column-gap: 5px;
+            align-items: center;
+            position: relative;
+            &>div.fraud-grid-bar {
+                &:nth-child(2) {
+                    background-color: $cl-red;
+                    // color: red;
+                }
+                &:nth-child(3) {
+                    background-color: $cl-yellow;
+                    // color: orange;
+                }
+                &:nth-child(4) {
+                    background-color: $cl-green;
+                    // color: green;
+                }
+            }
+            .high-risk-text {
+                color: $cl-red;
+            }
+            .low-risk-text {
+                color: $cl-green;
+            }
+        }
+    }
+    .fraud-grid-bar {
+        height: 8px;
+        border-radius: 10px;
+        position: relative;
+        z-index: 1
+    }
+    .value-marker {
+        position: absolute;
+        height: 30px;
+        width: 30px;
+        line-height: 30px;
+        text-align: center;
+        // margin: 10px 40px;
+        left: 10%;
+        top: -7px;
+        background: #fff;
+        color: #000;
+        border: 2px solid $cl-red;
+        z-index: 3;
+        transform: rotateX(30deg) rotateZ(45deg);
+        div {
+            font-size: 16px;
+            font-weight: 500;
+            transform: rotateX(0deg) rotateZ(-45deg);
+        }
+    }
+}

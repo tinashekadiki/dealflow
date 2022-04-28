@@ -1,0 +1,228 @@
+<!--<mat-tab-group animationDuration="0ms" [selectedIndex]="selectedIndex">-->
+
+<!--     Personal Information-->
+<!--&lt;!&ndash;    <mat-tab label="Personal Information">&ndash;&gt;-->
+<!--&lt;!&ndash;        <div fxLayout="column" fxLayoutAlign="none stretch" fxLayoutGap="20px">&ndash;&gt;-->
+<!--&lt;!&ndash;            <div fxLayout="row wrap" style="margin-top: 10px;">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div fxFlex="33">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <mat-form-field appearance="outline">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-label>First Name</mat-label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input matInput placeholder="First Name" required [(ngModel)]="customerPersonalDetails.firstName" #firstName="ngModel">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-error *ngIf="firstName.invalid && firstName.errors.required">&ndash;&gt;-->
+<!--&lt;!&ndash;                            First Name is required.&ndash;&gt;-->
+<!--&lt;!&ndash;                        </mat-error>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </mat-form-field>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div fxFlex="33">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <mat-form-field appearance="outline">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-label>Middle Name</mat-label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input matInput placeholder="Middle Name" [(ngModel)]="customerPersonalDetails.middleName">&ndash;&gt;-->
+<!--&lt;!&ndash;                    </mat-form-field>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div fxFlex="33">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <mat-form-field appearance="outline">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-label>Last Name</mat-label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input matInput placeholder="Last Name" required [(ngModel)]="customerPersonalDetails.lastName" #lastName="ngModel">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-error *ngIf="lastName.invalid && lastName.errors.required">&ndash;&gt;-->
+<!--&lt;!&ndash;                            Last Name is required.&ndash;&gt;-->
+<!--&lt;!&ndash;                        </mat-error>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </mat-form-field>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div fxFlex="33">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <mat-form-field appearance="outline">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-label>Date Of Birth</mat-label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input matInput [ngModel]="customerPersonalDetails.dateOfBirth | date: 'MM/dd/YYYY'" required>&ndash;&gt;-->
+<!--&lt;!&ndash;                        &lt;!&ndash; <mat-error *ngIf="lastName.invalid && lastName.errors.required">&ndash;&gt;-->
+<!--&lt;!&ndash;                          Date of Birth is required.&ndash;&gt;-->
+<!--&lt;!&ndash;                      </mat-error> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    </mat-form-field>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div fxFlex="33">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <mat-form-field appearance="outline">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-label>Social Security Number</mat-label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input matInput placeholder="Social Security Number" minlength="9" [ngModel]="applicationDetails['ssn']" readonly>&ndash;&gt;-->
+<!--&lt;!&ndash;                        &lt;!&ndash; <mat-error *ngIf="socialSecurity.invalid && socialSecurity.errors.required">&ndash;&gt;-->
+<!--&lt;!&ndash;                            Social Security Number is required.&ndash;&gt;-->
+<!--&lt;!&ndash;                        </mat-error> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    </mat-form-field>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div fxFlex="33">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <mat-form-field appearance="outline">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-label>Driver's License Number</mat-label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input matInput placeholder="Driver's License Number" [(ngModel)]="customerPersonalDetails.licenseIdNumber" #licenseID="ngModel">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-error *ngIf="licenseID.invalid && licenseID.errors.required">&ndash;&gt;-->
+<!--&lt;!&ndash;                            Driver's License is required.&ndash;&gt;-->
+<!--&lt;!&ndash;                        </mat-error>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </mat-form-field>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div fxFlex="33">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <mat-form-field appearance="outline">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-label>Mobile Number</mat-label>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                        <input matInput placeholder="Mobile Number" type="tel" mask="(000)-000-0000" minlength="10" [(ngModel)]="applicationDetails['phoneNumber']" #mobileNumber="ngModel">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-icon matSuffix>phone</mat-icon>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-error *ngIf="mobileNumber.invalid && mobileNumber.errors.required">&ndash;&gt;-->
+<!--&lt;!&ndash;                            Mobile Number is required.&ndash;&gt;-->
+<!--&lt;!&ndash;                        </mat-error>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </mat-form-field>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div fxFlex="33">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <mat-form-field appearance="outline">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-label>Home Number</mat-label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input matInput placeholder="Home Number" type="tel" mask="(000)-000-0000" minlength="10" #homeNumber="ngModel" [(ngModel)]="customerContactDetails.homePhone">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-icon matSuffix>phone</mat-icon>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-error *ngIf="homeNumber.invalid && homeNumber.errors.required">&ndash;&gt;-->
+<!--&lt;!&ndash;                            Home Number is required.&ndash;&gt;-->
+<!--&lt;!&ndash;                        </mat-error>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </mat-form-field>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div fxFlex="33">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <mat-form-field appearance="outline">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-label>Email</mat-label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input matInput placeholder="email@mail.com" type="email" [(ngModel)]="applicationDetails.email" #primaryEmail="ngModel" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-error *ngIf="primaryEmail.invalid && primaryEmail.errors.required">&ndash;&gt;-->
+<!--&lt;!&ndash;                            Email is required.&ndash;&gt;-->
+<!--&lt;!&ndash;                        </mat-error>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </mat-form-field>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div fxFlex="33">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <mat-form-field appearance="outline">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-label>Address</mat-label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input matInput placeholder="Address" [(ngModel)]="customerContactDetails.mailingStreetAddress1" #mailingStreet="ngModel">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-error *ngIf="mailingStreet.invalid && mailingStreet.errors.required">&ndash;&gt;-->
+<!--&lt;!&ndash;                            Street Address is required.&ndash;&gt;-->
+<!--&lt;!&ndash;                        </mat-error>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </mat-form-field>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div fxFlex="33">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <mat-form-field appearance="outline">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-label>Unit/Appartment Number</mat-label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input matInput placeholder="Unit/Appartment Number" [(ngModel)]="customerContactDetails.unitOrAppt" #unitNumber>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-error *ngIf="unitNumber.invalid && unitNumber.errors.required">&ndash;&gt;-->
+<!--&lt;!&ndash;                            Unit Number is required.&ndash;&gt;-->
+<!--&lt;!&ndash;                        </mat-error>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </mat-form-field>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div fxFlex="33">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <mat-form-field appearance="outline">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-label>City</mat-label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input matInput placeholder="City" [(ngModel)]="customerContactDetails.mailingCity" #city>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-error *ngIf="city.invalid && city.errors.required">&ndash;&gt;-->
+<!--&lt;!&ndash;                            City is required.&ndash;&gt;-->
+<!--&lt;!&ndash;                        </mat-error>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </mat-form-field>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div fxFlex="33">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <mat-form-field appearance="outline">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-label>State</mat-label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-select name="states" [(ngModel)]="customerContactDetails.state" #customerState="ngModel">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <mat-option *ngFor="let state of states | keyvalue" [value]="state.key">&ndash;&gt;-->
+<!--&lt;!&ndash;                                {{state.value}}&ndash;&gt;-->
+<!--&lt;!&ndash;                            </mat-option>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </mat-select>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-error *ngIf="customerState.invalid && customerState.errors.required">&ndash;&gt;-->
+<!--&lt;!&ndash;                            State is required.&ndash;&gt;-->
+<!--&lt;!&ndash;                        </mat-error>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </mat-form-field>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div fxFlex="33">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <mat-form-field appearance="outline">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-label>ZIP</mat-label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input matInput placeholder="ZIP" [(ngModel)]="customerContactDetails.mailingPostalCode" #customerZIP="ngModel">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-error *ngIf="customerZIP.invalid && customerZIP.errors.required">&ndash;&gt;-->
+<!--&lt;!&ndash;                            ZIP is required.&ndash;&gt;-->
+<!--&lt;!&ndash;                        </mat-error>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </mat-form-field>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div fxFlex="33">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <mat-form-field appearance="outline">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-label>Country</mat-label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-select name="country" #customerCountry="ngModel" [(ngModel)]="customerContactDetails.country">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <mat-option *ngFor="let country of countries | keyvalue" [value]="country.key">&ndash;&gt;-->
+<!--&lt;!&ndash;                                {{country.value}}&ndash;&gt;-->
+<!--&lt;!&ndash;                            </mat-option>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </mat-select>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-error *ngIf="customerCountry.invalid && customerCountry.errors.required">&ndash;&gt;-->
+<!--&lt;!&ndash;                            Country is required.&ndash;&gt;-->
+<!--&lt;!&ndash;                        </mat-error>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </mat-form-field>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div fxFlex="33">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <mat-form-field appearance="outline">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-label>Years Lived At Residence</mat-label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input matInput placeholder="Years Lived" required [(ngModel)]="applicationDetails.timeAtAddressYears" #yearsLived="ngModel">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-error *ngIf="yearsLived.invalid && yearsLived.errors.required">&ndash;&gt;-->
+<!--&lt;!&ndash;                            Years Lived at residence is required.&ndash;&gt;-->
+<!--&lt;!&ndash;                        </mat-error>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </mat-form-field>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div fxFlex="33">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <mat-form-field appearance="outline">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-label>Months Lived At Residence</mat-label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input matInput placeholder="Months Lived" required [(ngModel)]="applicationDetails.timeAtAddressMonths" #monthsLived="ngModel">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <mat-error *ngIf="monthsLived.invalid && monthsLived.errors.required">&ndash;&gt;-->
+<!--&lt;!&ndash;                            Months Lived is required.&ndash;&gt;-->
+<!--&lt;!&ndash;                        </mat-error>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </mat-form-field>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div fxLayout="row wrap">&ndash;&gt;-->
+<!--&lt;!&ndash;                <ng-container *ngIf="customerCoBorrower">&ndash;&gt;-->
+<!--&lt;!&ndash;                    &lt;!&ndash; <app-co-borrower [customer-co-borrower]="customerCoBorrower"></app-co-borrower> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                </ng-container>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <ng-container *ngIf="!customerCoBorrower">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div fxLayout="row wrap">&ndash;&gt;-->
+<!--&lt;!&ndash;                        &lt;!&ndash; <button class="m-b-16px" mat-raised-button color="primary">&ndash;&gt;-->
+<!--&lt;!&ndash;                          <mat-icon>person_add_alt_1</mat-icon> Add Co-Borrower&ndash;&gt;-->
+<!--&lt;!&ndash;                      </button> &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </ng-container>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        <div mat-dialog-actions style="justify-content: flex-end; margin-top: 20px;">&ndash;&gt;-->
+<!--&lt;!&ndash;            <button mat-button color="primary" (click)="selectTab(1)">&ndash;&gt;-->
+<!--&lt;!&ndash;                Next&ndash;&gt;-->
+<!--&lt;!&ndash;            </button>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;    </mat-tab>&ndash;&gt;-->
+
+<!--    &lt;!&ndash; Additional Personal Information &ndash;&gt;-->
+
+
+<!--&lt;!&ndash;    &lt;!&ndash; Financial Information &ndash;&gt;&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;    &lt;!&ndash; Lender Portal &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    <mat-tab label="Lender Portal">&ndash;&gt;-->
+<!--&lt;!&ndash;        <div fxLayout="column" fxLayoutAlign="none stretch" fxLayoutGap="20px">&ndash;&gt;-->
+<!--&lt;!&ndash;            <div fxLayout="row wrap" style="text-align: center;">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div fxFlex="96" style="margin-top: 20px; padding: 10px;">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <p style="text-align: center">Send Application To Bank</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div fxFlex="33">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <mat-radio-button value="1">Route One</mat-radio-button>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div fxFlex="33">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <mat-radio-button value="2">Dealer Track</mat-radio-button>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div fxFlex="33">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <mat-radio-button value="1">Cudl</mat-radio-button>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        <div mat-dialog-actions style="justify-content: flex-end; margin-top: 20px;">&ndash;&gt;-->
+<!--&lt;!&ndash;            <button mat-button (click)="selectTab(3)">&ndash;&gt;-->
+<!--&lt;!&ndash;                Previous&ndash;&gt;-->
+<!--&lt;!&ndash;            </button>&ndash;&gt;-->
+<!--&lt;!&ndash;            <button mat-raised-button color="primary" (click)="selectTab(4)">&ndash;&gt;-->
+<!--&lt;!&ndash;                Submit&ndash;&gt;-->
+<!--&lt;!&ndash;            </button>&ndash;&gt;-->
+
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        <p>&nbsp;</p>&ndash;&gt;-->
+<!--&lt;!&ndash;    </mat-tab>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    &lt;!&ndash; Deal Structure &ndash;&gt;&ndash;&gt;-->
+<!--&ndash;&gt;-->
+<!--&lt;!&ndash;</mat-tab-group>&ndash;&gt;-->

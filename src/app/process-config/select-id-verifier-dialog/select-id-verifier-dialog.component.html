@@ -1,0 +1,33 @@
+<div mat-dialog-title fxLayout="row" class="modal">
+  <div class="text-normalise core-heading">Identity Verification Service</div>
+  <span fxFlex></span>
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<div mat-dialog-content>
+  <label class="core-text">Select Identity Verification Service.</label>
+  <mat-radio-group
+    aria-labelledby="example-radio-group-label"
+    class="core-radio"
+    [(ngModel)]="idVerifier">
+    <mat-radio-button class="core-radio-button" *ngFor="let singleVerifier of idVerifiers" [value]="singleVerifier">
+      {{singleVerifier.verifierId}}
+    </mat-radio-button>
+  </mat-radio-group>
+</div>
+
+<div mat-dialog-actions style="justify-content: flex-end;">
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button color="primary" (click)="setIdVerifier()" cdkFocusInitial>
+    <ng-container *ngIf="!isLoading; else loadingSpinner">
+      Submit
+    </ng-container>
+  </button>
+</div>
+
+
+<ng-template #loadingSpinner>
+  <mat-progress-spinner diameter="20" mode="indeterminate"></mat-progress-spinner>
+</ng-template>

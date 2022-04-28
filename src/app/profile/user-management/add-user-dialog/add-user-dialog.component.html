@@ -1,0 +1,118 @@
+<div mat-dialog-title fxLayout="row" class="modal">
+  <div class="core-heading">Add User</div>
+  <span fxFlex></span>
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon class="core-heading">close</mat-icon>
+  </button>
+</div>
+
+<div mat-dialog-content class="modal">
+  <form fxLayout="row wrap" [formGroup]="userForm">
+
+      <mat-form-field class="core-text" appearance="outline" fxFlex="48">
+        <mat-label>First Name</mat-label>
+        <input matInput placeholder="James" name="firstName" formControlName="firstName" required>
+        <mat-icon matSuffix>account_box</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field class="core-text" appearance="outline" fxFlex="48">
+        <mat-label>Last Name</mat-label>
+        <input matInput placeholder="Smith" name="lastName" formControlName="lastName">
+        <mat-icon matSuffix>account_box</mat-icon>
+      </mat-form-field>
+
+
+      <mat-form-field class="core-text" appearance="outline" fxFlex="48">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="email@mail.com" type="email" name="emailAddress" formControlName="emailAddress" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">
+        <mat-icon matSuffix>email</mat-icon>
+      </mat-form-field>
+
+
+      <mat-form-field class="core-text" appearance="outline" fxFlex="48">
+        <mat-label>Cell Phone</mat-label>
+
+        <input matInput required type="tel"
+               mask="(000) 000-0000" name="phoneNumber" formControlName="phoneNumber">
+        <mat-icon matSuffix>phone</mat-icon>
+      </mat-form-field>
+
+    <mat-form-field class="core-text" fxFlex="48" appearance="outline">
+      <mat-label>Region</mat-label>
+      <input matInput name="region" formControlName="region" required>
+      <mat-icon matSuffix>map</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="core-text" fxFlex="48" appearance="outline">
+      <mat-label>Cost Center</mat-label>
+      <input matInput name="costCenter" formControlName="costCenter" required>
+      <mat-icon matSuffix>corporate_fare</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="core-text" fxFlex="48" appearance="outline">
+      <mat-label>Department</mat-label>
+      <input matInput name="department" formControlName="department" required>
+      <mat-icon matSuffix>business</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="core-text" fxFlex="48" appearance="outline">
+      <mat-label>Custom Text Email</mat-label>
+      <input matInput name="customCreateUserEmailText" formControlName="customCreateUserEmailText">
+      <mat-icon matSuffix>mail</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="core-text" fxFlex="48" appearance="outline">
+      <mat-label>User Role</mat-label>
+      <mat-select name="defaultRole" formControlName="defaultRole" required>
+        <mat-option *ngFor="let role of roles" value="{{role}}">{{role}}</mat-option>
+      </mat-select>
+      <mat-icon matPrefix>call</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="core-text" fxFlex="48" appearance="outline">
+      <mat-label>Default Branch</mat-label>
+      <mat-select name="defaultRole" formControlName="defaultBranchId" required>
+        <mat-option *ngFor="let branch of branches" value="{{branch.branchId}}">{{branch.name}}, {{branch.city}}</mat-option>
+      </mat-select>
+      <mat-icon matPrefix>call</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="core-text" fxFlex="48" appearance="outline">
+      <mat-label>Override Permissions</mat-label>
+      <mat-select name="overrideperm" formControlName="overrideperm" required>
+        <mat-option value="true">Yes
+        </mat-option>
+        <mat-option value="false">No
+        </mat-option>
+      </mat-select>
+      <mat-icon matSuffix>account_circle</mat-icon>
+    </mat-form-field>
+    <mat-form-field class="core-text" fxFlex="48" appearance="outline">
+      <mat-label>Time Zone</mat-label>
+      <mat-select name="timeZone" formControlName="timeZone" required>
+        <mat-option value="HST">Hawaii Standard Time (HST) - UTC -10
+        </mat-option>
+        <mat-option value="AKST">Alaska Standard Time (AKST) - UTC -9
+        </mat-option>
+        <mat-option value="PST">Pacific Standard Time (PST) - UTC -8
+        </mat-option>
+        <mat-option value="MST">Mountain Standard Time (MST) - UTC -7
+        </mat-option>
+        <mat-option value="CST">Central Standard Time (CST) - UTC -6
+        </mat-option>
+        <mat-option value="EST">Eastern Standard Time (EST) - UTC -5
+        </mat-option>
+      </mat-select>
+      <mat-icon matPrefix>call</mat-icon>
+    </mat-form-field>
+  </form>
+</div>
+
+<div fxLayout="row">
+  <mat-dialog-actions align="start">
+  </mat-dialog-actions>
+  <span fxFlex></span>
+  <mat-dialog-actions align="end">
+    <button type="submit" mat-raised-button color="primary" [mat-dialog-close]="userForm.value">Save</button>
+  </mat-dialog-actions>
+</div>

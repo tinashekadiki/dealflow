@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>Search Customers</h1>
+<div mat-dialog-content>
+  <div fxLayout="column" fxLayoutAlign="none stretch" fxLayoutGap="20px">
+    <div fxLayout="row" fxLayoutGap="20px">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Search By Customer Name</mat-label>
+        <input cdkFocusInitial matInput placeholder="Search By Customer Name" aria-label="Search By Customer Name">
+        <mat-icon matPrefix>search</mat-icon>
+        <mat-autocomplete>
+
+          <mat-option *ngIf="isLoadingAutocomplete" class="is-loading">Loading...</mat-option>
+          <ng-container *ngIf="!isLoadingAutocomplete">
+            <!-- <mat-option *ngFor="let vehicle of filterVehicleList" [value]="vehicle">
+                    <span><strong>{{ displayVehicleName(vehicle) }}</strong></span>
+                </mat-option> -->
+          </ng-container>
+        </mat-autocomplete>
+      </mat-form-field>
+
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions style="justify-content: flex-end;">
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button color="primary" (click)="submitRequest()" cdkFocusInitial>
+      <!-- <ng-container *ngIf="!isLoading; else loadingSpinner"> -->
+      Submit
+      <!-- </ng-container> -->
+  </button>
+</div>

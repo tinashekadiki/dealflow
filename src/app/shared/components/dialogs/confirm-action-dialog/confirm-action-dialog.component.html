@@ -1,0 +1,8 @@
+<mat-dialog-content>
+    {{data.message}}
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="false">Cancel</button>
+    <button mat-button color="warn" [mat-dialog-close]="true" cdkFocusInitial>
+        {{(data.actionBtn == undefined)? "Confirm":data.actionBtn}}</button>
+</mat-dialog-actions>

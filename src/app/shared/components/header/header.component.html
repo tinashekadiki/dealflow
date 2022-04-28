@@ -1,0 +1,45 @@
+<mat-toolbar class="app-toolbar" color="primary">
+    <mat-toolbar-row>
+        <button (click)="sideNavClicked()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+        <span> CoreLogic DealFlow</span>
+        <span fxFlex></span>
+        <button mat-button [matMenuTriggerFor]="userBranches" #branchListTrigger="matMenuTrigger" mat-button>{{activeBranch?.name}}
+      <mat-icon>{{branchListTrigger.menuOpen ? "arrow_drop_up" : "arrow_drop_down"}}</mat-icon>
+    </button>
+        <mat-menu #userBranches="matMenu">
+            <button mat-menu-item *ngFor="let branch of authorizationService?.userBranchList" [routerLink]="['/callback']" [queryParams]="{'switch_branch': branch?.branchId}">
+        {{branch?.name}}
+      </button>
+        </mat-menu>
+        <button mat-icon-button (click)="openNotificationsList()">
+          <mat-icon matBadge="{{unreadNotifications}}" matBadgeSize="medium" matBadgeColor="accent">notifications</mat-icon>
+        </button>
+        <button mat-icon-button [matMenuTriggerFor]="profileMenu">
+      <mat-icon >account_circle</mat-icon>
+      <mat-menu #profileMenu="matMenu" >
+        <mat-card class="mat-elevation-z0">
+          <mat-card-header>
+            <mat-card-title class="core-heading">
+              {{applicationUser?.firstName}} {{ applicationUser?.lastName}}
+        </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="app-logout">
+            <p class="core-text">Organization ID: {{applicationUser?.organisationalId}}</p>
+            <p class="core-text">Branch ID: {{activeRoleDetails?.branchId}}</p>
+            <p class="core-text text-normalise">Role: {{activeRoleDetails?.roleId.toLowerCase()}}</p>
+        </mat-card-content>
+        <mat-card-footer class="footer-top-popup">
+            <button mat-button color="primary" (click)="profileMenu.close">Close</button>
+        <span fxFlex></span>
+        <button mat-raised-button color="primary" (click)="logout()">Logout</button>
+        </mat-card-footer>
+        </mat-card>
+        </mat-menu>
+        </button>
+    </mat-toolbar-row>
+    <mat-toolbar-row class="mat-elevation-z1" style="height: 28px; background-color: #fff;">
+        <xng-breadcrumb separator=">"></xng-breadcrumb>
+    </mat-toolbar-row>
+</mat-toolbar>

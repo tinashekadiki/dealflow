@@ -1,0 +1,80 @@
+<div fxFlex="100" style="text-align: left;">
+  <mat-grid-list cols="3" rowHeight="50px">
+    <div fxLayout="row">
+      <span fxFlex></span>
+      <div class="core-heading">Users</div>
+      <span fxFlex></span>
+    </div>
+  </mat-grid-list>
+
+  <div fxLayout="row" fxLayoutGap="10px" class="layout">
+    <button mat-raised-button color="primary" (click)="openAddUserDialog()">Add User</button>
+    <button mat-raised-button color="primary" (click)="openBulkUploadUsersDialog()">Bulk Upload Users</button>
+  </div>
+
+  <div class="layout">
+    <div fxLayout="row">
+      <mat-form-field class="core-text" appearance="outline">
+        <mat-label>Search</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="John." #input>
+      </mat-form-field>
+    </div>
+
+    <div class="mat-elevation-z2" style="text-align: left;">
+      <table *ngIf="!isLoading" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef class="core-table-header"> ID.</th>
+          <td mat-cell *matCellDef="let element"> {{element.id}}</td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="first_name">
+          <th mat-header-cell *matHeaderCellDef class="core-table-header"> First Name</th>
+          <td mat-cell *matCellDef="let element"> {{element.firstName}}</td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="last_name">
+          <th mat-header-cell *matHeaderCellDef class="core-table-header"> Last Name</th>
+          <td mat-cell *matCellDef="let element"> {{element.lastName}}</td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef class="core-table-header"> Email</th>
+          <td mat-cell *matCellDef="let element"> {{element.emailAddress}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef class="core-table-header">Action</th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon>menu</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+            <p mat-menu-item>Reset Password</p>
+            <p mat-menu-item>Delete User</p>
+            <p mat-menu-item (click)="changeRole(element)" >Change Role</p>
+<!--            <p (click)="openAddPermissionsDialog(element)" mat-menu-item>Update Permissions</p>-->
+          </mat-menu>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <div *ngIf="isLoading" fxLayout="row">
+        <span fxFlex></span>
+        <div class="spaced-loader">
+          <div fxLayout="column">
+            <mat-progress-spinner color="primary" mode="indeterminate" diameter="30">
+            </mat-progress-spinner>
+          </div>
+        </div>
+        <span fxFlex></span>
+      </div>
+      <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+
+</div>

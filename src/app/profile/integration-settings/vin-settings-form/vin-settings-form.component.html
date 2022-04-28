@@ -1,0 +1,37 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      VIN SOLUTIONS
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <form [formGroup]="vinSolutionsForm"
+        (ngSubmit)="saveSettings(vinSolutionsForm.value)">
+    <div fxLayout="row wrap">
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Lead Sources</mat-label>
+        <input matInput formControlName="leadsources" name="leadsources"  required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>User ID</mat-label>
+        <input matInput formControlName="userid" name="userid"  required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Lead Type ID</mat-label>
+        <input matInput formControlName="leadTypeId" name="leadTypeId"  required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" name="password"  required>
+      </mat-form-field>
+
+    </div>
+    <div fxLayout="row">
+      <span fxFlex></span>
+      <button mat-raised-button color="primary">Save</button>
+      <span fxFlex></span>
+    </div>
+  </form>
+</mat-expansion-panel>

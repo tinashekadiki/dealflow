@@ -1,0 +1,45 @@
+<div fxFlex="100">
+  <mat-grid-list cols="3" rowHeight="50px">
+    <div fxLayout="row">
+      <span fxFlex></span>
+      <div class="core-heading">API Integrations</div>
+      <span fxFlex></span>
+    </div>
+  </mat-grid-list>
+
+  <div class="layout">
+    <div class="example-action-buttons"></div>
+    <mat-accordion class="example-headers-align" multi>
+      <!-- promotionalProducts -->
+
+      <div fxFill *ngFor="let product of activeProducts">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>{{ product.productName }}</mat-panel-title>
+          </mat-expansion-panel-header>
+        </mat-expansion-panel>
+        <br/>
+      </div>
+
+      <!-- <app-cdk-settings-form></app-cdk-settings-form>
+      <br/>
+      <app-credit-settings-form></app-credit-settings-form>
+      <br/>
+      <app-vin-settings-form></app-vin-settings-form>
+      <br/>
+      <app-customer-interactions-form></app-customer-interactions-form>
+      <br/>
+      <app-inventory-settings-form></app-inventory-settings-form>
+      <br/>
+      <app-elead-settings-form></app-elead-settings-form>
+      <br/>
+      <app-v-auto></app-v-auto>
+      <br/>
+      <app-route-one></app-route-one>
+      <br/>
+      <app-innovis></app-innovis>
+      <br/>
+      <app-dealer-track></app-dealer-track> -->
+    </mat-accordion>
+  </div>
+</div>

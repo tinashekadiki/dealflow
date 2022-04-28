@@ -1,0 +1,30 @@
+<div mat-dialog-title fxLayout="row" class="modal">
+  <h3 class="title-text" math4>Permissions</h3>
+  <span fxFlex></span>
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<div mat-dialog-content>
+  <form fxLayout="column" fxLayoutGap="7px">
+    
+    <div fxLayout="row" *ngFor="let permission of allPermissions; let i = index;">
+      <mat-label>{{permission.name}}</mat-label>
+      <span fxFlex></span>
+      <mat-slide-toggle (click)="togglePermission(permission.permissioncode, $event.target)"
+                        [checked]="selectedPermissions.includes(permission.permissioncode)"
+                        aria-label="Products Toggle"
+                        color="primary"></mat-slide-toggle>
+    </div>
+
+  </form>
+</div>
+
+<div fxLayout="row">
+  <span fxFlex></span>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="permissionsData" cdkFocusInitial>Save</button>
+  </mat-dialog-actions>
+</div>

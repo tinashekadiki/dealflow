@@ -1,0 +1,52 @@
+<div class="proof-message-container" txLayout="column">
+    <h4 class="section-title">Score</h4>
+    <div>
+        <div class="synthetic-fraud-grid-container">
+            <div></div>
+            <div class="synthetic-fraud-bar-grid-container">
+                <div class="high-risk-text">High Risk</div>
+                <div class=""></div>
+                <div class="low-risk-text" style="text-align: right;">Lower Risk</div>
+            </div>
+
+        </div>
+        <div class="synthetic-fraud-grid-container">
+            <div>First Party</div>
+            <div class="synthetic-fraud-bar-grid-container">
+                <div class='value-marker' [style]="{'left':firstPartyObj.percentage+'%','border-color':firstPartyObj.color}">
+                    <div>{{firstPartyObj.score}}</div>
+                </div>
+                <div class="fraud-grid-bar"></div>
+                <div class="fraud-grid-bar"></div>
+                <div class="fraud-grid-bar"></div>
+            </div>
+
+        </div>
+        <div class="synthetic-fraud-grid-container">
+            <div>Third Party</div>
+            <div class="synthetic-fraud-bar-grid-container">
+                <div class='value-marker' [style]="{'left':thirdPartyObj.percentage+'%','border-color':thirdPartyObj.color}">
+                    <div>{{thirdPartyObj.score}}</div>
+                </div>
+                <div class="fraud-grid-bar"></div>
+                <div class="fraud-grid-bar"></div>
+                <div class="fraud-grid-bar"></div>
+            </div>
+
+        </div>
+        <div class="synthetic-fraud-grid-container">
+            <div>Abuse</div>
+            <div class="synthetic-fraud-bar-grid-container">
+                <div class='value-marker' [style]="{'left':abuseObj.percentage+'%','border-color':abuseObj.color}">
+                    <div>{{abuseObj.score}}</div>
+                </div>
+                <div class="fraud-grid-bar"></div>
+                <div class="fraud-grid-bar"></div>
+                <div class="fraud-grid-bar"></div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>

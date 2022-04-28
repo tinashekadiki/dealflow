@@ -1,0 +1,144 @@
+<div class="customer-list-container">
+    <div class="filter-cards" fxLayout="column" fxLayoutAlign="space-evenly" fxLayoutGap="20px">
+        <div fxFlex>
+            <mat-card class="filter-card">
+                <mat-card-header class="gray-scheme">
+                    <mat-card-title>
+                        Customers | <span class="mat-body">Showing all customers</span>
+                        <div class="action-button-block">
+                            <button mat-icon-button color="primary" (click)="openSearchDialog()">
+                                <mat-icon>search</mat-icon>
+                            </button>
+
+                            <button mat-button color="primary" (click)="openAddCustomerDialog()">Add new
+                                customer</button>
+
+                            <button mat-button color="primary" (click)="openArchivedSearchDialog()">Search archived customers</button>
+                        </div>
+                    </mat-card-title>
+                </mat-card-header>
+
+                <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px">
+                    <div class="filter-chips" fxFlex>
+                        <mat-chip-list aria-label="Enabled Filters">
+                            <mat-chip color="accent" selected *ngIf="search != ''">
+                                Search: {{search}}
+                                <mat-icon (click)="clearSearch()" matChipRemove>cancel</mat-icon>
+                            </mat-chip>
+                            <mat-chip color="accent" selected *ngIf="isArchiveSearch">
+                                Archive Search: {{archivedDateRange.startDate}} - {{archivedDateRange.endDate}}
+                                <mat-icon (click)="clearArchiveSearch()" matChipRemove>cancel</mat-icon>
+                            </mat-chip>
+                            <mat-chip *ngFor="let filter of filters; let i = index">
+                                {{propertyDisplay[filter.property]}}: "{{filter.displayValue || filter.value}}"
+                                <mat-icon (click)="removeFilter(i)" matChipRemove>cancel</mat-icon>
+                            </mat-chip>
+                            <mat-chip #helloRef [matMenuTriggerFor]="menu" class="add-filter-chip">
+                                <mat-icon>add</mat-icon>
+                                Add a filter
+                            </mat-chip>
+
+                            <mat-menu #menu="matMenu">
+                                <button (click)="openTextDialog('firstName','First Name')" mat-menu-item>
+                                    First Name
+                                </button>
+                                <button (click)="openTextDialog('lastName','Last Name')" mat-menu-item>
+                                    Last Name
+                                </button>
+                                <button (click)="openSelectDialog('buyingStage','Buying Stage', optionListCustomerBuyingStage)" mat-menu-item>
+                                    Buying Stage
+                                </button>
+                                <button (click)="openSelectDialog('complianceFlag','Compliance Flag', complianceFlagList)" mat-menu-item>
+                                    Compliance Flag
+                                </button>
+                            </mat-menu>
+
+                        </mat-chip-list>
+                    </div>
+                </div>
+                <mat-divider style="margin-top:10px"></mat-divider>
+
+                <table mat-table #customerListTable [dataSource]="customerList?.customers" class="customers-table mat-elevation-zz2">
+
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                        <th scope="col" mat-header-cell class="core-table-header" *matHeaderCellDef> Name </th>
+                        <td mat-cell *matCellDef="let element">
+                            <a class="table-link" [routerLink]="['/customer-details',element.customerGlobalId]" style="text-transform: uppercase;">
+                                {{element.firstName +" "+ element.lastName|| "-"}}
+                            </a>
+                        </td>
+                    </ng-container>
+
+                    <!-- Phone Column -->
+                    <ng-container matColumnDef="phone">
+                        <th scope="col" mat-header-cell class="core-table-header" *matHeaderCellDef> Phone </th>
+                        <td mat-cell *matCellDef="let element"> {{(element.phoneNumber | mask: "(000) 000-0000") || "-"}} </td>
+                    </ng-container>
+
+                    <!-- Email Column -->
+                    <ng-container matColumnDef="email">
+                        <th scope="col" mat-header-cell class="core-table-header" *matHeaderCellDef> Email </th>
+                        <td mat-cell *matCellDef="let element"> {{element.email || "-"}} </td>
+                    </ng-container>
+
+                    <!-- Buying Stage Column -->
+                    <ng-container matColumnDef="buying_stage">
+                        <th scope="col" mat-header-cell class="core-table-header" *matHeaderCellDef> Buying Stage</th>
+                        <td mat-cell *matCellDef="let element"> {{processIdToBuyingStage(element.buyingStage) || "-"}}
+                        </td>
+                    </ng-container>
+
+                    <!-- Compliance Flag Column -->
+                    <ng-container matColumnDef="compliance_flag">
+                        <th scope="col" mat-header-cell class="core-table-header" *matHeaderCellDef> Compliance Flag</th>
+                        <td mat-cell *matCellDef="let element" style="position: relative;">
+                            {{ element.complianceFlag === "Pass" ? "Active" : element.complianceFlag || "-" }}
+                            <span style="top: calc(50% - 15px);position: absolute; margin-left: 10px;">
+                                <mat-icon *ngIf="element.complianceFlag.toUpperCase() === 'BLOCKED'" style="color: #E10600;">warning</mat-icon>
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <!-- Alert Column -->
+                    <ng-container matColumnDef="action">
+                        <th scope="col" mat-header-cell class="core-table-header" *matHeaderCellDef> Action</th>
+                        <td mat-cell *matCellDef="let element">
+                            <button mat-icon-button [matMenuTriggerFor]="customerMenu" (click)="getCustomer(element.customerGlobalId)">
+                                <mat-icon>menu</mat-icon>
+                            </button>
+                            <mat-menu #customerMenu="matMenu" xPosition="before">
+                                <button mat-menu-item (click)="openAddPurchaseVehicleDialog(element.customerGlobalId)">Add Purchase
+                                    Vehicle</button>
+                               <button mat-menu-item (click)="openAddTradeVehicleDialog()">Add Trade Vehicle</button>
+                                <button mat-menu-item (click)="openSendDigitalApplicationDialog()">Send Digital
+                                    Application</button>
+                                <button mat-menu-item (click)="openGenerateFinanceApplicationDialog()">Generate Finance
+                                    Application</button>
+                                <button mat-menu-item (click)="openSendRecordToDMSDialog()">Send Record to DMS</button>
+                                <button mat-menu-item (click)="openSendRecordToCRMDialog(element.customerGlobalId)">Send Record to CRM</button>
+                                <button mat-menu-item (click)="confirmArchiveCustomer(element.customerGlobalId)">Archive Customer</button>
+                                <button mat-menu-item (click)="openSearchCoboborrowerDialogComponent(element.id)">Add Customer Co-Borrower</button>
+                                <button mat-menu-item (click)="confirmDeleteCustomer(element.customerGlobalId)">Delete Customer</button>
+                            </mat-menu>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <mat-card *ngIf="isLoading || customerList?.customers?.length < 1" style="display: flex; justify-content: center; align-items: center">
+                    <ng-container *ngIf="isLoading">
+                        <mat-progress-spinner color="primary" mode="indeterminate" diameter="30">
+                        </mat-progress-spinner>
+                    </ng-container>
+                    <ng-container *ngIf="!isLoading && customerList?.customers?.length < 1">
+                        No data available
+                    </ng-container>
+                </mat-card>
+                <mat-paginator [pageSizeOptions]="[25, 50, 100]" (page)="handlePageChange($event)" [length]="totalElements" [pageSize]="pageSize" [showFirstLastButtons]="true"></mat-paginator>
+            </mat-card>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,193 @@
+@import '../../../../../../../variable.scss';
+.dialog-content {
+    overflow-x: hidden;
+    .proof-message-container {
+        margin: 30px 5px;
+    }
+}
+
+.resolution-block {
+    margin-top: 2rem;
+}
+
+button[mat-fab],
+.mock-button {
+    position: absolute;
+    right: -25px;
+    top: 45px;
+}
+
+button[mat-menu-item] {
+    font-size: 16px;
+}
+
+$dark-gray: #767171;
+$light-gray: #afabab;
+.summary-card {
+    color: $dark-gray;
+    &[routerlink] {
+        cursor: pointer;
+    }
+    mat-card-header {
+        align-items: center;
+        mat-card-title {
+            color: $cl-d-blue;
+            // width: 300px;
+            // margin-bottom: 0;
+        }
+    }
+    mat-card-content {
+        min-height: 50px;
+        padding: 0 16px;
+        &.no-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .desking-title {
+            font-size: 150%;
+            font-weight: 500;
+            color: $cl-d-blue
+        }
+    }
+}
+
+
+/* .customer-demography-card {
+    margin-bottom: 20px;
+} */
+
+.expandable-block {
+    flex: 1 1 100%;
+}
+
+.customer-details-containers {
+    padding: 3rem;
+}
+
+.customer-demography-card {
+    .compliance-flag-container {
+        margin-bottom: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        .compliance-flag {
+            background: #eeeeee;
+            border-radius: 2px;
+            box-sizing: border-box;
+            margin-bottom: 3px;
+            max-width: calc(100% - 20px);
+            overflow: hidden;
+            padding: 5px 10px;
+            text-overflow: ellipsis;
+            text-transform: uppercase;
+            top: 15px;
+            white-space: nowrap;
+        }
+    }
+    .customer-name {
+        margin-bottom: 0;
+    }
+    .deal-detail-section {
+        margin-top: 10px;
+        margin-bottom: 18px;
+        color: #757575;
+    }
+    .compliance-check-list {
+        padding-top: 16px;
+        &a {
+            text-transform: uppercase;
+            color: $cl-d-gray;
+            line-height: 16px;
+            font-weight: 500;
+            font-size: 14px;
+            padding: 6px 0 0 0;
+        }
+    }
+}
+
+.expandable-block {
+    flex: 1 1 auto;
+}
+
+.compliance-fraud-check {
+    font-weight: 500;
+    padding-top: 16px;
+    margin-bottom: 24px;
+}
+
+.compliance-result-icon mat-icon {
+    font-size: 30px;
+}
+
+.success {
+    color: $cl-green;
+}
+
+.warn,
+.warn-text {
+    color: $cl-yellow;
+}
+
+.danger,
+.danger-text {
+    color: $cl-red;
+}
+
+.neutral,
+.neutral-text {
+    color: $cl-d-gray;
+}
+
+.pending,
+.pending-text {
+    color: $cl-yellow;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.m-t-10px {
+    margin-top: 10px;
+}
+
+.m-t-16px {
+    margin-top: 16px;
+}
+
+.m-b-10px {
+    margin-bottom: 10px;
+}
+
+.m-b-16px {
+    margin-bottom: 16px;
+}
+
+.font-size-115 {
+    font-size: 115%;
+}
+
+.greyed-title {
+    color: $cl-d-gray;
+}
+
+.greyed-value {
+    color: $cl-medium-gray;
+}
+
+.file_link {
+    margin-left: 2rem;
+    span {
+        display: block;
+    }
+}
+
+.sub-region {
+    margin-top: 2rem;
+}
+
+.creditDialog{
+  width: 400px;
+}

@@ -1,0 +1,120 @@
+<div fxFlex="100">
+  <mat-grid-list cols="3" rowHeight="50px">
+    <div>
+      <span fxFlex></span>
+      <div class="core-heading">Account Settings</div>
+      <span fxFlex></span>
+    </div>
+  </mat-grid-list>
+
+  <form *ngIf="!loading && !success" fxLayout="row wrap" [formGroup]="newUserForm"
+    (ngSubmit)="handleNewUserForm(newUserForm.value)">
+
+    <mat-form-field class="core-text" fxFlex="48" appearance="outline">
+      <mat-label>First Name</mat-label>
+      <input matInput formControlName="firstName" name="firstName">
+      <mat-icon matSuffix>account_box</mat-icon>
+    </mat-form-field>
+    <mat-form-field class="core-text" fxFlex="48" appearance="outline">
+      <mat-label>Last Name</mat-label>
+      <input matInput formControlName="lastName" name="lastName" required>
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="core-text" fxFlex="48" appearance="outline">
+      <mat-label>Email Address</mat-label>
+      <input matInput name="emailAddress" formControlName="emailAddress">
+      <mat-icon matSuffix>email</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="core-text hidden" fxFlex="48" appearance="outline">
+      <mat-label>Region</mat-label>
+      <input matInput name="region" formControlName="region" required>
+      <mat-icon matSuffix>map</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="core-text hidden" fxFlex="48" appearance="outline">
+      <mat-label>Cost Center</mat-label>
+      <input matInput name="costCenter" formControlName="costCenter" required>
+      <mat-icon matSuffix>corporate_fare</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="core-text" fxFlex="48" appearance="outline">
+      <mat-label>Phone Number</mat-label>
+      <input matInput name="phoneNumber" formControlName="phoneNumber" required mask="(000) 000-0000">
+      <mat-icon matSuffix>phone</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="core-text" fxFlex="48" appearance="outline">
+      <mat-label>Department</mat-label>
+      <input matInput name="department" formControlName="department" required>
+      <mat-icon matSuffix>business</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="core-text" fxFlex="48" appearance="outline">
+      <mat-label>User ID</mat-label>
+      <input matInput name="userId" formControlName="userId" required>
+      <mat-icon matSuffix>account_circle</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="core-text hidden" fxFlex="48" appearance="outline">
+      <mat-label>Custom Text Email</mat-label>
+      <input matInput name="customCreateUserEmailText" formControlName="customCreateUserEmailText">
+      <mat-icon matSuffix>mail</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="core-text" fxFlex="48" appearance="outline">
+      <mat-label>User Role</mat-label>
+      <mat-select name="defaultRole" formControlName="defaultRole" required>
+        <mat-option *ngFor="let role of roles" value="{{role}}">{{role}}</mat-option>
+      </mat-select>
+      <mat-icon matSuffix>account_circle</mat-icon>
+    </mat-form-field>
+
+
+    <mat-form-field class="core-text" fxFlex="48" appearance="outline">
+      <mat-label>Override Permissions</mat-label>
+      <mat-select name="overrideperm" formControlName="overrideperm" required>
+        <mat-option value="true">Grant Override Permissions
+        </mat-option>
+        <mat-option value="false">Receive Requests to Assist
+        </mat-option>
+      </mat-select>
+      <mat-icon matSuffix>account_circle</mat-icon>
+    </mat-form-field>
+    <mat-form-field class="core-text hidden" fxFlex="48" appearance="outline">
+      <mat-label>Time Zone</mat-label>
+      <mat-select name="timeZone" formControlName="timeZone" required>
+        <mat-option value="HST">Hawaii Standard Time (HST) - UTC -10
+        </mat-option>
+        <mat-option value="AKST">Alaska Standard Time (AKST) - UTC -9
+        </mat-option>
+        <mat-option value="PST">Pacific Standard Time (PST) - UTC -8
+        </mat-option>
+        <mat-option value="MST">Mountain Standard Time (MST) - UTC -7
+        </mat-option>
+        <mat-option value="CST">Central Standard Time (CST) - UTC -6
+        </mat-option>
+        <mat-option value="EST">Eastern Standard Time (EST) - UTC -5
+        </mat-option>
+      </mat-select>
+      <mat-icon matPrefix>call</mat-icon>
+    </mat-form-field>
+    <div fxLayout="row" fxFlex="100">
+      <p class="core-text core-text-error" *ngIf="newUserForm.status != 'INVALID'">Fields marked * are required.
+        Please complete all fields marked *.</p>
+    </div>
+    <div fxLayout="row" fxFlexAlign="center" fxFlex="100">
+      <span fxFlex></span>
+      <button class="core-button-primary">Save</button>
+      <span fxFlex></span>
+    </div>
+  </form>
+
+  <div fxLayout="row" *ngIf="loading">
+    <span fxFlex></span>
+    <mat-spinner color="primary" diameter="50"></mat-spinner>
+    <span fxFlex></span>
+  </div>
+
+</div>

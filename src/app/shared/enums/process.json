@@ -1,0 +1,231 @@
+{
+  "processes": [
+    {
+      "process": "Expired Drivers License",
+      "pages": [
+        {
+          "page": "RFG07",
+          "success": true,
+          "type": "success",
+          "description": "Identity verified on first scan"
+        },
+        {
+          "page": "RFG39",
+          "success": false,
+          "type": "danger",
+          "description": "Drivers License Expired"
+        },
+        {
+          "page": "RFG88",
+          "success": true,
+          "type": "warn",
+          "description": "Resolution - Dealer to Drive"
+        },
+        {
+          "page": "OVELA",
+          "success": true,
+          "type": "warn",
+          "description": "Override Request - Approved"
+        },
+        {
+          "page": "OVELD",
+          "success": false,
+          "type": "danger",
+          "description": "Override Request - Declined"
+        }
+      ]
+    },
+    {
+      "process": "Identity Verification",
+      "pages": [
+        {
+          "page": "RFG07",
+          "success": true,
+          "type": "success",
+          "description": "Identity verified on first scan"
+        },
+        {
+          "page": "RFG03",
+          "success": false,
+          "type": "danger",
+          "description": "ID Verification failed first scan"
+        },
+        {
+          "page": "RFG08",
+          "success": true,
+          "type": "warn",
+          "description": "Resolution Attempt - Successful"
+        },
+        {
+          "page": "RFG09",
+          "success": false,
+          "type": "danger",
+          "description": "Resolution Attempt - Failed"
+        },
+        {
+          "page": "OVRFA",
+          "success": true,
+          "type": "warn",
+          "description": "Override Request - Approved"
+        },
+        {
+          "page": "OVRFD",
+          "success": false,
+          "type": "danger",
+          "description": "Override Request - Declined"
+        }
+      ]
+    },
+    {
+      "process": "Synthetic Fraud",
+      "pages": [
+        {
+          "page": "SYN07",
+          "success": true,
+          "type": "success",
+          "description": "Synthetic Fraud Review"
+        },
+        {
+          "page": "SYN03",
+          "success": false,
+          "type": "danger",
+          "description": "Synthetic Fraud Review – Fail (1st Party)"
+        },
+        {
+          "page": "SYN33",
+          "success": false,
+          "type": "danger",
+          "description": "Synthetic Fraud Review – Fail (3rd Party)"
+        },
+        {
+          "page": "SYN08",
+          "success": true,
+          "type": "warn",
+          "description": "Resolution Attempt - Successful"
+        },
+        {
+          "page": "SYN09",
+          "success": false,
+          "type": "danger",
+          "description": "Resolution Attempt - Failed"
+        },
+        {
+          "page": "OVSYA",
+          "success": true,
+          "type": "warn",
+          "description": "Override Request - Approved"
+        },
+        {
+          "page": "OVSYD",
+          "success": false,
+          "type": "danger",
+          "description": "Override Request - Declined"
+        }
+      ]
+    },
+    {
+      "process": "OFAC",
+      "pages": [
+        {
+          "page": "OFC07",
+          "success": true,
+          "type": "success",
+          "description": "No Match Against OFAC Database"
+        },
+        {
+          "page": "OFC03",
+          "success": false,
+          "type": "danger",
+          "description": "Match / Possible Match"
+        },
+        {
+          "page": "OFC08",
+          "success": true,
+          "type": "warn",
+          "description": "Resolved – No Match"
+        },
+        {
+          "page": "OFC09",
+          "success": false,
+          "type": "warn",
+          "description": "Confirmed Match - Reported"
+        }
+      ]
+    },
+    {
+      "process": "Active-Duty - MLA",
+      "pages": [
+        {
+          "page": "MLA03",
+          "success": false,
+          "type": "danger",
+          "description": "Fail"
+        },
+        {
+          "page": "MLA07",
+          "success": true,
+          "type": "success",
+          "description": "Pass"
+        }
+      ]
+    },
+    {
+      "process": "Application Disclosures",
+      "pages": [
+        {
+          "page": "CIC03",
+          "success": false,
+          "type": "danger",
+          "description": "Credit Inquiry Not Received"
+        },
+        {
+          "page": "CICL8",
+          "success": true,
+          "type": "warn",
+          "description": "Credit Inquiry - Resolved"
+        },
+        {
+          "page": "CON07",
+          "success": true,
+          "type": "success",
+          "description": "Website Terms and Conditions Disclosure"
+        },
+        {
+          "page": "CON07",
+          "success": true,
+          "type": "success",
+          "description": "California Privacy Act Disclosure"
+        },
+        {
+          "page": "CON07",
+          "success": true,
+          "type": "success",
+          "description": "Electronic Record Disclosure"
+        },
+        {
+          "page": "CON07",
+          "success": true,
+          "type": "success",
+          "description": "Credit Inquiry Disclosure"
+        },
+        {
+          "page": "CON07",
+          "success": true,
+          "type": "success",
+          "description": "State Application Disclosure"
+        }
+      ]
+    },
+    {
+      "process": "Data Usage Consents",
+      "pages": [
+        {
+          "page": "CON07",
+          "success": true,
+          "type": "success",
+          "description": "Drivers License Scan Disclosure"
+        }
+      ]
+    }
+  ]
+}

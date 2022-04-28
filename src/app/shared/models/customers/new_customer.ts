@@ -1,0 +1,34 @@
+export class NewCustomer {
+    branchid?: string;
+    cardRevisionDate?: string;
+    complianceType?: string;
+    countryterritoryofissuance?: string;
+    dateOfBirth: string;
+    documentDiscriminator?: string;
+    eyeColor: string;
+    familyNameTruncation?: string;
+    firstName: string;
+    firstNamesTruncation?: string;
+    globalcustomerid?: string;
+    hairColor?: string;
+    heightInFtIn: string;
+    inventoryControlNumber?: string;
+    lastName: string;
+    licenseExpirationDate: string;
+    licenseNumber: string;
+    licenseorIDDocumentIssueDate?: string;
+    mailingCity: string;
+    mailingJurisdictionCode?: string;
+    mailingPostalCode: string;
+    mailingStreetAddress1: string;
+    middleName?: string;
+    middleNamesTruncation?: string;
+    organDonorIndicator?: string;
+    parentid?: string;
+    permissioncode?: string;
+    sex: string;
+    virginiaSpecificClass?: string;
+    virginiaSpecificEndorsements?: string;
+    virginiaSpecificRestrictions?: string;
+    weight_in_LBS?: string;
+}

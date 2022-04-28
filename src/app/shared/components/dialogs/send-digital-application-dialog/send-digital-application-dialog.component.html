@@ -1,0 +1,48 @@
+<h1 mat-dialog-title>Send Digital Applicaiton</h1>
+<div mat-dialog-content>
+    <p>Enter cellphone number for <strong>{{customerPersonalDetails.firstName+" "+customerPersonalDetails.lastName}}</strong> below
+    </p>
+    <mat-form-field appearance="outline" style="width: 80%;">
+        <mat-label>Borrower Cellphone</mat-label>
+        <input placeholder="Borrower Cellphone" type="tel" mask="(000) 000-0000" required minlength="10" [showMaskTyped]="true" #customercellFrm="ngModel" [(ngModel)]="customercell" matInput>
+        <mat-icon matSuffix>phone</mat-icon>
+
+        <mat-error *ngIf="customercellFrm.invalid && customercellFrm.dirty && customercellFrm.errors.minlength">
+            Borrower cellphone must have at least 10 digits.
+        </mat-error>
+
+        <mat-error *ngIf="customercellFrm.invalid && customercellFrm.errors.required">
+            Borrower cellphone is required.
+        </mat-error>
+
+    </mat-form-field>
+
+    <ng-container *ngIf="hasCoBorrower">
+        <p>Enter cellphone number for <strong>{{coBorrowerDetails.firstName+" "+coBorrowerDetails.lastName}}</strong> below</p>
+        <mat-form-field appearance="outline" style="width: 80%;">
+            <mat-label>Co-Borrower Cellphone</mat-label>
+            <input placeholder="Co-Borrower Cellphone" required type="tel" mask="(000) 000-0000" minlength="10" #coCustomercellFrm="ngModel" [(ngModel)]="coborrowercustomercell" matInput>
+            <mat-icon matSuffix>phone</mat-icon>
+            <mat-error *ngIf="coCustomercellFrm.invalid && coCustomercellFrm.dirty && coCustomercellFrm.errors.minlength">
+                Co-Borrower cellphone must have at least 10 digits.
+            </mat-error>
+
+            <mat-error *ngIf="coCustomercellFrm.invalid && coCustomercellFrm.errors.required">
+                Co-Borrower cellphone is required.
+            </mat-error>
+        </mat-form-field>
+    </ng-container>
+
+</div>
+<div mat-dialog-actions style="justify-content: flex-end;">
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button color="primary" (click)="submitRequest()" cdkFocusInitial>
+        <ng-container *ngIf="!isLoading; else loadingSpinner">
+            Submit
+        </ng-container>
+    </button>
+</div>
+
+<ng-template #loadingSpinner>
+    <mat-progress-spinner diameter="20" mode="indeterminate"></mat-progress-spinner>
+</ng-template>

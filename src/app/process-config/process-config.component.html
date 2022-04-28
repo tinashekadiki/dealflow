@@ -1,0 +1,55 @@
+<div class="container" fxLayout="column">
+
+<div id="scroll-container" (window:scroll)="onWindowScroll($event)"></div>
+  <div fxLayout="row" *ngIf="loading">
+    <span fxFlex></span>
+    <mat-spinner color="primary" diameter="50"></mat-spinner>
+    <span fxFlex></span>
+  </div>
+  <div *ngIf="!loading">
+    <mat-accordion *ngFor="let type of configTypes; let i = index;" class="headers-align">
+      <mat-expansion-panel class="space-config" (opened)="drawLines(configTypes.indexOf(type))"
+                           (closed)="removeLines(configTypes.indexOf(type))">
+                           
+        <mat-expansion-panel-header fxLayout="row">
+          <mat-panel-title class="core-text text-normalise">
+            {{initialiseType(type)}}
+            
+          </mat-panel-title>
+          <span fxFlex=""></span>
+          <mat-panel-description class="core-text">
+            {{panelOpenState[configTypes.indexOf(type)] === true ? '' : 'Click to view current '}}{{initialiseType(type)}} process flow.
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div fxLayout="column" class="process-list" id="panel_{{configTypes.indexOf(type)}}">
+          <div fxLayout="row wrap" (cdkDropListDropped)="drop($event, type)" cdkDropList cdkDropListOrientation="horizontal" class="column">
+            <ng-container  *ngFor="let configuration of currentConfigurations[type]; let i=index;">
+              <div class="process-box" id="process_{{i}}">
+              <button cdkDrag [class]="currentConfigurations[type].length > 9 ? 'button button-h40 btn-text': 'button button-h60 btn-text'">
+                {{i+1}}
+              </button>
+              <div class="core-text core-text-truncate">{{configuration.name}}</div>
+              </div>
+            </ng-container>
+          </div>
+          <div fxLayout="row" fxLayoutGap="5" class="pull-right-btn">
+            <div fxFlex=""></div>
+            <button mat-stroked-button class="pull-right" (click)="openAddProcessDialog(type)">
+              {{ currentConfigurations[type].length ? 'Edit' : 'Configure'}}
+            </button>
+            <button *ngIf="currentConfigurations[type].length" (click)="deleteConfiguration(type)" mat-stroked-button class="pull-right" color="warn">
+              Delete
+            </button>
+            <!-- <button (click)="updateIdVerifierDialog()" mat-stroked-button class="pull-right">
+              Set ID Verifier
+            </button> -->
+            <button *ngIf="currentConfigurations[type]['changed']" mat-stroked-button class="pull-right" color="primary" (click)="saveConfiguration(type)">
+              Save
+            </button>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div mat-dialog-title fxLayout="row">
+  <div class="core-heading">Change User Roles</div>
+  <span fxFlex></span>
+  <button mat-icon-button [mat-dialog-close]="null">
+    <mat-icon class="core-heading">close</mat-icon>
+  </button>
+</div>
+
+<div fxLayout="row" *ngIf="loading" mat-dialog-content>
+  <span fxFlex></span>
+  <mat-spinner color="primary" diameter="50"></mat-spinner>
+  <span fxFlex></span>
+</div>
+
+<div mat-dialog-content *ngIf="!loading">
+    <div fxLayout="row" *ngFor="let customRole of detailedUser.customRoles">
+        <mat-form-field class="core-text" appearance="outline">
+          <mat-label>Role at Branch {{customRole.branchId}}</mat-label>
+          <mat-select value="{{customRole.roleId}}" (selectionChange)="updateSingleRole(customRole, $event)" >
+            <mat-option  *ngFor="let role of roles" value="{{role}}"
+            >{{role}}</mat-option>
+          </mat-select>
+          <mat-icon matPrefix>call</mat-icon>
+        </mat-form-field>
+    </div>
+  </div>
+  <mat-dialog-actions align="end">
+    <button type="submit" mat-raised-button color="primary" [mat-dialog-close]="detailedUser">Save</button>
+  </mat-dialog-actions>

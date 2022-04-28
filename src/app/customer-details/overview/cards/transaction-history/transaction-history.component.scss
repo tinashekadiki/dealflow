@@ -1,0 +1,40 @@
+@import '../../../../../variable.scss';
+.history-box-container {
+    white-space: nowrap;
+    div.history-box-item {
+        display: inline-block;
+        background-color: $cl-white-gray;
+        border: 1px solid $cl-light-gray;
+        border-radius: 3px;
+        padding: 0.5em 1em;
+        margin-right: 8em;
+        position: relative;
+        width: 100px;
+        .date-info,
+        .vehicle-info {
+            display: block;
+        }
+        .date-info {
+            font-size: 18px;
+            color: $cl-d-blue;
+        }
+    }
+    .history-box-item:before,
+    .history-box-item:after {
+        content: '';
+        width: 8em;
+        border-bottom: 1px solid $cl-light-gray;
+        position: absolute;
+        top: 50%;
+    }
+     :after {
+        left: 100%;
+    }
+     :before {
+        right: 100%;
+    }
+    .history-box-item:first-of-type:before,
+    .history-box-item:last-of-type:after {
+        display: none;
+    }
+}

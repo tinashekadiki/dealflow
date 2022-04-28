@@ -1,0 +1,17 @@
+<mat-dialog-title class="dialog-title-block" align="end">
+  <div>
+    <button
+      mat-icon-button
+      type="button"
+      aria-label="Close dialog"
+      (click)="onNoClick()"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</mat-dialog-title>
+
+<ngx-extended-pdf-viewer
+[src]="pdfSource"
+     useBrowserLocale="true">
+</ngx-extended-pdf-viewer>

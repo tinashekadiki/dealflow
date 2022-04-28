@@ -1,0 +1,216 @@
+<div fxFlex="100">
+  <mat-grid-list cols="3" rowHeight="50px">
+    <div fxLayout="row">
+      <span fxFlex></span>
+        <div class="core-heading">Dealer Settings</div>
+      <span fxFlex></span>
+    </div>
+  </mat-grid-list>
+
+  <div fxLayout="row" *ngIf="saving">
+    <span fxFlex></span>
+    <mat-spinner color="primary" diameter="50"></mat-spinner>
+    <span fxFlex></span>
+  </div>
+
+  <div *ngIf="!saving" fxLayout="column" class="layout" fxLayoutGap="5px">
+    <form [formGroup]="generalSettingsForm" (ngSubmit)="saveSettings(generalSettingsForm.value)">
+      <div fxLayout="row wrap">
+        <mat-form-field class="core-text" appearance="outline" fxFlex="48">
+          <mat-label>Days Till Customer is archived</mat-label>
+          <input matInput type="number" min="0" name="daysToArchive" formControlName="daysToArchive" required>
+        </mat-form-field>
+        <mat-form-field class="core-text" appearance="outline" fxFlex="48">
+          <mat-label>Additional Page</mat-label>
+          <input matInput name="additionalPage" formControlName="additionalPage" required>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row">
+        <mat-label class="core-text" fxFlex="40">Dealership Image</mat-label>
+        <span fxFlex></span>
+      </div>
+      <div fxLayout="row" class="fxAlign">
+        <div fxFlex="10" fxLayoutGap="10px" style="text-align: center;">
+          <div fxLayout="column" fxLayoutGap="10px" *ngIf="imageUploadError">
+            <div fxLayout="row">
+              <span fxFlex="10"></span>
+              <mat-icon color="error">error</mat-icon>
+              <span fxFlex></span>
+            </div>
+            <mat-label class="core-text">Failed to Upload the Dealer Image</mat-label>
+            <button type="button" (click)="imageUploadError = false" class="core-button-primary">Try Again</button>
+          </div>
+          <div *ngIf="imageUploading">
+            <mat-spinner class="core-text" diameter="30"></mat-spinner>
+          </div>
+          <div *ngIf="imageUploaded || (imageData != null && imageData != undefined)">
+            <img alt="Dealer Logo Image" [src]="imageData.fileDownloadUri"
+                (click)="imageData = null; imageUploading = false; imageUploaded = false;"
+                matTooltip="Click image to remove it.">
+          </div>
+        </div>
+        <div fxFlex="20" fxLayoutGap="10px">
+          <div fxLayout="column" fxLayoutGap="10px" *ngIf="imageData?.fileDownloadUri && !imageUploading">
+            <input hidden id="image" #fileInput type="file" (change)="onFileSelected($event)">
+            <button mat-button color="primary" (click)="imageData = null; imageUploading = false; imageUploaded = false;">Remove Image</button>
+          </div>
+        </div>
+        <span fxFlex="2"></span>
+        <div fxFlex="20" fxLayoutGap="10px">
+          <div fxLayout="column" fxLayoutGap="10px" *ngIf="!imageUploadError && !imageUploaded || imageData?.fileDownloadUri || imageUploading">
+            <input hidden id="image" #fileInput type="file" (change)="onFileSelected($event)">
+            <button type="button" class="core-button-primary" (click)="fileInput.click()">{{imageData?.fileDownloadUri ? 'Change Image' : 'Choose File'}}</button>
+          </div>
+        </div>
+        <span fxFlex></span>
+      </div>
+      <div fxLayout="row wrap">
+        <mat-form-field class="core-text" appearance="outline" fxFlex="48">
+          <mat-label>Fees</mat-label>
+          <input matInput type="number" min="0" name="dealerFees" formControlName="dealerFees" required>
+        </mat-form-field>
+
+        <mat-form-field class="core-text" appearance="outline" fxFlex="48">
+          <mat-label>Down Payment</mat-label>
+          <input matInput type="number" min="0" name="downPayment" formControlName="downPayment" required>
+        </mat-form-field>
+
+        <mat-form-field class="core-text" appearance="outline" fxFlex="48">
+          <mat-label>Minimum Years Address</mat-label>
+          <input matInput type="number" min="0" name="minimumYearsAddress" formControlName="minimumYearsAddress" required>
+        </mat-form-field>
+
+        <mat-form-field class="core-text" appearance="outline" fxFlex="48">
+          <mat-label>Minimum Employment Years</mat-label>
+          <input matInput type="number" min="0" name="minimumYearsJob" formControlName="minimumYearsJob" required>
+        </mat-form-field>
+
+        <mat-form-field class="core-text" appearance="outline" fxFlex="48">
+          <mat-label>FICO Score Model</mat-label>
+          <input matInput type="text" name="ficoScoreModel" formControlName="ficoScoreModel" required>
+        </mat-form-field>
+
+        <mat-form-field class="core-text" appearance="outline" fxFlex="48">
+          <mat-label>Privacy Policy Link</mat-label>
+          <input matInput type="text" name="privacyLink" formControlName="privacyLink" required>
+        </mat-form-field>
+
+        <mat-form-field class="core-text" fxFlex="48" appearance="outline">
+          <mat-label>Time Zone</mat-label>
+          <mat-select name="timeZone" formControlName="timeZone" required>
+            <mat-option value="HST">Hawaii Standard Time (HST) - UTC -10
+            </mat-option>
+            <mat-option value="AKST">Alaska Standard Time (AKST) - UTC -9
+            </mat-option>
+            <mat-option value="PST">Pacific Standard Time (PST) - UTC -8
+            </mat-option>
+            <mat-option value="MST">Mountain Standard Time (MST) - UTC -7
+            </mat-option>
+            <mat-option value="CST">Central Standard Time (CST) - UTC -6
+            </mat-option>
+            <mat-option value="EST">Eastern Standard Time (EST) - UTC -5
+            </mat-option>
+          </mat-select>
+          <mat-icon matSuffix>map</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="core-text" appearance="outline" fxFlex="100">
+          <mat-label>Disclosures</mat-label>
+          <textarea matInput name="disclosure" formControlName="disclosure"></textarea>
+        </mat-form-field>
+
+      </div>
+
+      <div fxLayout="column">
+        <div>
+          <div class="core-heading">Managers</div>
+          <div *ngFor="let item of managers; let i=index" fxLayout="row">
+              <div fxFlex="40" class="core-text">
+                  <p>Name: {{item.firstName}} {{item.lastName}}</p>
+              </div>
+          
+              <div fxFlex="40" class="core-text">
+                <p>Email: {{item.email}}</p>
+              </div>
+            <!-- <div fxFill></div> -->
+              <div fxFlex="10">
+                  <mat-icon color="warn">delete</mat-icon>
+              </div>
+          </div>
+        </div>
+          <div fxLayout="row">
+            <div fxFlex="25">
+              <mat-form-field class="core-text" appearance="outline" fxFlex>
+                <mat-label>First Name</mat-label>
+                <input matInput type="text" name="privacyLink" formControlName="privacyLink" required>
+              </mat-form-field>
+            </div>
+            <div fxFlex="25">
+              <mat-form-field class="core-text" appearance="outline" fxFlex>
+                <mat-label>Last Name</mat-label>
+                <input matInput type="text" name="privacyLink" formControlName="privacyLink" required>
+              </mat-form-field>
+            </div>
+            <div fxFlex="25">
+              <mat-form-field class="core-text" appearance="outline" fxFlex>
+                <mat-label>Manager Email</mat-label>
+                <input matInput type="email" name="privacyLink" formControlName="privacyLink" required>
+              </mat-form-field>
+            </div>
+            <div fxFlex="25" class="space">
+              <button class="core-button-primary" >Add Manager</button>
+            </div>
+          </div>
+      </div>
+      <div fxLayout="column">
+        <div>
+          <div class="core-heading">SOS</div>
+          <div *ngFor="let item of sos; let i=index" fxLayout="row">
+              <div fxFlex="40" class="core-text">
+                  <p>Name: {{item.firstName}} {{item.lastName}}</p>
+              </div>
+          
+              <div fxFlex="40" class="core-text">
+                <p>Email: {{item.email}}</p>
+              </div>
+            <!-- <div fxFill></div> -->
+              <div fxFlex="10">
+                  <mat-icon color="warn">delete</mat-icon>
+              </div>
+          </div>
+        </div>
+          <div fxLayout="row">
+            <div fxFlex="25">
+              <mat-form-field class="core-text" appearance="outline" fxFlex>
+                <mat-label>First Name</mat-label>
+                <input matInput type="text" name="privacyLink" formControlName="privacyLink" required>
+              </mat-form-field>
+            </div>
+            <div fxFlex="25">
+              <mat-form-field class="core-text" appearance="outline" fxFlex>
+                <mat-label>Last Name</mat-label>
+                <input matInput type="text" name="privacyLink" formControlName="privacyLink" required>
+              </mat-form-field>
+            </div>
+            <div fxFlex="25">
+              <mat-form-field class="core-text" appearance="outline" fxFlex>
+                <mat-label>Manager Email</mat-label>
+                <input matInput type="email" name="privacyLink" formControlName="privacyLink" required>
+              </mat-form-field>
+            </div>
+            <div fxFlex="25" class="space">
+              <button class="core-button-primary">Add Manager</button>
+            </div>
+          </div>
+      </div>
+
+      <div>
+        <span fxFlex></span>
+        <button *ngIf="!saving" type="submit" class="core-button-primary">Save</button>
+        <mat-spinner *ngIf="saving"></mat-spinner>
+        <span fxFlex></span>
+      </div>
+    </form>
+  </div>
+
+</div>

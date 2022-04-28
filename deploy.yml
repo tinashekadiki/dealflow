@@ -1,0 +1,31 @@
+- name: update web servers
+  hosts: asgard
+  remote_user: root
+  become: true
+  vars:
+    container_image: qubedprince/dealflow-image
+    service_name : dealflow-web
+
+  tasks:
+  - name: ensure nginx is at the latest version
+    yum:
+      name: nginx
+      state: latest
+
+  - name: Install python3-pip  (state=present is optional)
+    yum:
+      name: python3-pip
+      state: present
+
+  - name: Install Docker Module for Python
+    pip:
+      name: docker
+
+  - name: Pull Docker Image
+    docker_image:
+      name: '{{container_image}}'
+      source: pull
+
+  - name: Update Service
+    command: docker service update --image '{{container_image}}' '{{service_name }}'
+

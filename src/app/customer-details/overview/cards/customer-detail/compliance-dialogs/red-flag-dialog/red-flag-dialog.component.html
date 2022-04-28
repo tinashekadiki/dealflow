@@ -1,0 +1,168 @@
+<mat-dialog-title class="dialog-title-block">
+  <h1 class="dialog-main-header core-heading" cdkFocusInitial>{{data.procName}}</h1>
+  <span class="expanded-block"></span>
+  <div>
+    <button (click)="onNoClick()" mat-icon-button mat-dialog-close aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</mat-dialog-title>
+  <mat-dialog-content class="dialog-content" *ngIf="data.hasData" [class.no-content]="data.procDetail == null">
+  <div fxLayout="row" fxFill fxLayoutGap="5px" fxLayoutAlign="center center"  class="compliance-response-title-block m-b-16px">
+    <div fxFlex="80">
+      <h2 class="no-m-b" [class]="data.complianceStatus.colorClass">{{data.customer}} {{data.procDetail?.page?.description}}</h2>
+      <h3 class="sub-title no-m-b" *ngIf="data.procDetail?.resolutionRequestsModel?.page?.pageId === 'NON00'; else resolution">{{data.procDetail?.page?.message}}</h3>
+      <ng-template #resolution>
+        {{data.procDetail?.resolutionRequestsModel?.page?.message}} {{data.procDetail?.resolutionRequestsModel?.page?.description}}
+      </ng-template>
+    </div>
+    <div fxFlex [class]="data.complianceStatus.colorClass">
+      <mat-icon class="response-icon">{{data.complianceStatus.icon}}
+      </mat-icon>
+    </div>
+  </div>
+
+  <ng-container [ngSwitch]="data.procName">
+    <app-synthetic-fraud-proof *ngSwitchCase="'Synthetic Fraud'"
+                               [first-party-score]="data.procDetail.firstParty"
+                               [third-party-score]="data.procDetail.thirdParty"
+                               [abuse-score]="data.procDetail.abuseScore">
+    </app-synthetic-fraud-proof>
+  </ng-container>
+
+     <!-- <div *ngSwitchDefault class="proof-message-container" txLayout="column">
+      <div>{{data.procDetail?.response.titleHeader}}</div>
+      <h2 [class]="complianceStatus.colorClass+'-text'" class="proof-message-text">
+        {{data.procDetail?.response.actionMessage}}
+      </h2>
+    </div>  -->
+
+  <h4 class="section-title" fxFill>History</h4>
+  <div fxLayout="column" class="history-block" *ngIf="data?.procDetail; else noData">
+    <div fxFlex fxLayout="row" class="date-history-row" *ngFor="let complianceCheck of customerComplianceHistory" fxLayoutGap="10px" fxLayoutAlign="space-around">
+      <div fxFlex="20">
+        <strong *ngIf="data.flag === 'IdVerification'">{{complianceCheck.verifiedAt | date:"mediumDate"}}</strong>
+        <strong *ngIf="data.flag === 'ExpiredLicense'">{{complianceCheck.createdAt | date:"mediumDate"}}</strong>
+        <strong *ngIf="data.flag === 'SyntheticFraud'">{{complianceCheck.checkedAt | date:"mediumDate"}}</strong>
+        <strong *ngIf="data.flag === 'Ofac'">{{complianceCheck.checkedOn | date:"mediumDate"}}</strong>
+        <strong *ngIf="data.flag === 'Mla'">{{complianceCheck.checkedOn | date:"mediumDate"}}</strong>
+      </div>
+      <div fxFlex="80">
+        <div fxLayout="row" fxLayoutGap="3px">
+          <div [class]="complianceCheck.display?.colorClass+'-text'" class="vertical-center-line" fxFlex="6">
+            <mat-icon>{{complianceCheck.display?.icon}}</mat-icon>
+          </div>
+          <div fxFlex="25">
+            <strong *ngIf="data.flag === 'IdVerification'">{{complianceCheck.verifiedAt | date:"h:mm a"}}</strong>
+            <strong *ngIf="data.flag === 'ExpiredLicense'">{{complianceCheck.createdAt | date:"h:mm a"}}</strong>
+            <strong *ngIf="data.flag === 'SyntheticFraud'">{{complianceCheck.checkedAt | date:"h:mm a"}}</strong>
+            <strong *ngIf="data.flag === 'Ofac'">{{complianceCheck.checkedOn | date:"h:mm a"}}</strong>
+            <strong *ngIf="data.flag === 'Mla'">{{complianceCheck.checkedOn | date:"h:mm a"}}</strong>
+          </div>
+          <div fxFlex="4">-</div>
+          <div fxFlex><span *ngIf="complianceCheck?.resolutionRequestsModel?.page?.pageId === 'NON00'; else complianceResolution">{{complianceCheck?.page?.message}}</span>
+            <ng-template #complianceResolution>
+              {{complianceCheck?.resolutionRequestsModel?.page?.message}} {{complianceCheck?.resolutionRequestsModel?.page?.description}}
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #noData>
+    <div fxLayout="column" class="history-block" fxFill>
+      No Data Available Yet.
+    </div>
+  </ng-template>
+</mat-dialog-content>
+
+
+
+
+<div mat-dialog-actions class="resolution-block"><!-- *ngIf="data?.procDetail"> -->
+    <h4 class="section-title m-t-16px">Resolution Recommendations / Actions</h4>
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <mat-button-toggle-group class="resolution-button-group-toggle" #resolutionGroup="matButtonToggleGroup">
+            <mat-button-toggle class="action-toggle-btn" value="send_digital_auth" aria-label="Send Digital Authentication">
+                Send Digital Authentication
+            </mat-button-toggle>
+            <mat-button-toggle class="action-toggle-btn" value="request_ssn" aria-label="Request SSN Card">
+                Request SSN Card
+            </mat-button-toggle>
+            <mat-button-toggle class="action-toggle-btn" value="request_override" aria-label="Request Mgr. Override">
+                Request Mgr. Override
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+
+    <div class="action-tab-container" [ngSwitch]="resolutionGroup.value">
+
+        <div *ngSwitchCase="'send_digital_auth'" fxLayout="row" fxLayoutAlign="space-around center">
+            <div fxFlex="80">
+                <p>Enter Customer's Mobile Number</p>
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Cellphone</mat-label>
+                    <input placeholder="Cellphone" type="tel" mask="(000)-000-0000" required minlength="10" #customercellFrm="ngModel" [(ngModel)]="customerCell" matInput>
+                    <mat-icon matSuffix>phone</mat-icon>
+                    <mat-error *ngIf="customercellFrm.invalid && customercellFrm.dirty && customercellFrm.errors.minlength">
+                        Customer mobile number must have at least 10 digits.
+                    </mat-error>
+
+                    <mat-error *ngIf="customercellFrm.invalid && customercellFrm.errors.required">
+                        Customer mobile number is required.
+                    </mat-error>
+
+                </mat-form-field>
+            </div>
+            <div fxFlex="20" fxLayoutAlign="end center">
+                <button mat-icon-button>
+                    <mat-icon>send</mat-icon>
+                </button>
+            </div>
+        </div>
+
+
+        <div *ngSwitchCase="'request_ssn'" fxLayout="row" fxLayoutAlign="space-around center">
+            <div fxFlex="80">
+                <p>Enter SSN as it appears on Social Security Card</p>
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Social Security Number</mat-label>
+                    <input placeholder="Social Security Number" type="text" mask="000-00-0000" required minlength="9" [showMaskTyped]="true" #customerSsnFrm="ngModel" [(ngModel)]="customerSsn" matInput>
+                    <mat-icon matSuffix>credit_card</mat-icon>
+
+                    <mat-error *ngIf="customerSsnFrm.invalid && customerSsnFrm.dirty && customerSsnFrm.errors.minlength">
+                        Social Security Number must have at least 9 digits.
+                    </mat-error>
+
+                    <mat-error *ngIf="customerSsnFrm.invalid && customerSsnFrm.errors.required">
+                        Social Security Number is required.
+                    </mat-error>
+
+                </mat-form-field>
+            </div>
+            <div fxFlex="20" fxLayoutAlign="end center">
+                <button mat-icon-button>
+                    <mat-icon>send</mat-icon>
+                </button>
+            </div>
+        </div>
+
+        <div *ngSwitchCase="'request_override'" fxLayout="row" fxLayoutAlign="start center">
+            <div fxFlex="80">
+                <p>Select which Manager to send the request to</p>
+                <mat-radio-group aria-labelledby="managers-radio-group-label" class="managers-radio-group" [(ngModel)]="selectedManager">
+                    <mat-radio-button class="manager-radio-button" *ngFor="let manager of managers" [value]="manager">
+                        {{manager}}
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div fxFlex="20" fxLayoutAlign="end center">
+                <button mat-icon-button>
+                    <mat-icon>send</mat-icon>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+</div>

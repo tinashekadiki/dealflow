@@ -1,0 +1,122 @@
+<div class="vehicle-list-container" style="text-align: left;">
+    <div class="filter-cards" fxLayout="column" fxLayoutAlign="space-evenly" fxLayoutGap="20px">
+        <div fxFlex>
+            <mat-card class="filter-card">
+                <mat-card-header class="gray-scheme">
+                    <mat-card-title>
+                        Vehicles | <span class="mat-body">Showing all vehicles</span>
+                        <div class="action-button-block">
+                            <button mat-icon-button color="primary" (click)="openSearchDialog()">
+                                <mat-icon>search</mat-icon>
+                            </button>
+                        </div>
+                    </mat-card-title>
+                </mat-card-header>
+
+                <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px">
+                    <div class="filter-chips" fxFlex>
+                        <mat-chip-list aria-label="Enabled Filters">
+                            <mat-chip color="accent" selected *ngIf="search != ''">
+                                Search: {{search}}
+                                <mat-icon (click)="clearSearch()" matChipRemove>cancel</mat-icon>
+                            </mat-chip>
+                            <mat-chip *ngFor="let filter of filters; let i = index">
+                                {{propertyDisplay[filter.property]}}: "{{displayValue(filter.displayValue || filter.value)}}"
+                                <mat-icon (click)="removeFilter(i)" matChipRemove>cancel</mat-icon>
+                            </mat-chip>
+                            <mat-chip #helloRef [matMenuTriggerFor]="menu" class="add-filter-chip">
+                                <mat-icon>add</mat-icon>
+                                Add a filter
+                            </mat-chip>
+
+                            <mat-menu #menu="matMenu">
+                                <button (click)="openTextDialog('makeName','Vehicle Make')" mat-menu-item>
+                                    Make
+                                </button>
+                                <button (click)="openTextDialog('vin','VIN')" mat-menu-item>
+                                    VIN
+                                </button>
+                                <button (click)="openTextDialog('vehicleStock','Stock Number')" mat-menu-item>
+                                    Stock Number
+                                </button>
+                                <button (click)="openRangeDialog('price','Price Range')" mat-menu-item>
+                                    Price Range
+                                </button>
+                                <button (click)="openRangeDialog('mileage','Mileage')" mat-menu-item>
+                                    Mileage
+                                </button>
+                                <button (click)="openRangeSelectDialog('year','Vehicle Year', range(currentYear,(currentYear-150),-1))" mat-menu-item>
+                                    Year
+                                </button>
+                            </mat-menu>
+
+                        </mat-chip-list>
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+                <!-- <div> -->
+                <table mat-table [dataSource]="vehicleList?.vehicles" class="vehicles-table mat-elevation-zz2">
+
+
+
+                    <!-- YMMT Column -->
+                    <ng-container matColumnDef="ymmt">
+                        <th scope="col" mat-header-cell class="core-table-header" *matHeaderCellDef> YMMT </th>
+                        <td mat-cell *matCellDef="let element">
+                            {{element.year+" "+element.makeName+" "+element.model+" "+element.bodyStyle || "-"}}
+                        </td>
+                    </ng-container>
+
+                    <!-- Phone Column -->
+                    <ng-container matColumnDef="vin">
+                        <th scope="col" mat-header-cell class="core-table-header" *matHeaderCellDef> VIN </th>
+                        <td mat-cell *matCellDef="let element"> {{element.vin || "-"}} </td>
+                    </ng-container>
+
+                    <!-- Email Column -->
+                    <ng-container matColumnDef="stock_number">
+                        <th scope="col" mat-header-cell class="core-table-header" *matHeaderCellDef> Stock Number </th>
+                        <td mat-cell *matCellDef="let element"> {{element.vehicleStock || "-"}} </td>
+                    </ng-container>
+
+                    <!-- Buying Stage Column -->
+                    <ng-container matColumnDef="ext_color">
+                        <th scope="col" mat-header-cell class="core-table-header" *matHeaderCellDef> Ext. Color</th>
+                        <td mat-cell *matCellDef="let element"> {{element.exteriorColor|| "-"}}
+                        </td>
+                    </ng-container>
+
+                    <!-- Compliance Flag Column -->
+                    <ng-container matColumnDef="mileage">
+                        <th scope="col" mat-header-cell class="core-table-header" *matHeaderCellDef> Mileage</th>
+                        <td mat-cell *matCellDef="let element"> {{element.mileage|number:'1.0-0' || "-"}} </td>
+                    </ng-container>
+
+                    <!-- Alert Column -->
+                    <ng-container matColumnDef="price">
+                        <th scope="col" mat-header-cell class="core-table-header" *matHeaderCellDef> Price</th>
+                        <td mat-cell *matCellDef="let element">
+                            {{element.price|currency:'USD' || "-"}}
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <mat-card *ngIf="isLoading || vehicleList?.vehicles?.length < 1" style="display: flex; justify-content: center; align-items: center">
+                    <ng-container *ngIf="isLoading">
+                        <mat-progress-spinner color="primary" mode="indeterminate" diameter="30">
+                        </mat-progress-spinner>
+                    </ng-container>
+                    <ng-container *ngIf="!isLoading && vehicleList?.vehicles?.length < 1">
+                        No data available
+                    </ng-container>
+                </mat-card>
+                <mat-paginator [pageSizeOptions]="[25, 50, 100]" (page)="handlePageChange($event)" [length]="totalElements" [pageSize]="pageSize" [showFirstLastButtons]="true"></mat-paginator>
+                <!-- </div> -->
+
+
+            </mat-card>
+        </div>
+    </div>
+</div>

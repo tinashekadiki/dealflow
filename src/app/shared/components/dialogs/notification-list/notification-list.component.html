@@ -1,0 +1,44 @@
+<mat-dialog-title class="core-heading" fxLayout="row">
+  Notifications
+  <span fxFlex></span>
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon class="core-heading">close</mat-icon>
+  </button>
+</mat-dialog-title>
+
+<div fxLayout="row" *ngIf="isLoading" mat-dialog-content>
+  <span fxFlex></span>
+  <mat-spinner color="primary" diameter="50"></mat-spinner>
+  <span fxFlex></span>
+</div>
+
+<mat-list *ngIf="!isLoading" mat-card-content>
+  <mat-list-item *ngFor="let notification of notificationsList; let index = i; last as last">
+    <button mat-icon-button matListIcon [matMenuTriggerFor]="menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="deleteNotifications(notification.id)">Delete</button>
+      <button *ngIf="!notification.read" mat-menu-item (click)="readNotifications(notification.id)">Mark as read</button>
+      <button mat-menu-item (click)="blockNotifications(notification)">Block notification of this type</button>
+    </mat-menu>
+    <h3 matLine class="no-style" (click)="readAndNavigate(notification)"
+       mat-dialog-close>
+      {{notification.title}}
+    </h3>
+    <span *ngIf="!notification.read" class="not-read-dot"></span>
+    <p matLine class="core-text">{{notification.message}}</p>
+    <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+  </mat-list-item>
+</mat-list>
+<ng-container fxFlex="100" *ngIf="!isLoading && notificationsList.length < 1">
+  No data available
+</ng-container>
+
+<mat-dialog-actions>
+  <ng-container *ngIf="!isLoading" fxLayout="row">
+    <button *ngIf="page !== 0" mat-button color="primary" (click)="prevPage()">Previous Page</button>
+      <span fxFlex=""></span>
+    <button mat-button color="primary" (click)="nextPage()">Next Page</button>
+  </ng-container>
+</mat-dialog-actions>

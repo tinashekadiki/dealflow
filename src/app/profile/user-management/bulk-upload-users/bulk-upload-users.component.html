@@ -1,0 +1,105 @@
+<div mat-dialog-title fxLayout="row" class="modal">
+  <div class="core-heading">Upload Users</div>
+  <span fxFlex></span>
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon class="core-heading">close</mat-icon>
+  </button>
+</div>
+
+<div mat-dialog-content class="modal">
+  <mat-vertical-stepper [linear]="true" #stepper>
+    <mat-step>
+        <ng-template matStepLabel class="core-heading">Download Excel File</ng-template>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <button mat-stroked-button>
+            <mat-icon matPrefix>download</mat-icon>
+            DOWNLOAD USER INFO IN EXCEL
+          </button>
+          <a href="/assets/files/UsersSpreadSheet.xlsx" type="button" mat-stroked-button download>
+            <mat-icon matPrefix>download</mat-icon>
+            DOWNLOAD BLANK EXCEL TEMPLATE
+          </a>
+        </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel class="core-heading">Add or Edit User info in Excel</ng-template>
+      <p>Required fields are first name, last name, email address, password and organizational unit path.</p>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="A" class="core-table-header">
+          <th mat-header-cell *matHeaderCellDef class="core-table-header"> A</th>
+          <td mat-cell *matCellDef="let element"> {{element.name}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="B" class="core-table-header">
+          <th mat-header-cell *matHeaderCellDef class="core-table-header"> B</th>
+          <td mat-cell *matCellDef="let element"> {{element.last_name}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="C" class="core-table-header">
+          <th mat-header-cell *matHeaderCellDef class="core-table-header"> C</th>
+          <td mat-cell *matCellDef="let element"> {{element.email}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="D" class="core-table-header">
+          <th mat-header-cell *matHeaderCellDef class="core-table-header"> D</th>
+          <td mat-cell *matCellDef="let element"> {{element.cell_phone}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="E" class="core-table-header">
+          <th mat-header-cell *matHeaderCellDef class="core-table-header"> E</th>
+          <td mat-cell *matCellDef="let element"> {{element.role}}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel class="core-heading">Upload Excel</ng-template>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <input hidden (change)="onFileChange($event)" #fileInput type="file" id="file">
+        <button mat-stroked-button (click)="fileInput.click()">
+          <mat-icon matPrefix>attach_file</mat-icon>
+          Attach Excel Sheet
+        </button>
+      </div>
+      <br>
+      <div *ngIf="excelData" class="mat-elevation-z2" style="text-align: left;">
+        <table mat-table [dataSource]="excelUsers" class="mat-elevation-z8">
+
+          <ng-container matColumnDef="First_Name">
+            <th mat-header-cell *matHeaderCellDef class="core-table-header"> First Name</th>
+            <td mat-cell *matCellDef="let element"> {{element.First_Name}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="Last_Name">
+            <th mat-header-cell *matHeaderCellDef class="core-table-header"> Last Name</th>
+            <td mat-cell *matCellDef="let element"> {{element.Last_Name}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="Email_Address">
+            <th mat-header-cell *matHeaderCellDef class="core-table-header"> Email</th>
+            <td mat-cell *matCellDef="let element"> {{element.Email_Address}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="Role">
+            <th mat-header-cell *matHeaderCellDef class="core-table-header">Default Role</th>
+            <td mat-cell *matCellDef="let element"> {{element.Default_Role}}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="excelDisplayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: excelDisplayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+      </div>
+      <br>
+      <p>If you're updating more than 150,000 users in total, using APIs is a recommended option</p>
+    </mat-step>
+  </mat-vertical-stepper>
+</div>
+<mat-dialog-actions align="end">
+<!--  <button mat-button mat-dialog-close>Cancel</button>-->
+  <button mat-raised-button color="primary" (click)="saveData()" [mat-dialog-close]="true">Upload
+  </button>
+</mat-dialog-actions>

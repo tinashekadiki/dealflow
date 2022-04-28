@@ -1,0 +1,27 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      V-AUTO
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <form [formGroup]="vAutoForm"
+        (ngSubmit)="saveSettings(vAutoForm.value)">
+    <div fxLayout="row wrap">
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" name="username"  required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Entity ID</mat-label>
+        <input matInput formControlName="entityId" name="entityId"  required>
+      </mat-form-field>
+
+    </div>
+    <div fxLayout="row">
+      <span fxFlex></span>
+      <button mat-raised-button color="primary">Save</button>
+      <span fxFlex></span>
+    </div>
+  </form>
+</mat-expansion-panel>

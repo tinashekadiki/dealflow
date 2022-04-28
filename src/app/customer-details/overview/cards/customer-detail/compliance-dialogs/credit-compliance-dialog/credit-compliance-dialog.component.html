@@ -1,0 +1,59 @@
+<div mat-dialog-title class="dialog-title-block">
+  <h1 class="dialog-main-header core-heading" cdkFocusInitial>{{data.procName}}</h1>
+  <span class="expanded-block"></span>
+  <div>
+    <button (click)="onNoClick()" mat-icon-button  mat-dialog-close aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>
+
+<mat-dialog-content class="dialog-content" *ngIf="data.hasData" [class.no-content]="data.procDetail == null">
+  <div fxLayout="row" fxFill fxLayoutGap="5px" fxLayoutAlign="center center"  class="compliance-response-title-block m-b-16px">
+    <div fxFlex="80">
+      <h2 class="no-m-b" [class]="data.complianceStatus.colorClass">{{data.customer}} {{data.procDetail?.page?.description}}</h2>
+      <h3 class="sub-title no-m-b" *ngIf="data.procDetail?.resolutionRequestsModel?.page?.pageId === 'NON00'; else resolution">{{data.procDetail?.page?.message}}</h3>
+      <ng-template #resolution>
+        {{data.procDetail?.resolutionRequestsModel?.page?.message}} {{data.procDetail?.resolutionRequestsModel?.page?.description}}
+      </ng-template>
+    </div>
+    <div fxFlex [class]="data.complianceStatus.colorClass">
+      <mat-icon class="response-icon">{{data.complianceStatus.icon}}
+      </mat-icon>
+    </div>
+  </div>
+
+  <h4 class="section-title" fxFill>History</h4>
+  <div fxLayout="column" class="history-block" *ngIf="data?.procDetail; else noData">
+    <div fxFlex fxLayout="row" class="date-history-row" *ngFor="let disclosure of data.procDetail" fxLayoutGap="10px" fxLayoutAlign="space-around">
+      <div fxFlex="20">
+        <strong>{{disclosure.createdAt | date:"mediumDate"}}</strong>
+      </div>
+      <div fxFlex="80">
+        <div fxLayout="row" fxLayoutGap="3px">
+          <div [class]="disclosure.display?.colorClass+'-text'" class="vertical-center-line" fxFlex="6">
+            <mat-icon>{{disclosure.display?.icon}}</mat-icon>
+          </div>
+          <div fxFlex="25">
+            <strong>{{disclosure.createdAt | date:"h:mm a"}}</strong>
+          </div>
+          <div fxFlex="4">-</div>
+          <div fxFlex>{{disclosure.consents?.disclosureName}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <ng-template #noData>
+    <div fxLayout="column" class="history-block" fxFill>
+      No Data Available Yet.
+    </div>
+  </ng-template>
+
+  <!-- <mat-dialog-actions mat-dialog-actions class="resolution-block">
+    <button mat-raised-button color="primary">Send To Customer</button>
+  </mat-dialog-actions> -->
+</mat-dialog-content>
+

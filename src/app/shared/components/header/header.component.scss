@@ -1,0 +1,28 @@
+
+.app-toolbar {
+  position: sticky;
+  position: -webkit-sticky; /* For macOS/iOS Safari */
+  top: 0; /* Sets the sticky toolbar to be on top */
+  z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+}
+
+.notification-menu{
+  min-width: 300px !important;
+}
+
+.app-logout{
+  margin: 20px;
+}
+
+.notification-menu{
+  min-width: auto;
+}
+
+.footer-top-popup{
+  padding: 0 16px 0 16px;
+}
+
+.space{
+  margin: 15px 0 15px 0;
+}
+

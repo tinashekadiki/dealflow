@@ -1,0 +1,31 @@
+export interface CustomerContact {
+    id: number;
+    customerId: number;
+    emailSecondary?: any;
+    cellPhone?: any;
+    city: string;
+    country: string;
+    emailPreffered?: any;
+    emailPrimary?: any;
+    emailWork?: any;
+    homePhone?: any;
+    mailingCity: string;
+    mailingJurisdictionCode: string;
+    mailingMsa?: any;
+    mailingMsaCode?: any;
+    mailingPostalCode: string;
+    mailingState?: any;
+    mailingStreetAddress1: string;
+    mailingStreetAddress2?: any;
+    msa?: any;
+    msaCode?: any;
+    postalCode: string;
+    rentOwn?: any;
+    resType?: any;
+    state: string;
+    streetName?: any;
+    streetNumber?: any;
+    timeAtPresentAddressMnths?: any;
+    timeAtPresentAddressYrs?: any;
+    unitOrAppt?: any;
+}

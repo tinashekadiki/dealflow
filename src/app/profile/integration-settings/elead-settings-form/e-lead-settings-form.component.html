@@ -1,0 +1,20 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title style="text-transform: uppercase;">
+      ELead
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <form [formGroup]="formGroup" (ngSubmit)="saveSettings(formGroup.value)">
+    <div fxLayout="row wrap">
+      <mat-form-field fxFlex="98" appearance="outline">
+        <mat-label>Subscription key</mat-label>
+        <input matInput formControlName="subscription" name="subscription" required>
+      </mat-form-field>
+    </div>
+    <div fxLayout="row">
+      <span fxFlex></span>
+      <button mat-raised-button color="primary">Save</button>
+      <span fxFlex></span>
+    </div>
+  </form>
+</mat-expansion-panel>

@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>{{data.displayName}}</h2>
+<div mat-dialog-content>
+    <div fxLayout="column" fxLayoutAlign="start stretch" style="width:100%">
+        <div fxFlex>
+            <p>Customer creation date:</p>
+        </div>
+        <div fxFlex fxLayout="row" fxLayoutAlign="start start">
+            <div fxFlex>
+                <mat-form-field>
+                    <mat-label>Min</mat-label>
+                    <input type="date" max="2100-01-01" matInput [(ngModel)]="data.value.min">
+                </mat-form-field>
+            </div>
+            <div fxFlex>
+                <mat-form-field>
+                    <mat-label>Max</mat-label>
+                    <input type="date" [min]="data.value.min" max="2100-01-01" matInput [(ngModel)]="data.value.max">
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <div fxLayout="column" fxLayoutAlign="start stretch" style="width:100%">
+        <div fxFlex fxLayout="row" fxLayoutAlign="end end">
+            <button mat-button (click)="onNoClick()">Cancel</button>
+            <button mat-button [disabled]="!validInput" [mat-dialog-close]="data">
+                {{(data.actionBtn == undefined)? "Apply":data.actionBtn}}
+            </button>
+        </div>
+    </div>
+</div>

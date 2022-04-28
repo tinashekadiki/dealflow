@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>{{data.displayName}}</h2>
+<div mat-dialog-content>
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <div fxFlex>
+            <mat-form-field>
+                <mat-label>Select a min</mat-label>
+                <mat-select [(value)]="data.value.min" cdkFocusInitial>
+                    <mat-option *ngFor="let opt of data.options" [value]="opt.value">{{opt.title}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div fxFlex>
+            <mat-form-field>
+                <mat-label>Select a max</mat-label>
+                <mat-select [(value)]="data.value.max" cdkFocusInitial>
+                    <mat-option *ngFor="let opt of data.options" [value]="opt.value">{{opt.title}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [disabled]="!validRange" [mat-dialog-close]="data">Apply</button>
+</div>

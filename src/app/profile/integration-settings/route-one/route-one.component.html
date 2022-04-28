@@ -1,0 +1,92 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      ROUTEONE
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <form [formGroup]="routeOneForm"
+        (ngSubmit)="saveSettings(routeOneForm.value)">
+    <div fxLayout="row wrap">
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Logical ID</mat-label>
+        <input matInput formControlName="logicalId" name="logicalId"  required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Component</mat-label>
+        <input matInput formControlName="component" name="component"  required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Task</mat-label>
+        <input matInput formControlName="task" name="task"  required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Reference ID</mat-label>
+        <input matInput formControlName="referenceId" name="referenceId"  required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Authorization ID</mat-label>
+        <input matInput formControlName="authorizationId" name="authorizationId"  required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Creator Name Code</mat-label>
+        <input matInput formControlName="creatorNameCode" name="creatorNameCode"  required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Sender Name Code</mat-label>
+        <input matInput formControlName="senderNameCode" name="senderNameCode"  required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Store Number</mat-label>
+        <input matInput formControlName="storeNumber" name="storeNumber"  required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Destination Name Code</mat-label>
+        <input matInput formControlName="destinationNameCode" name="destinationNameCode"  required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Sender ID</mat-label>
+        <input matInput formControlName="senderID" name="senderID"  required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Target ID</mat-label>
+        <input matInput formControlName="targetID" name="targetID"  required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Message Type</mat-label>
+        <input matInput formControlName="messageType" name="messageType"  required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Sequence Number</mat-label>
+        <input matInput formControlName="sequenceNo" name="sequenceNo"  required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Route One Dealer ID</mat-label>
+        <input matInput formControlName="r1DealerID" name="r1DealerID"  required>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48" appearance="outline">
+        <mat-label>Party ID</mat-label>
+        <input matInput formControlName="partyId" name="partyId"  required>
+      </mat-form-field>
+
+    </div>
+    <div fxLayout="row">
+      <span fxFlex></span>
+      <button mat-raised-button color="primary">Save</button>
+      <span fxFlex></span>
+    </div>
+  </form>
+</mat-expansion-panel>
